@@ -1,0 +1,24 @@
+{
+    "configurations": [
+    
+        {
+            "name": "Python: 현재 파일",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/DPMProject",
+            "env": {"PYTHONPATH": "${workspaceFolder}/DPMProject"}
+        },
+        {
+            "name": "Python: File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/DPMProject",
+            "env": {"PYTHONPATH": "${workspaceFolder}/DPMProject"}
+        }
+    ]
+}
