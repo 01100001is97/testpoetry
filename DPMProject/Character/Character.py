@@ -59,3 +59,4 @@ class ABCCharacter(ABC):
         self.Job = job
 
     
+pass
