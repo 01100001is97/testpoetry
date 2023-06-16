@@ -4,7 +4,7 @@ from Core.Enchant.Scroll import UpgradeScrolls
 from Core.Server import GameServer
 from Item.ItemGroup import EyeAccessory
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 from enum import Enum
 
@@ -37,7 +37,7 @@ class PapulatusMark(EyeAccessory):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = EyeAccessoryUpgradeChance.PapulatusMark.value
-        self.BelongedItemSet = ItemSet.BossAccessory
+        self.BelongedItemSet = ItemSetEnum.BossAccessory
 
         EyeAccessory.__init__(
             self=self,
@@ -79,7 +79,7 @@ class Berserked(EyeAccessory):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = EyeAccessoryUpgradeChance.Berserked.value
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         EyeAccessory.__init__(
             self=self,

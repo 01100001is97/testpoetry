@@ -53,50 +53,85 @@ class JobGroup(Enum):
     Overlord = "초월자"
     Friends = "프렌즈"
 
+
 class JobName(Enum):
     """직업 상세 정보
 
     Args:
-        enum (이름, 직업 계열, 직업군, (주스텟1, 주스텟 2, ...), (부스텟1, 부스텟2, ...), (무기1, 무기2, ...), (보조 무기1, 보조 무기2, ...)): 직업 고유 정보
-    """    
-    # 정보 수정이 조금 필요할듯. JobType의 변화로 인한 
+        enum(tuple) :(이름, 직업 계열, 직업군)
+    """
+
     # 모험가 전사
-    Hero = ("히어로", JobType.Worrior, JobGroup.Adventurer, (CoreStat.STAT_STR), (CoreStat.STAT_DEX),(),())
-    Paladin = ("팔라딘", JobType.Worrior, JobGroup.Adventurer, (CoreStat.STAT_STR), (CoreStat.STAT_DEX),(),())
-    DarkNight = ("다크나이트", JobType.Worrior, JobGroup.Adventurer, (CoreStat.STAT_STR), (CoreStat.STAT_DEX),(),())
+    Hero = ("히어로", JobType.Worrior, JobGroup.Adventurer)
+    Paladin = ("팔라딘", JobType.Worrior, JobGroup.Adventurer)
+    DarkKnight = ("다크나이트", JobType.Worrior, JobGroup.Adventurer)
 
     # 모험가 궁수
-    BowMaster = ("보우마스터", JobType.Bowman, JobGroup.Adventurer, (CoreStat.STAT_DEX), (CoreStat.STAT_STR),(),())
-    MarsMan = ("신궁", JobType.Bowman, JobGroup.Adventurer, (CoreStat.STAT_DEX), (CoreStat.STAT_STR),(),())
-    PathFinder = ("패스파인더", JobType.Bowman, JobGroup.Adventurer, (CoreStat.STAT_DEX), (CoreStat.STAT_STR),(),())
+    BowMaster = ("보우마스터", JobType.Bowman, JobGroup.Adventurer)
+    Marksman = ("신궁", JobType.Bowman, JobGroup.Adventurer)
+    PathFinder = ("패스파인더", JobType.Bowman, JobGroup.Adventurer)
 
     # 모험가 법사
-    ArchmageFP = ("아크메이지(불,독)", JobType.Magician, JobGroup.Adventurer, (CoreStat.STAT_INT), (CoreStat.STAT_LUK),(),())
-    ArchmageTC = ("아크메이지(얼음,번개)", JobType.Magician, JobGroup.Adventurer, (CoreStat.STAT_INT), (CoreStat.STAT_LUK),(),())
-    Bishop = ("비숍", JobType.Magician, JobGroup.Adventurer, (CoreStat.STAT_INT), (CoreStat.STAT_LUK),(),())
+    ArchmageFP = ("아크메이지(불,독)", JobType.Magician, JobGroup.Adventurer)
+    ArchmageTC = ("아크메이지(얼음,번개)", JobType.Magician, JobGroup.Adventurer)
+    Bishop = ("비숍", JobType.Magician, JobGroup.Adventurer)
 
     # 모험가 도적
-    NightLord = ("나이트로드", JobType.Theif, JobGroup.Adventurer, (CoreStat.STAT_LUK), (CoreStat.STAT_DEX),(),())
-    Shadower = ("섀도어", JobType.Theif, JobGroup.Adventurer, (CoreStat.STAT_LUK), (CoreStat.STAT_DEX, CoreStat.STAT_STR),(),())
-    DualBlade = ("듀얼 블레이드", JobType.Theif, JobGroup.Adventurer, (CoreStat.STAT_LUK), (CoreStat.STAT_DEX, CoreStat.STAT_STR),(),())
+    NightLord = ("나이트로드", JobType.Theif, JobGroup.Adventurer)
+    Shadower = ("섀도어", JobType.Theif, JobGroup.Adventurer)
+    DualBlade = ("듀얼 블레이드", JobType.MeleeTheif, JobGroup.Adventurer)
     
     # 모험가 해적
+    Viper = ("바이퍼", JobType.Pirate, JobGroup.Adventurer)
+    Captain = ("캡틴", JobType.DexPirate, JobGroup.Adventurer)
+    CannonShooter = ("캐논슈터", JobType.Pirate, JobGroup.Adventurer)
 
     # 시그너스 기사단
+    Mikhail = ("미하일", JobType.Worrior, JobGroup.CygnusKnights)
+    SoulMaster = ("소울마스터", JobType.Worrior, JobGroup.CygnusKnights)
+    FlameWizard = ("플레임위자드", JobType.Magician, JobGroup.CygnusKnights)
+    WindBreaker = ("윈드브레이커", JobType.Bowman, JobGroup.CygnusKnights)
+    NightWalker = ("나이트워커", JobType.Theif, JobGroup.CygnusKnights)
+    Striker = ("스트라이커", JobType.Pirate, JobGroup.CygnusKnights)
 
     # 레지스탕스
+    BattleMage = ("배틀메이지", JobType.Magician, JobGroup.Resistance)
+    WildHunter = ("와일드헌터", JobType.Bowman, JobGroup.Resistance)
+    Mechanic = ("메카닉", JobType.DexPirate, JobGroup.Resistance)
+    Blaster = ("블래스터", JobType.Worrior, JobGroup.Resistance)
+    Xenon = ("제논", JobType.Xenon, JobGroup.Resistance)
 
     # 데몬
+    DemonSlayer = ("데몬슬레이어", JobType.Worrior, JobGroup.Demon)
+    DemonAvenger = ("데몬어벤져", JobType.DemonAvenger, JobGroup.Demon)
 
     # 영웅
-    Mercedes = ("메르세데스", JobType.Bowman, JobGroup.Heros, (CoreStat.STAT_DEX), (CoreStat.STAT_STR),(),())
-
+    Aran = ("아란", JobType.Worrior, JobGroup.Heros)
+    Mercedes = ("메르세데스", JobType.Bowman, JobGroup.Heros)
+    Evan = ("에반", JobType.Magician, JobGroup.Heros)
+    Luminous = ("루미너스", JobType.Magician, JobGroup.Heros)
+    Phantom = ("팬텀", JobType.Theif, JobGroup.Heros)
+    Eunwol = ("은월", JobType.Pirate, JobGroup.Heros)
+    
     # 노바
+    Kaiser = ("카이저", JobType.Worrior, JobGroup.Nova)
+    AngelicBuster = ("엔젤릭버스터", JobType.DexPirate, JobGroup.Nova)
+    Cadena = ("카데나", JobType.MeleeTheif, JobGroup.Nova)
+    Kain = ("카인", JobType.Bowman, JobGroup.Nova)
 
     # 레프
+    Illium = ("일리움", JobType.Magician, JobGroup.Flora)
+    Ark = ("아크", JobType.Pirate, JobGroup.Flora)
+    Adele = ("아델", JobType.Worrior, JobGroup.Flora)
+    Kali = ("칼리", JobType.Theif, JobGroup.Flora)
+
 
     # 아니마
+    Hoyoung = ("호영", JobType.Theif, JobGroup.Anima)
+    Lara = ("라라", JobType.Magician, JobGroup.Anima)
 
     # 초월자
+    Zero = ("제로", JobType.Worrior, JobGroup.Overlord)
 
     # 프렌즈
+    Kinesis = ("키네시스", JobType.Magician, JobGroup.Friends)

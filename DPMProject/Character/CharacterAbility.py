@@ -8,18 +8,3 @@ class CharacterAbilityEnum(Enum):
     CooldownReset = (None, 10, 20)
     PassiveLevel = (None, None, 1)
     TargetExtension = (None, None, 1)
-
-
-class CharacterAbilityGrade(Enum):
-    Epic = 0
-    Unique = 1
-    Legendary = 2
-
-class CharacterAbility:
-    _option:CharacterAbilityEnum
-    _grade: CharacterAbilityGrade
-
-    def __init__(self, option:CharacterAbilityEnum,grade:CharacterAbilityGrade):
-        self._option = option
-        self._grade = grade
-

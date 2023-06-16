@@ -5,7 +5,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import Pocket
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 
 
@@ -29,7 +29,7 @@ class PinkHolyCup(Pocket):
         stat[CoreStat.ATTACK_SPELL] = 5
 
         self.ItemBasicStat = stat
-        self.BelongedItemSet = ItemSet.BossAccessory
+        self.BelongedItemSet = ItemSetEnum.BossAccessory
 
         Pocket.__init__(
             self=self,
@@ -63,7 +63,7 @@ class CursedRedSpellbook(Pocket):
         stat[CoreStat.ATTACK_SPELL] = 10
 
         self.ItemBasicStat = stat
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         Pocket.__init__(
             self=self,
@@ -97,7 +97,7 @@ class CursedGreenSpellbook(Pocket):
         stat[CoreStat.ATTACK_SPELL] = 10
 
         self.ItemBasicStat = stat
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         Pocket.__init__(
             self=self,
@@ -131,7 +131,7 @@ class CursedBlueSpellbook(Pocket):
         stat[CoreStat.ATTACK_SPELL] = 10
 
         self.ItemBasicStat = stat
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         Pocket.__init__(
             self=self,
@@ -165,7 +165,7 @@ class CursedYellowSpellbook(Pocket):
         stat[CoreStat.ATTACK_SPELL] = 10
 
         self.ItemBasicStat = stat
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         Pocket.__init__(
             self=self,

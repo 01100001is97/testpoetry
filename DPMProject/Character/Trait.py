@@ -1,20 +1,10 @@
-from Core.SpecElements import SpecVector, CoreStat
+from Core.SpecElements import SpecVector, CoreStat, CreateSpecVector
+from enum import Enum
 
-
-TraitStat = SpecVector()
-
-# 카리스마
-TraitStat[CoreStat.IGNORE_GUARD_PERCENTAGE] = 10
-
-# 통찰력
-TraitStat[CoreStat.IGNORE_ELEMENTAL_RESISTANCE] = 5
-
-# 감성
-TraitStat[CoreStat.STAT_HP] = 2000
-TraitBuffDuration = 10
-
-# 의지 
-TraitStat[CoreStat.STAT_HP] += 2000
-
-# 손재주
-#매력
+class Trait(Enum):
+    카리스마 = CreateSpecVector([CoreStat.IGNORE_GUARD_PERCENTAGE], 10) 
+    통찰력 = CreateSpecVector([CoreStat.IGNORE_ELEMENTAL_RESISTANCE], 5) 
+    감성 = 10
+    의지 = CreateSpecVector([CoreStat.STAT_HP], 2000) 
+    손재주 = None
+    매력 = None

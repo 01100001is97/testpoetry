@@ -4,7 +4,7 @@ from Core.Enchant.Scroll import UpgradeScrolls
 from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import Heart
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 from Core.SpecElements import CoreStat, SpecVector
 from enum import Enum
@@ -71,7 +71,7 @@ class BlackHeart(Heart):
 
         
         self.StarforceLevel = 15
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         Heart.__init__(
             self=self,

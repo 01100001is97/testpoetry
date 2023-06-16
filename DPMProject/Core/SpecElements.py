@@ -89,7 +89,7 @@ class SpecVector(list):
             raise KeyError(f"Invalid key: {key}")
         return super().__getitem__(key.value)
 
-    def __setitem__(self, key:CoreStat, value:float):
+    def __setitem__(self, key:CoreStat, value:int):
         if not isinstance(key, CoreStat):
             raise KeyError(f"Invalid key: {key}")
         
@@ -217,7 +217,9 @@ class SpecVector(list):
                 self[individual_stat_key] += all_stat_value
             self[all_stat_key] = 0
 
-    
+    def copy(self):
+        result = SpecVector()
+        return result + self
 
     def IsValidStat(self, arg1: CoreStat, arg2:float) -> bool:
         """ CoreStat에 대응하는 Value의 유효성을 간략하게 검사(10만 미만의 값 혹은 100% 이하의 방무)
@@ -231,3 +233,4 @@ class SpecVector(list):
         """        
         return (0 <= arg2 <= 100000) and (arg1 not in [CoreStat.IGNORE_GUARD_PERCENTAGE, CoreStat.IGNORE_ELEMENTAL_RESISTANCE] or arg2 <= 100)
     
+CreateSpecVector = lambda *args: SpecVector([next((value for stats, value in zip(args[::2], args[1::2]) if e in stats), 0) for i, e in enumerate(CoreStat)])

@@ -7,7 +7,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import Weapon
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 from enum import Enum
 
@@ -16,7 +16,7 @@ class WeaponUpgradeChance(Enum):
     Genesis = 8
 
 class ArcaneShadeWeapon(Weapon):
-    _itemset: ItemSet
+    _itemset: ItemSetEnum
     _RequiredLevel: int
     _upgrade_chance:int
     def __init__(
@@ -33,7 +33,7 @@ class ArcaneShadeWeapon(Weapon):
             server = GameServer.NormalServer
     ):
         self._RequiredLevel = 200
-        self._itemset = ItemSet.ArcaneShade
+        self._itemset = ItemSetEnum.ArcaneShade
         self._upgrade_chance = WeaponUpgradeChance.Arcane.value
 
         # 무기류 주스텟, 부스텟 100 고정. 무기 보공30 방무 20 적용

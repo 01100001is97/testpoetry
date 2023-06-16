@@ -5,7 +5,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import Belt
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 from enum import Enum
 
@@ -40,7 +40,7 @@ class EnragedZaqqumBelt(Belt):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = BeltUpgradeChance.Zaqqum.value
-        self.BelongedItemSet = ItemSet.BossAccessory
+        self.BelongedItemSet = ItemSetEnum.BossAccessory
 
         Belt.__init__(
             self=self,
@@ -85,7 +85,7 @@ class DreamyBelt(Belt):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = BeltUpgradeChance.Dreamy.value
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         Belt.__init__(
             self=self,

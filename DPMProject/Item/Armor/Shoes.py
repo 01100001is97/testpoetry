@@ -5,7 +5,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import Shoes
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 
 ShoesUpgradeChance = 8
@@ -25,7 +25,7 @@ class AbsolabsShoes(Shoes):
             ):
         
         self.RequiredLevel = ReqLevel.Lv160.value
-        self.BelongedItemSet = ItemSet.Absolabs
+        self.BelongedItemSet = ItemSetEnum.Absolabs
         Shoes.__init__(
             self=self,
             itemName = itemName, 
@@ -87,7 +87,7 @@ class ArcaneShadeShoes(Shoes):
             ):
         
         self.RequiredLevel = ReqLevel.Lv200.value
-        self.BelongedItemSet = ItemSet.ArcaneShade
+        self.BelongedItemSet = ItemSetEnum.ArcaneShade
         Shoes.__init__(
             self=self,
             itemName = itemName, 

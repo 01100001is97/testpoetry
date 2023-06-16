@@ -18,7 +18,7 @@ from Item.Armor.Cape import ArcaneShadeMageCape, CapeUpgradeChance
 from Item.Symbol.ArcaneSymbol import ArcaneSymbolPreset
 from Item.Symbol.AuthenticSymbol import AuthenticSymbolPreset
 from Item.CharacterTitle.Title import KingOfRootAbyss, IAmHeist
-from Item.Pet.LunarCristal import lunarDreamAcc1, lunarDreamAcc2, lunarPetitAcc1
+from Item.Pet.LunarCristal import LunarDream, LunarPetit, PetAccessoryUpgradeChance
 from Item.Weapons.Weapon import ArcaneShadeStaff, WeaponUpgradeChance
 from Item.Weapons.SubWeapon import WhiteGoldBook
 from Item.Weapons.Emblem import GoldMapleLeafEmblem
@@ -306,12 +306,15 @@ ItemPreset_1715_int.append(kor)
 #heist = IAmHeist()
 
 ## 펫 장비 인스턴스 ##
-petacc_spell1 = lunarDreamAcc1
-petacc_spell2 = lunarDreamAcc2
-petacc_spell3 = lunarPetitAcc1
-ItemPreset_1715_int.append(petacc_spell1)
-ItemPreset_1715_int.append(petacc_spell2)
-ItemPreset_1715_int.append(petacc_spell3)
+
+lunarPetitAcc1 = LunarPetit([UpgradeScrolls().Accessory.PremiumSPELL for _ in range(0, PetAccessoryUpgradeChance.Petit.value)])
+ItemPreset_1715_int.append(lunarPetitAcc1)
+
+lunarDreamAcc1 = LunarDream([UpgradeScrolls().Accessory.SPELL for _ in range(0, PetAccessoryUpgradeChance.Dream.value)])
+ItemPreset_1715_int.append(lunarDreamAcc1)
+
+lunarDreamAcc2 = LunarDream([UpgradeScrolls().Accessory.SPELL for _ in range(0, PetAccessoryUpgradeChance.Dream.value)])
+ItemPreset_1715_int.append(lunarDreamAcc2)
 
 ## 심볼 인스턴스 ##
 for symbol in ArcaneSymbolPreset:

@@ -4,7 +4,7 @@ from Core.Enchant.Scroll import UpgradeScrolls
 from Core.Server import GameServer
 from Item.ItemGroup import Pendant
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 from enum import Enum
 
@@ -40,7 +40,7 @@ class DominatorPendant(Pendant):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = PendantUpgradeChance.Dominator.value
-        self.BelongedItemSet = ItemSet.BossAccessory
+        self.BelongedItemSet = ItemSetEnum.BossAccessory
 
         Pendant.__init__(
             self=self,
@@ -83,7 +83,7 @@ class DayBreakPendant(Pendant):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = PendantUpgradeChance.Daybreak.value
-        self.BelongedItemSet = ItemSet.DawnBoss
+        self.BelongedItemSet = ItemSetEnum.DawnBoss
 
         Pendant.__init__(
             self=self,
@@ -126,7 +126,7 @@ class SourceOfSuffering(Pendant):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = PendantUpgradeChance.Suffering.value
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         Pendant.__init__(
             self=self,

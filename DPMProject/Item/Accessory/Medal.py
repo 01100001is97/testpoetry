@@ -5,7 +5,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import Medal
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 
 
@@ -16,7 +16,7 @@ class SevenDayMonsterParker(Medal):
     ):
         self.ItemName = "칠요의 몬스터파커"
         self.RequiredLevel = ReqLevel.Lv130.value
-        self.BelongedItemSet = ItemSet.SevenDays
+        self.BelongedItemSet = ItemSetEnum.SevenDays
 
         stat = SpecVector()
         stat[CoreStat.STAT_STR] = 7

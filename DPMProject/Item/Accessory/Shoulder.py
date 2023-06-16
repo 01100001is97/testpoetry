@@ -5,7 +5,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import Shoulder
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 from enum import Enum
 
@@ -26,7 +26,7 @@ class MeisterShoulder(Shoulder):
     ):
         self.ItemName = "마이스터 숄더"
         self.RequiredLevel = ReqLevel.Lv140.value
-        self.BelongedItemSet = ItemSet.Meister
+        self.BelongedItemSet = ItemSetEnum.Meister
         self.RequiredJobType = [e for e in JobType]
 
         stat = SpecVector()
@@ -66,7 +66,7 @@ class AbsolabsShoulder(Shoulder):
             server=GameServer.NormalServer
     ):
         self.RequiredLevel = ReqLevel.Lv160.value
-        self.BelongedItemSet = ItemSet.Absolabs
+        self.BelongedItemSet = ItemSetEnum.Absolabs
 
         stat = SpecVector()
         stat[CoreStat.STAT_STR] = 14
@@ -106,7 +106,7 @@ class ArcaneShadeShoulder(Shoulder):
     ):
         
         self.RequiredLevel = ReqLevel.Lv200.value
-        self.BelongedItemSet = ItemSet.ArcaneShade
+        self.BelongedItemSet = ItemSetEnum.ArcaneShade
 
         stat = SpecVector()
         stat[CoreStat.STAT_STR] = 35

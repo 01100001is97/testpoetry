@@ -8,7 +8,7 @@ from Core.Enchant.StarForce import StarForce
 from Core.ABCItem import ItemParts, ABCItem
 from Core.Server import GameServer
 from Core.ReqLevel import ReqLevel
-from Item.ItemSet import ItemSet, BelongedItemSet
+from Item.ItemSet import ItemSetEnum, BelongedItemSet
 
 
 class NormalItem(PotentialAbility, BonusOption, StarForce, BelongedItemSet):
@@ -1075,7 +1075,7 @@ class AuthenticSymbol(Symbol):
         )
 
 # 펫장비
-class PetAccessory(Upgrade):
+class PetAccessory(Upgrade, BelongedItemSet):
     _RequiredLevel: int
     _RequiredJobType: list
     _ItemPart: ItemParts
@@ -1085,7 +1085,8 @@ class PetAccessory(Upgrade):
         itemName: str,
         upgrade_chance: int,
         itembasicstat: SpecVector,
-        upgrade_history: list[UpgradeScrolls]
+        upgrade_history: list[UpgradeScrolls],
+        setitem = ItemSetEnum
     ):
         if upgrade_chance > 10:
             raise ValueError("펫 장비 업그레이드 최대 횟수는 10회")
@@ -1109,47 +1110,11 @@ class PetAccessory(Upgrade):
             upgrade_history=upgrade_history,
             server=None
         )
+        BelongedItemSet.__init__(self=self, itemset=setitem)
+
     def TotalSpec(self) -> tuple[SpecVector, int]:
         stat, _ = Upgrade.TotalSpec(self)
         return self.ItemBasicStat + stat, 0
-
-class LunarDream(PetAccessory):
-    _upgradeChance = 9
-    _itemName = "루나 드림 펫장비"
-    _basicStat = SpecVector()
-    def __init__(
-            self,
-            upgrade_history: list[UpgradeScrolls]
-    ):
-        self._basicStat[CoreStat.ATTACK_PHYSICAL] = 5
-        self._basicStat[CoreStat.ATTACK_SPELL] = 5
-
-        PetAccessory.__init__(
-            self=self,
-            itemName=self._itemName,
-            upgrade_chance=self._upgradeChance,
-            itembasicstat=self._basicStat,
-            upgrade_history=upgrade_history
-        )
-
-class LunarPetit(PetAccessory):
-    _upgradeChance = 8
-    _itemName = "루나 쁘띠 펫장비"
-    _basicStat = SpecVector()
-    def __init__(
-            self,
-            upgrade_history: list[UpgradeScrolls]
-    ):
-        self._basicStat[CoreStat.ATTACK_PHYSICAL] = 10
-        self._basicStat[CoreStat.ATTACK_SPELL] = 10
-
-        PetAccessory.__init__(
-            self=self,
-            itemName=self._itemName,
-            upgrade_chance=self._upgradeChance,
-            itembasicstat=self._basicStat,
-            upgrade_history=upgrade_history
-        )
 
 # 칭호
 class CharacterTitle(NoEnchantItem):
@@ -1178,7 +1143,7 @@ class CashItem(NoEnchantItem):
             self,
             itemName: str,
             itemBasicStat: SpecVector,
-            itemset: ItemSet,
+            itemset: ItemSetEnum,
             itempart: ItemParts
     ):
         self._reqJob = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]

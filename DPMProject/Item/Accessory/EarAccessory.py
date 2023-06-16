@@ -5,7 +5,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import EarAccessory
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 from enum import Enum
 
@@ -41,7 +41,7 @@ class MeisterEarRings(EarAccessory):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = EarRingUpgradeChance.Meister.value
-        self.BelongedItemSet = ItemSet.Meister
+        self.BelongedItemSet = ItemSetEnum.Meister
 
         EarAccessory.__init__(
             self=self,
@@ -85,7 +85,7 @@ class EstellaEarRings(EarAccessory):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = EarRingUpgradeChance.Estella.value
-        self.BelongedItemSet = ItemSet.DawnBoss
+        self.BelongedItemSet = ItemSetEnum.DawnBoss
 
         EarAccessory.__init__(
             self=self,
@@ -129,7 +129,7 @@ class CommandingForceEarRing(EarAccessory):
 
         self.ItemBasicStat = stat
         self.UpgradeChance = EarRingUpgradeChance.Commanding.value
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         EarAccessory.__init__(
             self=self,

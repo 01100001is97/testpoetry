@@ -4,7 +4,7 @@ from Core.Enchant.Potential import PotentialOptionSlot
 from Core.Enchant.Scroll import UpgradeScrolls
 from Core.Server import GameServer
 from Item.ItemGroup import Ring
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 from enum import Enum
 
@@ -41,7 +41,7 @@ class MeisterRing(Ring):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = RingUpgradeChance.Meister.value
-        self.BelongedItemSet = ItemSet.Meister
+        self.BelongedItemSet = ItemSetEnum.Meister
 
         Ring.__init__(
             self=self,
@@ -70,7 +70,7 @@ class GuardianAngelRing(Ring):
         self.ItemName = "가디언 엔젤 링"
         self.RequiredLevel = ReqLevel.Lv160.value
         self.UpgradeChance = RingUpgradeChance.Guardian.value
-        self.BelongedItemSet = ItemSet.DawnBoss
+        self.BelongedItemSet = ItemSetEnum.DawnBoss
 
         stat = SpecVector()
         stat[CoreStat.STAT_STR] = 5
@@ -124,7 +124,7 @@ class EndlessTerror(Ring):
         self.ItemBasicStat = stat
 
         self.UpgradeChance = RingUpgradeChance.Endless.value
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         Ring.__init__(
             self=self,

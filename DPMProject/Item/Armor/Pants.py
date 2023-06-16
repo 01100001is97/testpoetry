@@ -5,7 +5,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import Pants
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 
 PantsUpgradeChance = 8
@@ -26,7 +26,7 @@ class RootAbyssPants(Pants):
             ):
         
         self.RequiredLevel = ReqLevel.Lv150.value
-        self.BelongedItemSet = ItemSet.Rootabyss
+        self.BelongedItemSet = ItemSetEnum.Rootabyss
         Pants.__init__(
             self=self,
             itemName = itemName, 
@@ -99,7 +99,7 @@ class EternelPants(Pants):
             ):
         
         self.RequiredLevel = ReqLevel.Lv250.value
-        self.BelongedItemSet = ItemSet.Eternel
+        self.BelongedItemSet = ItemSetEnum.Eternel
         Pants.__init__(
             self=self,
             itemName = itemName, 

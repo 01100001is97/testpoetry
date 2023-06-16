@@ -5,7 +5,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import Cape
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 
 CapeUpgradeChance = 8
@@ -25,7 +25,7 @@ class AbsolabsCape(Cape):
             ):
         
         self.RequiredLevel = ReqLevel.Lv160.value
-        self.BelongedItemSet = ItemSet.Absolabs
+        self.BelongedItemSet = ItemSetEnum.Absolabs
         Cape.__init__(
             self=self,
             itemName = itemName, 
@@ -90,7 +90,7 @@ class ArcaneShadeCape(Cape):
             ):
         
         self.RequiredLevel = ReqLevel.Lv200.value
-        self.BelongedItemSet = ItemSet.ArcaneShade
+        self.BelongedItemSet = ItemSetEnum.ArcaneShade
         Cape.__init__(
             self=self,
             itemName = itemName, 

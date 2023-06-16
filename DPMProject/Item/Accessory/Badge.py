@@ -1,7 +1,7 @@
 from Core.Server import GameServer
 from Item.ItemGroup import Badge
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 
 
@@ -12,7 +12,7 @@ class CristalVentusBadge(Badge):
     ):
         self.ItemName = "크리스탈 웬투스 뱃지"
         self.RequiredLevel = ReqLevel.Lv130.value
-        self.BelongedItemSet = ItemSet.BossAccessory
+        self.BelongedItemSet = ItemSetEnum.BossAccessory
 
         stat = SpecVector()
         stat[CoreStat.STAT_STR] = 10
@@ -46,7 +46,7 @@ class SevenDaysBadge(Badge):
         itemBasicStat[CoreStat.ATTACK_SPELL] = 7
         itemBasicStat[CoreStat.IGNORE_GUARD_PERCENTAGE] = 10
 
-        itemset = ItemSet.SevenDays
+        itemset = ItemSetEnum.SevenDays
 
         Badge.__init__(
             self=self, 
@@ -64,7 +64,7 @@ class GenesisBadge(Badge):
     ):
         self.ItemName = "창세의 뱃지"
         self.RequiredLevel = ReqLevel.Lv200.value
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         stat = SpecVector()
         stat[CoreStat.STAT_STR] = 15

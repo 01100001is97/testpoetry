@@ -5,7 +5,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import Cap
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 from enum import Enum
 
@@ -27,7 +27,7 @@ class RootAbyssCap(Cap):
             ):
         
         self.RequiredLevel = ReqLevel.Lv150.value
-        self.BelongedItemSet = ItemSet.Rootabyss
+        self.BelongedItemSet = ItemSetEnum.Rootabyss
         Cap.__init__(
             self=self,
             itemName = itemName, 
@@ -102,7 +102,7 @@ class EternelCap(Cap):
             ):
         
         self.RequiredLevel = ReqLevel.Lv250.value
-        self.BelongedItemSet = ItemSet.Eternel
+        self.BelongedItemSet = ItemSetEnum.Eternel
         Cap.__init__(
             self=self,
             itemName = itemName, 

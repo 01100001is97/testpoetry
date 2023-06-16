@@ -1,6 +1,6 @@
 from Item.ItemGroup import CashItem
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ABCItem import ItemParts
 
 class MasterLabel(CashItem):
@@ -14,7 +14,7 @@ class MasterLabel(CashItem):
             self=self,
             itemName=itemName,
             itemBasicStat=itembasicstat,
-            itemset=ItemSet.Master,
+            itemset=ItemSetEnum.Master,
             itempart=itempart
         )
 
@@ -29,7 +29,7 @@ class BlackLabel(CashItem):
             self=self,
             itemName=itemName,
             itemBasicStat=itembasicstat,
-            itemset=ItemSet.Black,
+            itemset=ItemSetEnum.Black,
             itempart=itempart
         )
 

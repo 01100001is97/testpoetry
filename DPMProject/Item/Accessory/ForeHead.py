@@ -5,7 +5,7 @@ from Core.Job import JobType
 from Core.Server import GameServer
 from Item.ItemGroup import ForeHead
 from Core.SpecElements import CoreStat, SpecVector
-from Item.ItemSet import ItemSet
+from Item.ItemSet import ItemSetEnum
 from Core.ReqLevel import ReqLevel
 from enum import Enum
 
@@ -37,7 +37,7 @@ class TwilightMark(ForeHead):
         
 
         self.UpgradeChance = ForeHeadUpgradeChance.TwilightMark.value
-        self.BelongedItemSet = ItemSet.DawnBoss
+        self.BelongedItemSet = ItemSetEnum.DawnBoss
 
         ForeHead.__init__(
             self=self,
@@ -80,7 +80,7 @@ class LooseControlMachineMark(ForeHead):
         
 
         self.UpgradeChance = ForeHeadUpgradeChance.LooseControl.value
-        self.BelongedItemSet = ItemSet.PitchedBoss
+        self.BelongedItemSet = ItemSetEnum.PitchedBoss
 
         ForeHead.__init__(
             self=self,
