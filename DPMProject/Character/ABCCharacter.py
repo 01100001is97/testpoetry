@@ -5,10 +5,11 @@ from Item.ItemSlot import ItemSlot
 from Item.ItemSet import ItemSet, ItemSetOptionLevel
 from Item.ItemGroup import ArcaneSymbol, AuthenticSymbol
 from Core.Job import JobType
-from CharacterAbility import CharacterAbilityEnum
-from Trait import Trait
-from Union import Legion, LegionOption
-from FarmMonster import FarmMonsterEnum
+from Character.CharacterAbility import CharacterAbilityEnum
+from Character.Trait import Trait
+from Character.Union import Legion, LegionOption
+from Character.FarmMonster import FarmMonsterEnum
+#from Skill.CommonSkill import LinkSkillSlot
 from typing import Dict, List
 
 class InvalidInputException(Exception):
@@ -39,6 +40,8 @@ class ABCCharacter(ABC):
     _AttackType: AttackType             # 공격 유형(물리데미지, 마법데미지)
     _TotalSpec: SpecVector
 
+    _IsIdle: bool                       # 캐릭터가 행동 가능한 상태인지 
+
     # 파생 스텟
     _HyperStatPoint:int                 # 하이퍼스텟에 투자할 수 있는 포인트
     _ArcaneForce: int                   # 아케인포스
@@ -57,7 +60,7 @@ class ABCCharacter(ABC):
     # 추가적인 스펙업 수단
     _PersonalTrait: list[Trait]             # 성향은 만렙으로 가정함.
     _AbilitySlot: set[CharacterAbilityEnum] # 어빌리티 슬롯
-    _LinkSkillList: list[None]              # 링크 스킬 리스트 - 미구현 
+    #_LinkSkillSlot: LinkSkillSlot              # 링크 스킬 리스트 - 미구현 
     _Farm: set[FarmMonsterEnum]             # 농장 몬스터 목록
     _LegionList: list[Legion]               # 유니온 대원목록
     _PetBuffList: list                      # 미구현(스킬의 리스트로 설정)
@@ -200,6 +203,11 @@ class ABCCharacter(ABC):
         
         return 5*(rest-2)*(rest+3) + (rest+1)*(first_digit+1)
 
+
+    ############# 해야함 ##############3
+    def SetupHyperStat(self):
+        pass
+
     # 아케인포스를 반환
     def GetArcaneForce(self) ->int:
         return self._ArcaneForce
@@ -217,8 +225,9 @@ class ABCCharacter(ABC):
         
         self._LegionList = _list
 
-    # 유니온 대원 효과를 적용함
+    ############## 미완성 유니온 점령효과 ###############
     def SetupUnion(self):
+        # 유니온 대원 효과를 적용함
         for member in self._LegionList:
             optionType = member.value._Option
             effect = optionType.value[0]
@@ -233,9 +242,21 @@ class ABCCharacter(ABC):
             elif optionType == LegionOption.WildHunter:
                 pass    # 와일드헌터 20% 확률로 데미지 16~020% 증가. 스킬로 구현
 
+        # 유니온 점령 효과를 적용함
+
+    # 링크 스킬 목록을 설정함
+    def SetLinkSkillList(self, skilllist: list):
+        pass
+
+    # 링크 스킬을 캐릭터에 적용함
+    def SetupLinkSkill(self):
+        pass
+
     # 모든 스펙요소를 적용함
     def Setup(self):
         self.SetupItemSlotSpec()
         self.SetupPersonalTrait()
         self.SetupAbilitySlot()
+        self.SetupUnion()
+        self.SetupLinkSkill()
         pass    #...
