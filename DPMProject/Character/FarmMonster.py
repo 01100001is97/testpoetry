@@ -1,7 +1,9 @@
 from Core.SpecElements import SpecVector, CoreStat, CreateSpecVector
 from enum import Enum
 
-class FarmMonsterEnum(Enum):
+
+
+class FarmMonster(Enum):
     # 힘덱인럭
     소 = CreateSpecVector([CoreStat.STAT_STR], 14)
     솔져 = CreateSpecVector([CoreStat.STAT_STR, CoreStat.STAT_INT], 7)
@@ -47,7 +49,6 @@ class FarmMonsterEnum(Enum):
     쁘띠_시그너스 = CreateSpecVector([CoreStat.DAMAGE_PERCENTAGE], 3)
     허수아비 = CreateSpecVector([CoreStat.DAMAGE_PERCENTAGE], 4)
     쁘띠_반_레온 = CreateSpecVector([CoreStat.DAMAGE_PERCENTAGE_BOSS], 5)
-    쁘띠_매그너스 = CreateSpecVector([CoreStat.IGNORE_GUARD_PERCENTAGE], 5)
     쁘띠_랑 = CreateSpecVector([CoreStat.DAMAGE_PERCENTAGE_BOSS], 8)  # Assuming 쁘띠 은월 condition is handled elsewhere
 
     # 공마
@@ -58,6 +59,9 @@ class FarmMonsterEnum(Enum):
     쁘띠_루미너스_어둠 = CreateSpecVector([CoreStat.ATTACK_PHYSICAL, CoreStat.ATTACK_SPELL], 5)
     검은_마법사의_그림자 = CreateSpecVector([CoreStat.ATTACK_PHYSICAL, CoreStat.ATTACK_SPELL], 6)
     쁘띠_루미너스_이퀄리브리엄 = 1 # 20레벨당 공/마1(공마% 받지 않음)
+
+    # 타겟수 + 1
+    쁘띠_루미너스 = 1
 
     
     # 크리티컬 확률
@@ -72,7 +76,8 @@ class FarmMonsterEnum(Enum):
     # 방어율 무시   
     라피스 = CreateSpecVector([CoreStat.IGNORE_GUARD_PERCENTAGE], 5)
     양철_나무꾼 = CreateSpecVector([CoreStat.IGNORE_GUARD_PERCENTAGE], 6)
-
+    쁘띠_매그너스 = CreateSpecVector([CoreStat.IGNORE_GUARD_PERCENTAGE], 5)
+    
     # 소환수 지속시간
     사랑에_빠진_커플예티 = 7  # 소환수 지속시간 7% 증가
     빅_펌킨 = 6  # 소환수 지속시간 6% 증가
@@ -88,4 +93,6 @@ class FarmMonsterEnum(Enum):
 
     # 파이널어택류 데미지 증가
     피에르 = 15  # 파이널 어택류의 데미지 15% 증가
+
+
 

@@ -6,10 +6,13 @@ class ItemSlot(Dict[ItemParts, List[ABCItem]]):
         super().__init__()
 
     def AddItem(self, part: ItemParts, item: ABCItem):
-        if part in self:
-            self[part].append(item)
+        if isinstance(part, ItemParts) and isinstance(item, ABCItem):
+            if part in self:
+                self[part].append(item)
+            else:
+                self[part] = [item]
         else:
-            self[part] = [item]
+            raise TypeError("args are not instance")
     """
     def RemoveItem(self, part: ItemParts, item: ABCItem):
         if part in self and item in self[part]:
@@ -20,3 +23,7 @@ class ItemSlot(Dict[ItemParts, List[ABCItem]]):
     
     def GetItem(self, part: ItemParts) -> List[ABCItem]:
         return self.get(part, [])
+    
+    def __iter__(self):
+        for part, items in dict.items(self):
+            yield part, items

@@ -71,6 +71,28 @@ class CoreStat(Enum):
     STAT_MP = 35
     STAT_MP_PERCENTAGE = 36
 
+    def __lt__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value < other.value
+        return NotImplemented
+    
+    def __le__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value <= other.value
+        return NotImplemented
+    
+    def __gt__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value > other.value
+        return NotImplemented
+    
+    def __ge__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value >= other.value
+        return NotImplemented
+    
+
+
 
 class SpecVector(list):
     """모든 스펙 요소는 SpecVector의 합으로 이루어짐
@@ -81,8 +103,11 @@ class SpecVector(list):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for _ in range(len(CoreStat)):
-            self.append(0)
+        if len(self) == len(CoreStat):
+            return
+        elif len(self) ==0:
+            for _ in range(len(CoreStat)):
+                self.append(0)
 
     def __getitem__(self, key:CoreStat):
         if not isinstance(key, CoreStat):
@@ -93,10 +118,16 @@ class SpecVector(list):
         if not isinstance(key, CoreStat):
             raise KeyError(f"Invalid key: {key}")
         
+        current_value = self[key]
+        
         if not self.IsValidStat(key,value):
             raise ValueError("Value error: Value out of range")
         
+        
+        
         super().__setitem__(key.value, value)
+
+        
 
     def __add__(self, other):
         """ + 연산자를 오버로딩함. 벡터처럼 더하는 연산 제공.
@@ -233,4 +264,11 @@ class SpecVector(list):
         """        
         return (0 <= arg2 <= 100000) and (arg1 not in [CoreStat.IGNORE_GUARD_PERCENTAGE, CoreStat.IGNORE_ELEMENTAL_RESISTANCE] or arg2 <= 100)
     
-CreateSpecVector = lambda *args: SpecVector([next((value for stats, value in zip(args[::2], args[1::2]) if e in stats), 0) for i, e in enumerate(CoreStat)])
+def CreateSpecVector(*args):
+    result = [0 for _ in range(len(CoreStat))]
+    for i, e in enumerate(CoreStat):
+        for stats, value in zip(args[::2], args[1::2]):
+            if e in stats:
+                result[i] += value
+                break
+    return SpecVector(result)

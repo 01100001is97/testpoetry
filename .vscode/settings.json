@@ -11,5 +11,9 @@
     "python.testing.pytestArgs": [
         "DPMProject"
     ],
-    "python.analysis.extraPaths": ["${workspaceFolder}/DPMProject"]
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/DPMProject"
+    ],
+    "easycode.dataCollection": false,
+    "easycode.useOwnApiKey": true
 }

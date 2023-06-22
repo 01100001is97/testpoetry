@@ -1,7 +1,7 @@
 from enum import Enum
 from Core.SpecElements import SpecVector, CoreStat
 from Core.Job import JobType, JobTypeInfo
-
+from typing import List
 
 class ItemSetEnum(Enum):
     # 방어구
@@ -25,8 +25,6 @@ class ItemSetEnum(Enum):
     Lucky = 13
 
 class BelongedItemSet:
-    BelongedItemSet: ItemSetEnum
-
     def __init__(self, itemset:ItemSetEnum):
         if itemset == None:
             pass
@@ -40,11 +38,17 @@ class ItemSetOptionLevel(list):
         for _ in range(len(ItemSetEnum)):
             self.append(0)
 
-    def __setitem__(self, key:ItemSetEnum, value:int):
+    def __getitem__(self, key:ItemSetEnum):
+        if not isinstance(key, ItemSetEnum):
+            raise KeyError(f"Invalid Key: {key}")
+        
+        return super().__getitem__(key.value)
+    def __setitem__(self, key:ItemSetEnum, value):
         if not isinstance(key, ItemSetEnum):
             raise KeyError(f"Invalid Key: {key}")
         
         super().__setitem__(key.value, value)
+    
 
 class ItemSet(list):
     """메이플스토리 아이템 세트에 대한 정보를 가지고 있는 클래스
@@ -75,18 +79,20 @@ class ItemSet(list):
         self.SetDream()
         self.SetPetit()
 
+
     def __getitem__(self, key:ItemSetEnum):
         if not isinstance(key, ItemSetEnum):
             raise KeyError(f"Invalid key: {key}")
         return super().__getitem__(key.value)
 
-    def append(self, key:ItemSetEnum, value: SpecVector) -> None:
+    def append(self, key:ItemSetEnum, value: List[SpecVector]) -> None:
         if not isinstance(key, ItemSetEnum):
             raise KeyError(f"Invalid key: {key}")
-        if not isinstance(value, SpecVector):
-            raise ValueError(f"Value must be a SpecVector, not {type(value)}")
-        super(ItemSet, self)[key.value].append(value)
-        #super().append(key.value, value)?
+        if not all(isinstance(item, SpecVector) for item in value):
+            raise ValueError(f"Value must be a list of SpecVector, not {type(value)}")
+        self[key.value] = value
+
+
 
     def SetRootabyss(self, mainstat, substat):
         # 루타비스 세트
@@ -108,8 +114,9 @@ class ItemSet(list):
 
         rootabyss4 = rootabyss3.copy()
         rootabyss4[CoreStat.DAMAGE_PERCENTAGE_BOSS] += 30
+        self.append(ItemSetEnum.Rootabyss, [rootabyss1, rootabyss2, rootabyss3, rootabyss4])
 
-        self[ItemSetEnum.Rootabyss.value] = [rootabyss1, rootabyss2, rootabyss3, rootabyss4]
+        #self[ItemSetEnum.Rootabyss.value] =[rootabyss1, rootabyss2, rootabyss3, rootabyss4]
 
     def SetAbsolabs(self):
         # Absolabs 세트
@@ -137,7 +144,7 @@ class ItemSet(list):
         absolabs5[CoreStat.DAMAGE_PERCENTAGE_BOSS] += 10
 
         
-        self[ItemSetEnum.Absolabs.value] = [SpecVector(), absolabs2, absolabs3, absolabs4, absolabs5]
+        self.append(ItemSetEnum.Absolabs, [SpecVector(), absolabs2, absolabs3, absolabs4, absolabs5])
 
     def SetArcaneshade(self):
         # 아케인셰이드 세트
@@ -164,7 +171,7 @@ class ItemSet(list):
         arcaneshade5[CoreStat.ATTACK_SPELL] += 40
         arcaneshade5[CoreStat.DAMAGE_PERCENTAGE_BOSS] += 10
 
-        self[ItemSetEnum.ArcaneShade.value] = [SpecVector(), arcaneshade2, arcaneshade3, arcaneshade4, arcaneshade5]
+        self.append(ItemSetEnum.ArcaneShade, [SpecVector(), arcaneshade2, arcaneshade3, arcaneshade4, arcaneshade5])
 
     def SetEternal(self):
         # 에테르넬 세트
@@ -213,7 +220,7 @@ class ItemSet(list):
         eternal8[CoreStat.ATTACK_SPELL] += 40
         eternal8[CoreStat.DAMAGE_PERCENTAGE_BOSS] += 10
 
-        self[ItemSetEnum.Eternel.value] = [SpecVector(), eternal2, eternal3, eternal4, eternal5, eternal6, eternal7, eternal8]
+        self.append(ItemSetEnum.Eternel , [SpecVector(), eternal2, eternal3, eternal4, eternal5, eternal6, eternal7, eternal8])
 
     def SetBossAccessory(self):
         # 보스 액세서리 세트
@@ -253,7 +260,7 @@ class ItemSet(list):
         boss9[CoreStat.ATTACK_SPELL] += 10
         boss9[CoreStat.DAMAGE_PERCENTAGE_BOSS] += 10
 
-        self[ItemSetEnum.BossAccessory.value] = [boss1, boss2, boss3, boss4, boss5, boss6, boss7, boss8, boss9]
+        self.append(ItemSetEnum.BossAccessory , [boss1, boss2, boss3, boss4, boss5, boss6, boss7, boss8, boss9])
 
     def SetDawnBoss(self):
         # 여명의 눈보라 보스 세트
@@ -279,7 +286,7 @@ class ItemSet(list):
         dawn4[CoreStat.ATTACK_SPELL] += 10
         dawn4[CoreStat.IGNORE_GUARD_PERCENTAGE] += 10
 
-        self[ItemSetEnum.DawnBoss.value] = [dawn1, dawn2, dawn3, dawn4]
+        self.append(ItemSetEnum.DawnBoss , [dawn1, dawn2, dawn3, dawn4])
 
     def SetPitchedBoss(self):
         # 칠흑의 장신구 보스 세트
@@ -341,7 +348,7 @@ class ItemSet(list):
         pitched9[CoreStat.ATTACK_SPELL] += 15
         pitched9[CoreStat.CRITICAL_DAMAGE] += 5
 
-        self[ItemSetEnum.PitchedBoss.value] = [pitched1, pitched2, pitched3, pitched4, pitched5, pitched6, pitched7, pitched8, pitched9]
+        self.append(ItemSetEnum.PitchedBoss , [pitched1, pitched2, pitched3, pitched4, pitched5, pitched6, pitched7, pitched8, pitched9])
 
     def SetMeister(self):
     # Meister 세트
@@ -358,7 +365,7 @@ class ItemSet(list):
         meister4 = meister3.copy()
         meister4[CoreStat.DAMAGE_PERCENTAGE_BOSS] += 20
 
-        self[ItemSetEnum.Meister.value] = [meister1, meister2, meister3, meister4]
+        self.append(ItemSetEnum.Meister , [meister1, meister2, meister3, meister4])
 
     def SetSevendays(self):
         # Sevendays 세트
@@ -367,7 +374,7 @@ class ItemSet(list):
         sevendays2 = sevendays1.copy()
         sevendays2[CoreStat.IGNORE_GUARD_PERCENTAGE] += 10
 
-        self[ItemSetEnum.SevenDays.value] = [sevendays1, sevendays2]
+        self.append(ItemSetEnum.SevenDays , [sevendays1, sevendays2])
 
     def SetMaster(self):
         # Master 세트
@@ -385,7 +392,7 @@ class ItemSet(list):
         master5[CoreStat.ATTACK_PHYSICAL] += 7
         master5[CoreStat.ATTACK_SPELL] += 7
         
-        self[ItemSetEnum.Master.value] = [master1, master2, master3, master4, master5]
+        self.append(ItemSetEnum.Master , [master1, master2, master3, master4, master5])
 
     def SetBlack(self):
         # Black 세트
@@ -398,7 +405,7 @@ class ItemSet(list):
         black5[CoreStat.ATTACK_PHYSICAL] += 3
         black5[CoreStat.ATTACK_SPELL] += 3
 
-        self[ItemSetEnum.Black.value] = [black1, black2, black3, black4, black5]
+        self.append(ItemSetEnum.Black , [black1, black2, black3, black4, black5])
     
     def SetDream(self):
     # Dream 세트
@@ -412,7 +419,7 @@ class ItemSet(list):
         dream3[CoreStat.ATTACK_PHYSICAL] += 11  # 공격력 총 27 추가
         dream3[CoreStat.ATTACK_SPELL] += 11     # 마력 총 27 추가
 
-        self[ItemSetEnum.LunarDream.value] = [dream1, dream2, dream3]
+        self.append(ItemSetEnum.LunarDream , [dream1, dream2, dream3])
 
     def SetPetit(self):
         # Petit 세트
@@ -426,6 +433,6 @@ class ItemSet(list):
         petit3[CoreStat.ATTACK_PHYSICAL] += 12  # 공격력 총 30 추가
         petit3[CoreStat.ATTACK_SPELL] += 12     # 마력 총 30 추가
 
-        self[ItemSetEnum.LunarPetit.value] = [petit1, petit2, petit3]
+        self.append(ItemSetEnum.LunarPetit , [petit1, petit2, petit3])
 
 

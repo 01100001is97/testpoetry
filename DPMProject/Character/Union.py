@@ -9,6 +9,11 @@ class LegionGrade(Enum):
     SSS = 1
 
 class LegionOption(Enum):
+    """유니온 시스템의 옵션을 저장하는 열거형
+
+    Args:
+        Enum (tuple): 0: SS등급 옵션, 1: SSS등급 옵션
+    """
     Str = (CreateSpecVector([CoreStat.STAT_STR_FIXED], 80), CreateSpecVector([CoreStat.STAT_STR_FIXED], 100))
     Dex = (CreateSpecVector([CoreStat.STAT_DEX_FIXED], 80), CreateSpecVector([CoreStat.STAT_DEX_FIXED], 100))
     Int = (CreateSpecVector([CoreStat.STAT_INT_FIXED], 80), CreateSpecVector([CoreStat.STAT_INT_FIXED], 100))
@@ -37,9 +42,16 @@ class LegionOption(Enum):
 
 # 유니온 대원
 class LegionMember:
-    _Job: JobName
-    _Grade: LegionGrade
-    _Option: LegionOption
+    """유니온 대원효과를 나타내는 클래스(직업, 등급, 등급별 옵션)
+
+    Raises:
+        ValueError: _description_
+        ValueError: _description_
+        ValueError: _description_
+    """
+    Job: JobName
+    Grade: LegionGrade
+    Option: LegionOption
 
     def __init__(self, job:JobName, grade:LegionGrade):
         if not isinstance(job, JobName):
@@ -60,7 +72,7 @@ class LegionMember:
             JobName.Paladin,
             JobName.Hero
         ]:
-            self._Option = LegionOption.Str
+            self.Option = LegionOption.Str
         elif job in [
             JobName.BowMaster,
             JobName.AngelicBuster,
@@ -68,7 +80,7 @@ class LegionMember:
             JobName.Kain,
             JobName.PathFinder
         ]:
-            self._Option = LegionOption.Dex
+            self.Option = LegionOption.Dex
         elif job in [
             JobName.Lara,
             JobName.Luminous,
@@ -79,7 +91,7 @@ class LegionMember:
             JobName.Kinesis,
             JobName.FlameWizard
         ]:
-            self._Option = LegionOption.Int
+            self.Option = LegionOption.Int
         elif job in [
             JobName.NightWalker,
             JobName.DualBlade,
@@ -88,54 +100,62 @@ class LegionMember:
             JobName.Kali,
             JobName.Hoyoung
         ]:
-            self._Option = LegionOption.Luk
+            self.Option = LegionOption.Luk
         elif job == JobName.Xenon:
-            self._Option = LegionOption.Xenon
+            self.Option = LegionOption.Xenon
         elif job in [
             JobName.Mikhail,
             JobName.SoulMaster
         ]:
-            self._Option = LegionOption.Hp
+            self.Option = LegionOption.Hp
         elif job == JobName.DarkKnight:
-            self._Option = LegionOption.HpPercent
+            self.Option = LegionOption.HpPercent
         elif job == JobName.ArchmageFP:
-            self._Option = LegionOption.MpPercent
+            self.Option = LegionOption.MpPercent
         elif job in [
             JobName.NightLord,
             JobName.Marksman
         ]:
-            self._Option = LegionOption.CritPercent
+            self.Option = LegionOption.CritPercent
         elif job == JobName.Eunwol:
-            self._Option = LegionOption.CritDamage
+            self.Option = LegionOption.CritDamage
         elif job == JobName.Captain:
-            self._Option = LegionOption.SummonDuration
+            self.Option = LegionOption.SummonDuration
         elif job == JobName.Aran:
-            self._Option = LegionOption.Aran
+            self.Option = LegionOption.Aran
         elif job == JobName.Evan:
-            self._Option = LegionOption.Evan
+            self.Option = LegionOption.Evan
         elif job == JobName.Mercedes:
-            self._Option = LegionOption.CooldownPercent
+            self.Option = LegionOption.CooldownPercent
         elif job == JobName.Phantom:
-            self._Option = LegionOption.Phantom
+            self.Option = LegionOption.Phantom
         elif job == JobName.Blaster:
-            self._Option = LegionOption.IgnoreGuard
+            self.Option = LegionOption.IgnoreGuard
         elif job == JobName.DemonSlayer:
-            self._Option = LegionOption.DemonSlayer
+            self.Option = LegionOption.DemonSlayer
         elif job == JobName.DemonAvenger:
-            self._Option = LegionOption.BossDamage
+            self.Option = LegionOption.BossDamage
         elif job == JobName.WildHunter:
-            self._Option = LegionOption.WildHunter
+            self.Option = LegionOption.WildHunter
         elif job == JobName.Mechanic:
-            self._Option = LegionOption.BuffDuration
+            self.Option = LegionOption.BuffDuration
         elif job == JobName.Zero:
-            self._Option = LegionOption.Zero
+            self.Option = LegionOption.Zero
+        elif job == JobName.MapleM:
+            self.Option = LegionOption.MapleM
         else:
             raise ValueError(f"Unrecognized job: {job}")
 
 
 # 유니온 8500기준 (42캐릭 합 8500), 대원은 37명. 아래 목록을 취사선택할 것.
-class Legion(Enum):
+LEGION_8500_MAX_MEMBER = 37 
 
+class Legion(Enum):
+    """유니온 대원효과 중 등급과 효과를 나열한 열거형
+
+    Args:
+        Enum (LegionMember): 0: 직업 이름 열거형, 1: 등급
+    """
     HeroSS = LegionMember(JobName.Hero, LegionGrade.SS)
     PaladinSS = LegionMember(JobName.Paladin, LegionGrade.SS)
     DarkKnightSS = LegionMember(JobName.DarkKnight, LegionGrade.SS)
@@ -146,6 +166,7 @@ class Legion(Enum):
 
     ArchmageFPSS = LegionMember(JobName.ArchmageFP, LegionGrade.SS)
     ArchmageTCSS = LegionMember(JobName.ArchmageTC, LegionGrade.SS)
+    ArchmageTCSSS = LegionMember(JobName.ArchmageTC, LegionGrade.SSS)
     BishopSS = LegionMember(JobName.Bishop, LegionGrade.SS)
 
     NightLordSS = LegionMember(JobName.NightLord, LegionGrade.SS)
@@ -198,3 +219,43 @@ class Legion(Enum):
     ZeroSS = LegionMember(JobName.Zero, LegionGrade.SS)
 
     KinesisSS = LegionMember(JobName.Kinesis, LegionGrade.SS)
+
+    MapleM = LegionMember(JobName.MapleM, LegionGrade.SS)
+
+# SSS 3개 가정 - 메카닉, 메르세데스, 은월
+Union8500_archmageTC = [
+    # 크확
+    Legion.MarksmanSS,
+    Legion.NightLordSS,
+    # 벞지
+    Legion.MechanicSSS,
+    # 쿨감
+    Legion.MercedesSSS,
+    # 보공, 데미지류
+    Legion.DemonAvengerSS,
+    Legion.WildHunterSS,
+    # 방어율 무시
+    Legion.BlasterSS,
+    # 크리티컬 데미지
+    Legion.EunwolSSS,
+    # 공마
+    Legion.MapleM,
+    # 소환수 지속
+    Legion.CaptainSS,
+    # Int
+    Legion.ArchmageTCSSS,
+    Legion.BishopSS,
+    Legion.BattleMageSS,
+    Legion.LuminousSS,
+    Legion.FlameWizardSS,
+    Legion.KinesisSS,
+    Legion.IlliumSS,
+    # Luk
+    Legion.NightWalkerSS,
+    Legion.ShadowerSS,
+    Legion.DualBladeSS,
+    Legion.CadenaSS,
+    Legion.HoyoungSS,
+    Legion.XenonSS
+
+]

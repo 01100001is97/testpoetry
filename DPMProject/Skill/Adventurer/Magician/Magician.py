@@ -1,11 +1,11 @@
-from Core.ABCSkill import PassiveSkill, SkillAdvance, OnHitActivate, OnPressSkill, KeydownSkill, AutomateActivativeSkill
+from Core.ABCSkill import PassiveSkill, SkillAdvance, OnPressSkill, KeydownSkill, AutomateActivativeSkill
 from Core.SpecElements import SpecVector, CoreStat
-from Attributes import *
+from Skill.Attributes import *
 
 
 # 1차 스킬
 class MP증가(PassiveSkill, BuffAttribute):
-    def __init__(self, level: int):
+    def __init__(self, level=20):
         max = 20
         stat = SpecVector()
         stat[CoreStat.STAT_MP_PERCENTAGE] = level

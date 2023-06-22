@@ -128,7 +128,7 @@ class PotentialAbility(ABCItem):
     def OpenPotentialTable(cls):
         """잠재능력 정보를 가진 csv 파일을 열고, 정보를 list 형태로 저장함.
         """        
-        PotentialTablePath = "Core/Enchant/PotentialTable/"
+        PotentialTablePath = "/Users/mac/Documents/testpoetry/DPMProject/Core/Enchant/PotentialTable/"
         Under200PotentialTableFileName = PotentialTablePath + "Under200ItemPotentialTable.csv"
         Under200AdditionalTableFileName = PotentialTablePath + "Under200ItemAdditionalTable.csv"
         Over250PotentialTableFileName = PotentialTablePath + "Over250ItemPotentialTable.csv"

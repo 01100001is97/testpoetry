@@ -96,3 +96,63 @@ class Cooldown:
         """
         return "SkillCooldown({})".format(self.cooldown)
 
+  
+    def __lt__(self, other):
+        """
+        현재 객체의 쿨다운 시간이 other의 쿨다운 시간보다 작은지 확인합니다.
+
+        Args:
+            other: Cooldown 객체.
+
+        Returns:
+            쿨다운 시간이 작으면 True, 그렇지 않으면 False.
+        """
+        if isinstance(other, Cooldown):
+            return self.cooldown < other.cooldown
+        else:
+            raise TypeError("unsupported operand type(s) for <: 'Cooldown' and '{}'".format(type(other)))
+
+    def __le__(self, other):
+        """
+        현재 객체의 쿨다운 시간이 other의 쿨다운 시간보다 작거나 같은지 확인합니다.
+
+        Args:
+            other: Cooldown 객체.
+
+        Returns:
+            쿨다운 시간이 작거나 같으면 True, 그렇지 않으면 False.
+        """
+        if isinstance(other, Cooldown):
+            return self.cooldown <= other.cooldown
+        else:
+            raise TypeError("unsupported operand type(s) for <=: 'Cooldown' and '{}'".format(type(other)))
+
+    def __gt__(self, other):
+        """
+        현재 객체의 쿨다운 시간이 other의 쿨다운 시간보다 큰지 확인합니다.
+
+        Args:
+            other: Cooldown 객체.
+
+        Returns:
+            쿨다운 시간이 크면 True, 그렇지 않으면 False.
+        """
+        if isinstance(other, Cooldown):
+            return self.cooldown > other.cooldown
+        else:
+            raise TypeError("unsupported operand type(s) for >: 'Cooldown' and '{}'".format(type(other)))
+
+    def __ge__(self, other):
+        """
+        현재 객체의 쿨다운 시간이 other의 쿨다운 시간보다 크거나 같은지 확인합니다.
+
+        Args:
+            other: Cooldown 객체.
+
+        Returns:
+            쿨다운 시간이 크거나 같으면 True, 그렇지 않으면 False.
+        """
+        if isinstance(other, Cooldown):
+            return self.cooldown >= other.cooldown
+        else:
+            raise TypeError("unsupported operand type(s) for >=: 'Cooldown' and '{}'".format(type(other)))

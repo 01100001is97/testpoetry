@@ -15,6 +15,9 @@ class WeaponUpgradeChance(Enum):
     Arcane = 9
     Genesis = 8
 
+class GenesisWeapon(Weapon):
+    pass
+
 class ArcaneShadeWeapon(Weapon):
     _itemset: ItemSetEnum
     _RequiredLevel: int

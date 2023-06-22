@@ -1,10 +1,8 @@
-from abc import ABC, ABCMeta, abstractmethod
-from Core import Cooldown
-from Core.Job import JobName, JobGroup, JobType
-from Core.SpecElements import SpecVector, CoreStat, CreateSpecVector
+from abc import ABC, abstractmethod
+from Core.Cooldown import Cooldown
 from enum import Enum
-from Character.ABCCharacter import ABCCharacter
 from typing import Callable, Any
+
 
 class SkillAdvance(Enum):
     """전직 차수를 의미함.
@@ -42,14 +40,14 @@ class Skill(ABC):
     _Advanced: SkillAdvance              
     _Level: int
     _MaxLevel: int
-    _Owner: ABCCharacter
+    _Owner: any
     _Target: any
-    def __init__(self, advanced:SkillAdvance, level:int, max: KeyboardInterrupt):
-        self.Advanced = advanced
-        self.Level = level
-        self.MaxLevel = max
-        self.Target = None
-        self.Owner = None
+    def __init__(self, advanced:SkillAdvance, level:int, max: int):
+        self._Advanced = advanced
+        self._level = level
+        self._MaxLevel = max
+        self._Target = None
+        self._Owner = None
 
     @property
     def Advanced(self):
@@ -80,7 +78,7 @@ class Skill(ABC):
     @MaxLevel.setter
     def MaxLevel(self, max: int):
         # 검사 로직: 여기에서는 max가 level보다 큰 정수인지 확인합니다.
-        if not isinstance(max, int) or max <= self.level:
+        if not isinstance(max, int) or max < self.Level:
             raise ValueError("MaxLevel must be a integer greater than level")
         self._MaxLevel = max
 
@@ -89,10 +87,10 @@ class Skill(ABC):
         return self._Owner
 
     @Owner.setter
-    def Owner(self, owner: ABCCharacter):
+    def Owner(self, owner: any):
         # 검사 로직: 여기에서는 owner가 ABCCharacter의 인스턴스인지 확인합니다.
-        if owner is not None and not isinstance(owner, ABCCharacter):
-            raise ValueError("Owner must be an instance of ABCCharacter")
+        #if owner is not None and not isinstance(owner, ABCCharacter):
+        #    raise ValueError("Owner must be an instance of ABCCharacter")
         self._Owner = owner
 
     @property
@@ -103,20 +101,7 @@ class Skill(ABC):
     def Target(self, target: any):
         self._Target = target
         
-    @abstractmethod
-    def SetTarget(self, target: any):
-        """스킬의 타겟을 설정함
-
-        Args:
-            target (any): 스킬의 적용 대상을 설정
-        """
-        pass
-
-    @abstractmethod
-    def ApplySkill(self):
-        """스킬 소유자에게 스킬을 적용시킴
-        """
-        pass
+    
 
 #-------------------- 패시브 스킬 -------------------------
 class PassiveSkill(Skill):
@@ -126,7 +111,8 @@ class PassiveSkill(Skill):
     Args:
         Skill (class): 스킬 클래스를 상속받습니다.
     """
-    pass
+    def __init__(self, advanced:SkillAdvance, level:int, max:int):
+        Skill.__init__(self=self, advanced=advanced, level=level, max=max)
 
     def SetTarget(self, target: any):
         if target is not None:
@@ -135,10 +121,10 @@ class PassiveSkill(Skill):
             raise ValueError("스킬 타겟 입력값이 None")
     
     def ApplySkill(self):
-        if isinstance(self._Owner, ABCCharacter) and self._Owner is not None:
-            self._Target = self._Owner
-        else:
-            raise AttributeError("스킬의 소유자를 먼저 설정해야함.")
+        #if isinstance(self._Owner, ABCCharacter) and self._Owner is not None:
+        self._Target = self._Owner
+        #else:
+        #    raise AttributeError("스킬의 소유자를 먼저 설정해야함.")
         self.SetTarget(target=self._Owner)
 
 
@@ -157,7 +143,7 @@ class AutomateActivativeSkill(Skill):
 
     def __init__(self, advanced: SkillAdvance, level: int, max: int, activator: lambda: False, target=any ):
         self.Activator = activator
-        super().__init__(advanced, level, max, target)
+        Skill.__init__(advanced, level, max, target)
 
     @property
     def Activator(self):
@@ -189,7 +175,7 @@ class ActiveSkill(Skill):
 
     def __init__(self, icon, advanced: SkillAdvance, level: int, max: int, target= any):
         self.Icon = icon
-        super().__init__(advanced, level, max, target)
+        Skill.__init__(advanced, level, max, target)
 
     @property
     def Icon(self):

@@ -54,6 +54,11 @@ class JobGroup(Enum):
     Friends = "프렌즈"
 
 
+class JobNameInfo(Enum):
+    name = 0
+    type = 1
+    group = 2
+
 class JobName(Enum):
     """직업 상세 정보
 
@@ -135,3 +140,21 @@ class JobName(Enum):
 
     # 프렌즈
     Kinesis = ("키네시스", JobType.Magician, JobGroup.Friends)
+
+    # 메엠
+    MapleM = ("메이플M", None, None)
+
+
+class JobConstant(Enum):
+    ArchmageFP = 1.2
+    ArchmageTC = 1.2
+    Bishop = 1.2
+    FlameWizard = 1.2
+    Xenon = 0.875
+
+
+def GetMainStatList(jobtype:JobType):
+    return [e for e in jobtype.value[JobTypeInfo.MainStat.value]]
+
+def GetSubStatList(jobtype:JobType):
+    return [e for e in jobtype.value[JobTypeInfo.SubStat.value]]

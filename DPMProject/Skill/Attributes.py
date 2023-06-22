@@ -3,6 +3,7 @@ from Core.SpecElements import SpecVector
 from Core.Job import JobName, JobGroup, JobType
 from Core.Condition import ConditionEnum
 from abc import ABC, abstractmethod
+from Core.Cooldown import Cooldown
 
 
 class DurationAttribute:
@@ -19,16 +20,16 @@ class DurationAttribute:
         ValueError: serverlack 또는 isbuffmult가 bool의 인스턴스가 아닌 경우 발생합니다.
     """
     def __init__(self, duration: Cooldown, serverlack: bool, isbuffmult: bool):
-        self.Duration = duration
+        self.DOTDuration = duration
         self.ServerLack = serverlack
         self.IsBuffMult = isbuffmult
 
     @property
-    def Duration(self):
+    def DOTDuration(self):
         return self._Duration
 
-    @Duration.setter
-    def Duration(self, duration: Cooldown):
+    @DOTDuration.setter
+    def DOTDuration(self, duration: Cooldown):
         if not isinstance(duration, Cooldown):
             raise ValueError("duration must be an instance of Cooldown")
         self._Duration = duration
@@ -149,16 +150,16 @@ class DamageAttribute:
     ATTACK_LINE = 15
     def __init__(self, damage_point: int, line: int,castingCount: int = 1, ):
         
-        self.DamagePoint = damage_point
+        self.DOTDamagePoint = damage_point
         self.CastingCount = castingCount
         self.AttackLine = line
 
     @property
-    def DamagePoint(self):
+    def DOTDamagePoint(self):
         return self._DamagePoint
 
-    @DamagePoint.setter
-    def DamagePoint(self, damage_point: int):
+    @DOTDamagePoint.setter
+    def DOTDamagePoint(self, damage_point: int):
         if not isinstance(damage_point, int):
             raise ValueError("damage_point must be an integer")
         self._DamagePoint = damage_point
@@ -200,14 +201,14 @@ class IntervalAttribute:
         ValueError: interval이 Cooldown의 인스턴스가 아닌 경우 발생합니다.
     """
     def __init__(self, interval: Cooldown):
-        self.Interval = interval
+        self.DOTInterval = interval
 
     @property
-    def Interval(self):
+    def DOTInterval(self):
         return self._Interval
 
-    @Interval.setter
-    def Interval(self, interval: Cooldown):
+    @DOTInterval.setter
+    def DOTInterval(self, interval: Cooldown):
         if not isinstance(interval, Cooldown):
             raise ValueError("interval must be an instance of Cooldown")
         self._Interval = interval
@@ -222,18 +223,30 @@ class CooldownAttribute:
     Raises:
         ValueError: cooldown이 Cooldown의 인스턴스가 아닌 경우 발생합니다.
     """
-    def __init__(self, cooldown: Cooldown):
-        self.Cooldown = cooldown
+    def __init__(self, cooldown: Cooldown, isresetable:bool):
+        self.SkillCooldown = cooldown
+        self.IsResetable = isresetable
 
     @property
-    def Cooldown(self):
+    def SkillCooldown(self):
         return self._Cooldown
 
-    @Cooldown.setter
-    def Cooldown(self, cooldown: Cooldown):
+    @SkillCooldown.setter
+    def SkillCooldown(self, cooldown: SkillCooldown):
         if not isinstance(cooldown, Cooldown):
             raise ValueError("cooldown must be an instance of Cooldown")
         self._Cooldown = cooldown
+
+    @property
+    def IsResetable(self):
+        return self._IsResetable
+    
+    @IsResetable.setter
+    def IsResetable(self, condition:bool):
+        if not isinstance(condition, bool):
+            raise ValueError("condition must be a bool type")
+        self._IsResetable = condition
+
 
 class SkillDelayAttribute:
     """
@@ -245,8 +258,8 @@ class SkillDelayAttribute:
     Raises:
         ValueError: delay가 Cooldown의 인스턴스가 아닌 경우 발생합니다.
     """
-    def __init__(self, delay: Cooldown):
-        self.AttackDelay = delay
+    def __init__(self, casting_delay: Cooldown):
+        self.AttackDelay = casting_delay
 
     @property
     def AttackDelay(self):
@@ -407,11 +420,11 @@ class StackAttribute:
             raise ValueError("charge_cooltime must be an integer")
         self._ChargeCooltime = charge_cooltime
 
-class DOTAttribute(DurationAttribute, DamageAttribute, IntervalAttribute):
+class DOTAttribute:
     def __init__(self, dotdamage: int, duration:Cooldown, interval:Cooldown):
-        self.Duration = duration
-        self.DamagePoint = dotdamage
-        self.Interval = interval
+        self.DOTDuration = duration
+        self.DOTDamagePoint = dotdamage
+        self.DOTInterval = interval
 
 class CombatOrdersAttribute(ABC):
 
