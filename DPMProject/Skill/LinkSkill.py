@@ -14,6 +14,10 @@ class 임피리컬_널리지(PassiveSkill, DebuffAttribute):
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero, level=skilllevel, max = 6)
         DebuffAttribute.__init__(self,debuff_stat=passiveStat, condition=[ConditionEnum.모험가법사])
 
+    def DeleteDebuff(self):
+        return super().DeleteDebuff()
+        
+
 class 어드벤쳐러_큐리어스(PassiveSkill, BuffAttribute):
     def __init__(self):
         skilllevel = 6
@@ -21,6 +25,8 @@ class 어드벤쳐러_큐리어스(PassiveSkill, BuffAttribute):
         passiveStat[CoreStat.CRITICAL_PERCENTAGE] = 10
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero, level=skilllevel, max= 6)
         BuffAttribute.__init__(self,stat=passiveStat)
+    def DeleteBuff(self):
+        return super().DeleteBuff()
 
 class 시프_커닝(AutomateActivativeSkill, BuffAttribute, CooldownAttribute, DurationAttribute):
     def __init__(self):
@@ -47,6 +53,8 @@ class 시프_커닝(AutomateActivativeSkill, BuffAttribute, CooldownAttribute, D
             serverlack=True, 
             isbuffmult=False
             )
+    def DeleteBuff(self):
+        return super().DeleteBuff()
         
 class 파이렛_블레스(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -55,6 +63,8 @@ class 파이렛_블레스(PassiveSkill, BuffAttribute):
         
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero, level=skilllevel, max=6)
         BuffAttribute.__init__(self,stat=BuffStat)
+    def DeleteBuff(self):
+        return super().DeleteBuff()
 
 class 시그너스_블레스(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -63,6 +73,8 @@ class 시그너스_블레스(PassiveSkill, BuffAttribute):
 
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero, level=skilllevel, max=10)
         BuffAttribute.__init__(self,stat=BuffStat)
+    def DeleteBuff(self):
+        return super().DeleteBuff()
 
 class 하이브리드_로직(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -70,6 +82,8 @@ class 하이브리드_로직(PassiveSkill, BuffAttribute):
         BuffStat = CreateSpecVector([CoreStat.STAT_ALL_PERCENTAGE], 5*skilllevel)
         PassiveSkill.__init__(self,SkillAdvance.Zero, skilllevel, 2)
         BuffAttribute.__init__(self,stat=BuffStat)
+    def DeleteBuff(self):
+        return super().DeleteBuff()
 
 class 데몬스_퓨리(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -78,6 +92,8 @@ class 데몬스_퓨리(PassiveSkill, BuffAttribute):
 
         PassiveSkill.__init__(self=self,advanced=SkillAdvance.Zero, level = skilllevel, max=2)
         BuffAttribute.__init__(self=self,stat=buffstat)
+    def DeleteBuff(self):
+        return super().DeleteBuff()
 
 class 와일드_레이지(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -86,6 +102,8 @@ class 와일드_레이지(PassiveSkill, BuffAttribute):
 
         PassiveSkill.__init__(self=self,advanced=SkillAdvance.Zero, level = skilllevel, max=2)
         BuffAttribute.__init__(self=self, stat=buffstat)
+    def DeleteBuff(self):
+        return super().DeleteBuff()
 
 class 퍼미에이트(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -95,6 +113,9 @@ class 퍼미에이트(PassiveSkill, BuffAttribute):
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero, level = skilllevel, max=2)
         BuffAttribute.__init__(self, stat=buffstat)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 class 데들리_인스팅트(PassiveSkill, BuffAttribute):
     def __init__(self):
         skilllevel = 2
@@ -103,6 +124,9 @@ class 데들리_인스팅트(PassiveSkill, BuffAttribute):
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero, level = skilllevel, max=2)
         BuffAttribute.__init__(self,stat=buffstat)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 class 아이언_윌(PassiveSkill, BuffAttribute):
     def __init__(self):
         skilllevel = 2
@@ -110,6 +134,9 @@ class 아이언_윌(PassiveSkill, BuffAttribute):
 
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero, level = skilllevel, max=2)
         BuffAttribute.__init__(self,stat=buffstat)
+
+    def DeleteBuff(self):
+        return super().DeleteBuff()
 
 class 인텐시브_인설트(AutomateActivativeSkill, BuffAttribute):
     def __init__(self):
@@ -127,6 +154,9 @@ class 인텐시브_인설트(AutomateActivativeSkill, BuffAttribute):
             target=None
         )
         BuffAttribute.__init__(self,stat=buffstat)
+
+    def DeleteBuff(self):
+        return super().DeleteBuff()
 
 class 소울_컨트랙트(OnPressSkill, BuffAttribute, DurationAttribute, CooldownAttribute):
     def __init__(self):
@@ -154,6 +184,9 @@ class 소울_컨트랙트(OnPressSkill, BuffAttribute, DurationAttribute, Cooldo
         # 엔버면 버프 효과 2배
         return None
     
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+    
     
 class 프라이어_프리퍼레이션(AutomateActivativeSkill, BuffAttribute, DurationAttribute, Cooldown, StackAttribute):
     def __init__(self):
@@ -176,6 +209,9 @@ class 프라이어_프리퍼레이션(AutomateActivativeSkill, BuffAttribute, Du
         DurationAttribute(self,duration=skillDuration, serverlack=True, isbuffmult=True)
         CooldownAttribute(self,cooldown=skillCooldown, isresetable=False)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 class 노블레스(AutomateActivativeSkill, BuffAttribute):
     def __init__(self):
         level = 2
@@ -191,6 +227,9 @@ class 노블레스(AutomateActivativeSkill, BuffAttribute):
         )
         BuffAttribute.__init__(self,stat=buff)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 # TODO: 이동 구현. 그 전엔 12%로 가정
 class 전투의_흐름(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -203,6 +242,9 @@ class 전투의_흐름(PassiveSkill, BuffAttribute):
             max=2
         )
         BuffAttribute.__init__(self,stat=buff)
+
+    def DeleteBuff(self):
+        return super().DeleteBuff()
 
 # TODO: 공격 상태 구현
 class 무아(PassiveSkill, BuffAttribute):
@@ -218,6 +260,9 @@ class 무아(PassiveSkill, BuffAttribute):
         )
         BuffAttribute.__init__(self, stat=buff)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 class 이네이트_기프트(PassiveSkill, BuffAttribute):
     def __init__(self):
         lev = 2
@@ -231,6 +276,9 @@ class 이네이트_기프트(PassiveSkill, BuffAttribute):
         )
         BuffAttribute.__init__(self,stat=buff)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 class 자신감(PassiveSkill, BuffAttribute):
     def __init__(self):
         lev = 2
@@ -243,6 +291,9 @@ class 자신감(PassiveSkill, BuffAttribute):
             max=2
         )
         BuffAttribute.__init__(self,stat=buff)
+
+    def DeleteBuff(self):
+        return super().DeleteBuff()
         
 class 자연의_벗(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -257,6 +308,9 @@ class 자연의_벗(PassiveSkill, BuffAttribute):
         )
         BuffAttribute.__init__(self,stat=buff)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 class 륀느의_축복(PassiveSkill, BuffAttribute):
     def __init__(self):
         lev = 5
@@ -270,6 +324,9 @@ class 륀느의_축복(PassiveSkill, BuffAttribute):
         )
         BuffAttribute.__init__(self,stat=buff)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 class 판단(PassiveSkill, BuffAttribute):
     def __init__(self):
         lev = 2
@@ -282,4 +339,9 @@ class 판단(PassiveSkill, BuffAttribute):
             max=2
         )
         BuffAttribute.__init__(self,stat=buff)
+
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+    
+    # TODO: deleteBuff 구현해야함
 

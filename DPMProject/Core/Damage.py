@@ -5,7 +5,7 @@ from math import floor
 def toPercent(num:int):
     return (100+num)/100
 
-def BattlePower(spec:SpecVector, jobtype:JobType, considerGuard = 0, isBoss = True, elementalResistance = False):
+def BattlePower(spec:SpecVector, jobtype:JobType, considerGuard = 300, isBoss = True, elementalResistance = False):
     spec.Arrange()
 
     result = 0
@@ -44,7 +44,7 @@ def BattlePower(spec:SpecVector, jobtype:JobType, considerGuard = 0, isBoss = Tr
     else:
         result = result * toPercent(spec[CoreStat.DAMAGE_PERCENTAGE])
 
-    FianlDamage = toPercent(spec[CoreStat.FINAL_DAMAGE_PERCENT])
+    FianlDamage = 1 + (toPercent(spec[CoreStat.FINAL_DAMAGE_PERCENT])-1) * spec[CoreStat.CRITICAL_PERCENTAGE]
     result = result * FianlDamage
 
     CriticalDamage = toPercent(spec[CoreStat.CRITICAL_DAMAGE] + 35)
@@ -61,3 +61,4 @@ def BattlePower(spec:SpecVector, jobtype:JobType, considerGuard = 0, isBoss = Tr
         result = resistanceConst * result
 
     return max(1, result)
+

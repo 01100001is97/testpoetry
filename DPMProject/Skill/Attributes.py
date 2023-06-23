@@ -4,6 +4,7 @@ from Core.Job import JobName, JobGroup, JobType
 from Core.Condition import ConditionEnum
 from abc import ABC, abstractmethod
 from Core.Cooldown import Cooldown
+from Core.ABCSkill import Skill
 
 
 class DurationAttribute:
@@ -54,7 +55,7 @@ class DurationAttribute:
             raise ValueError("isbuffmult must be an instance of bool")
         self._IsBuffMult = isbuffmult
 
-class BuffAttribute:
+class BuffAttribute(ABC):
     """
     스킬의 버프 속성을 나타내는 클래스입니다.
 
@@ -77,7 +78,11 @@ class BuffAttribute:
             raise ValueError("stat must be an instance of SpecVector")
         self._Stat = stat
 
-class DebuffAttribute:
+    @abstractmethod
+    def DeleteBuff(self):
+        pass
+
+class DebuffAttribute(ABC):
     """
     스킬의 디버프 속성을 나타내는 클래스입니다.
 
@@ -112,6 +117,10 @@ class DebuffAttribute:
         if not all(isinstance(c, ConditionEnum) for c in condition):
             raise ValueError("condition must be a list of instances of ConditionEnum")
         self._Condition = condition
+        
+    @abstractmethod
+    def DeleteDebuff(self):
+        pass
 
 
 class MasteryAttribute:
@@ -147,19 +156,19 @@ class DamageAttribute:
     Raises:
         ValueError: damage_point가 정수가 아닌 경우 발생합니다.
     """
-    ATTACK_LINE = 15
+    MAX_ATTACK_LINE = 15
     def __init__(self, damage_point: int, line: int,castingCount: int = 1, ):
         
-        self.DOTDamagePoint = damage_point
-        self.CastingCount = castingCount
-        self.AttackLine = line
+        self._DamagePoint = damage_point
+        self._CastingCount = castingCount
+        self._AttackLine = line
 
     @property
-    def DOTDamagePoint(self):
+    def DamagePoint(self):
         return self._DamagePoint
 
-    @DOTDamagePoint.setter
-    def DOTDamagePoint(self, damage_point: int):
+    @DamagePoint.setter
+    def DamagePoint(self, damage_point: int):
         if not isinstance(damage_point, int):
             raise ValueError("damage_point must be an integer")
         self._DamagePoint = damage_point
@@ -177,14 +186,14 @@ class DamageAttribute:
 
     @property
     def AttackLine(self):
-        return self._AttackLike
+        return self._AttackLine
     
     @AttackLine.setter
     def AttackLine(self, line:int):
         if not isinstance(line, int):
             raise ValueError("line must be an integer")
         
-        if line > self.ATTACK_LINE:
+        if line > self.MAX_ATTACK_LINE:
             raise ValueError("line must smaller than self.ATTAK_LINE")
         
         self._AttackLine = line
@@ -426,16 +435,13 @@ class DOTAttribute:
         self.DOTDamagePoint = dotdamage
         self.DOTInterval = interval
 
-class CombatOrdersAttribute(ABC):
+class CombatOrdersAttribute:
 
     def __init__(self):
         self.IsCombat = None
         self.IsApplied = False
 
-    @abstractmethod
-    def ApplyCombat(self, iscombat: bool): 
-        pass
-
+   
     # 쓸만한 컴뱃오더스: false, 찐 컴뱃 true
     @property
     def IsCombat(self):
@@ -457,5 +463,28 @@ class CombatOrdersAttribute(ABC):
             raise ValueError("applied must be an instance of bool")
         self._IsApplied = applied
 
+    def ApplyCombat(self, iscombat: bool):
+        self.IsCombat = iscombat
+        self.IsApplied = True
+
+        extend = 0
+        if self.IsCombat is True:
+            extend = 2
+        elif self.IsCombat is False:
+            extend = 1
+        else:
+            raise AttributeError("IsCombat is None")
+        
+        self.MaxLevel += extend
+        self.Level += extend
+
+
 class MoveAttribute:
     pass
+
+class FinalAttackAttribute:
+    def __init__(self, finalAttack:Skill):
+        self._FinalAttack = finalAttack
+        
+
+    

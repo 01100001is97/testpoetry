@@ -14,6 +14,9 @@ class 연합의_의지(PassiveSkill, BuffAttribute):
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero, level=1, max=1)
         BuffAttribute.__init__(self,stat=passiveStat)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 # 패시브 스킬은 아니지만, DPM 계산 상 무한지속으로 간주 - 도핑리스트에 추가되었음
 """class 영웅의_메아리(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -33,6 +36,9 @@ class 여제의_축복(PassiveSkill, BuffAttribute):
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero, level=level, max=30)
         BuffAttribute.__init__(self,stat=passiveStat)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 # 패시브 스킬은 아니지만, DPM 계산 상 무한지속으로 간주 - 현재는 연금술 채택중이므로 누락
 """class 고급_무기_제련(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -47,6 +53,9 @@ class 파괴의_얄다바오트(PassiveSkill, BuffAttribute):
         enchantStat[CoreStat.FINAL_DAMAGE_PERCENT] = 10
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero, level=1, max=1)
         BuffAttribute.__init__(self,stat=enchantStat)
+
+    def DeleteBuff(self):
+        return super().DeleteBuff()
         
 class 마약_버프(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -55,10 +64,13 @@ class 마약_버프(PassiveSkill, BuffAttribute):
         PassiveSkill.__init__(self,advanced=SkillAdvance.Zero,level=1, max=1)
         BuffAttribute.__init__(self,stat=passiveStat)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 ##-------------- 액티브 -------------------
 
 class 리스트레인트링(OnPressSkill, BuffAttribute, CooldownAttribute, DurationAttribute, SkillDelayAttribute):
-    def __init__(self, level: int):
+    def __init__(self, level = 4):
         buffStat = SpecVector()
         
         buffStat[CoreStat.ATTACK_PHYSICAL_PERCENTAGE] = level*25
@@ -72,7 +84,7 @@ class 리스트레인트링(OnPressSkill, BuffAttribute, CooldownAttribute, Dura
         return super().UseSkill(**kwargs)
 
 class 웨폰퍼프_I링(OnPressSkill, BuffAttribute, CooldownAttribute, DurationAttribute, SkillDelayAttribute):
-    def __init__(self, level: int):
+    def __init__(self, level = 4):
         multStat = SpecVector()
         #weaponSpec, _ = weapon.TotalSpec()
         
@@ -88,7 +100,7 @@ class 웨폰퍼프_I링(OnPressSkill, BuffAttribute, CooldownAttribute, Duration
         return super().UseSkill(**kwargs)
     
 class 웨폰퍼프_D링(OnPressSkill, BuffAttribute, CooldownAttribute, DurationAttribute, SkillDelayAttribute):
-    def __init__(self, level: int):
+    def __init__(self, level = 4):
         multStat = SpecVector()
         #weaponSpec, _ = weapon.TotalSpec()
         
@@ -104,7 +116,7 @@ class 웨폰퍼프_D링(OnPressSkill, BuffAttribute, CooldownAttribute, Duration
         return super().UseSkill(**kwargs)
 
 class 웨폰퍼프_S링(OnPressSkill, BuffAttribute, CooldownAttribute, DurationAttribute, SkillDelayAttribute):
-    def __init__(self, level: int):
+    def __init__(self, level = 4):
         multStat = SpecVector()
         #weaponSpec, _ = weapon.TotalSpec()
 
@@ -120,7 +132,7 @@ class 웨폰퍼프_S링(OnPressSkill, BuffAttribute, CooldownAttribute, Duration
         return super().UseSkill(**kwargs)
 
 class 웨폰퍼프_L링(OnPressSkill, BuffAttribute, CooldownAttribute, DurationAttribute, SkillDelayAttribute):
-    def __init__(self, level: int):
+    def __init__(self, level = 4):
         multStat = SpecVector()
         #weaponSpec, _ = weapon.TotalSpec()
         
@@ -153,6 +165,9 @@ class 쓸만한_샤프아이즈(PassiveSkill, BuffAttribute):
         )
         BuffAttribute.__init__(self, stat=sharpeyesStat)
 
+    def DeleteBuff(self):
+        return super().DeleteBuff()
+
 class 쓸만한_컴뱃오더스(PassiveSkill,CombatOrdersAttribute):
     def __init__(self, level = 1):
         PassiveSkill.__init__(
@@ -162,4 +177,7 @@ class 쓸만한_컴뱃오더스(PassiveSkill,CombatOrdersAttribute):
 
     def ApplyCombat(self, iscombat: bool):
         return super().ApplyCombat(iscombat)
+    
+    def DeleteBuff(self):
+        return super().DeleteBuff()
 # 쓸어블, 쓸윈부

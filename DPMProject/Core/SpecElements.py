@@ -127,7 +127,38 @@ class SpecVector(list):
         
         super().__setitem__(key.value, value)
 
-        
+    def __mul__(self, scalar):
+        if not isinstance(scalar, int):
+            raise ValueError("Can only multiply a SpecVector by an integer")
+
+        result = SpecVector()
+
+        for _ in range(scalar):
+            result += self
+
+        return result    
+    
+    def __imul__(self, scalar):
+        if not isinstance(scalar, int):
+            raise ValueError("Can only multiply a SpecVector by an integer")
+
+        original = self.copy()
+
+        for _ in range(scalar - 1):  # 이미 한번은 복사되었으므로 -1
+            self += original
+
+        return self
+    
+    def __str__(self):
+        """SpecVector의 정보를 문자열 형태로 반환하는 메서드.
+
+        0이 아닌 값이 설정된 항목만 "필드: 값" 형태로 출력합니다. 각 항목은 개행 문자('\n')로 구분됩니다.
+
+        Returns:
+            str: SpecVector의 정보를 포함한 문자열.
+        """
+        non_zero_items = [f"{stat.name}: {self[stat]}" for stat in CoreStat if self[stat] != 0]
+        return '\n'.join(non_zero_items)
 
     def __add__(self, other):
         """ + 연산자를 오버로딩함. 벡터처럼 더하는 연산 제공.
@@ -229,8 +260,9 @@ class SpecVector(list):
     def Show(self):
         """SpecVector 내 정보를 보여줌
         """        
-        for stat in CoreStat:
-            print("{:<30} {}".format(stat.name + ":", self[stat]))
+        print(self)
+
+    
 
     def Arrange(self):
         """all 스텟 값들을 각 스텟에 더해줌

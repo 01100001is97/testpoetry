@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from Core.Cooldown import Cooldown
 from enum import Enum
 from typing import Callable, Any
-
+from datetime import timedelta
 
 class SkillAdvance(Enum):
     """전직 차수를 의미함.
@@ -87,7 +87,7 @@ class Skill(ABC):
         return self._Owner
 
     @Owner.setter
-    def Owner(self, owner: any):
+    def Owner(self, owner):
         # 검사 로직: 여기에서는 owner가 ABCCharacter의 인스턴스인지 확인합니다.
         #if owner is not None and not isinstance(owner, ABCCharacter):
         #    raise ValueError("Owner must be an instance of ABCCharacter")
@@ -101,6 +101,7 @@ class Skill(ABC):
     def Target(self, target: any):
         self._Target = target
         
+    
     
 
 #-------------------- 패시브 스킬 -------------------------
@@ -141,9 +142,9 @@ class AutomateActivativeSkill(Skill):
     """
     _Activator: lambda: False
 
-    def __init__(self, advanced: SkillAdvance, level: int, max: int, activator: lambda: False, target=any ):
+    def __init__(self, advanced: SkillAdvance, level: int, max: int, activator: lambda: False):
         self.Activator = activator
-        Skill.__init__(advanced, level, max, target)
+        Skill.__init__(self,advanced=advanced, level=level, max=max)
 
     @property
     def Activator(self):
@@ -172,10 +173,23 @@ class ActiveSkill(Skill):
         target (any): 스킬의 타겟을 설정합니다. 기본값은 None입니다.
     """
     _Icon: None
+    Done: bool
 
     def __init__(self, icon, advanced: SkillAdvance, level: int, max: int, target= any):
         self.Icon = icon
-        Skill.__init__(advanced, level, max, target)
+        self._Done = False
+        Skill.__init__(self, advanced, level, max)
+
+    @property
+    def Done(self):
+        return self._Done
+    
+    @Done.setter
+    def Done(self, b:bool):
+        if not isinstance(b, bool):
+            raise TypeError("b must be a bool type")
+        
+        self._Done = b
 
     @property
     def Icon(self):
@@ -187,7 +201,8 @@ class ActiveSkill(Skill):
         self._Icon = icon
 
     @abstractmethod
-    def UseSkill(self, **kwargs):
+    def UseSkill(self, time:timedelta):
+        # 공격 스킬의 경우 무기 상수, 직업 보정 상수,방무 고려해야함
         pass
 
 class OnPressSkill(ActiveSkill):
@@ -201,8 +216,8 @@ class OnPressSkill(ActiveSkill):
         max (int): 스킬의 최대 레벨을 설정합니다.
         target (any): 스킬의 타겟을 설정합니다. 기본값은 None입니다.
     """
-    def __init__(self, icon, advanced: SkillAdvance, level: int, max: int, target =any):
-        ActiveSkill.__init__(self, icon, advanced= advanced, level=level , max=max, target=target)
+    def __init__(self, icon, advanced: SkillAdvance, level: int, max: int):
+        ActiveSkill.__init__(self, icon, advanced= advanced, level=level , max=max)
 
 class KeydownSkill(ActiveSkill):
     """

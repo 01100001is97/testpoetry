@@ -12,8 +12,11 @@ class 매직_엑셀레이션(PassiveSkill, BuffAttribute):
 
         PassiveSkill.__init__(self=self, advanced=SkillAdvance.Second, level=level, max=max)
         BuffAttribute.__init__(self=self, stat=stat)
+    def DeleteBuff(self):
+        pass
 
-class 메디테이션(OnPressSkill, BuffAttribute, DurationAttribute):
+# 무한지속이므로 패시브로 가정
+class 메디테이션(PassiveSkill, BuffAttribute):
     def __init__(self, level=20):
         max = 20
         meditationIcon = any
@@ -21,10 +24,10 @@ class 메디테이션(OnPressSkill, BuffAttribute, DurationAttribute):
         stat[CoreStat.ATTACK_SPELL] = 10+level
         OnPressSkill.__init__(self=self, icon = meditationIcon, advanced=SkillAdvance.Second, level=level, max=max)
         BuffAttribute.__init__(self=self, stat=stat)
-        DurationAttribute.__init__(self=self, duration=Cooldown(minutes=4), serverlack=True, isbuffmult=True)
-
-    def UseSkill(self, **kwargs):
-        return super().UseSkill(**kwargs)
+        
+    
+    def DeleteBuff(self):
+        pass
 
 class 스펠_마스터리(PassiveSkill, BuffAttribute, MasteryAttribute):
     def __init__(self, level=10):
@@ -37,6 +40,9 @@ class 스펠_마스터리(PassiveSkill, BuffAttribute, MasteryAttribute):
         BuffAttribute.__init__(self=self, stat=stat)
         MasteryAttribute.__init__(self=self, mastery=mastery)
 
+    def DeleteBuff(self):
+        pass
+
 class 하이_위즈덤(PassiveSkill, BuffAttribute):
     def __init__(self, level =5):
         max = 5
@@ -45,6 +51,9 @@ class 하이_위즈덤(PassiveSkill, BuffAttribute):
 
         PassiveSkill.__init__(self=self, advanced=SkillAdvance.Second, level=level, max=max)
         BuffAttribute.__init__(self=self, stat=stat)
+
+    def DeleteBuff(self):
+        pass
 
 # 3차 스킬
 class 엘리멘탈_리셋(PassiveSkill, BuffAttribute):
@@ -56,6 +65,8 @@ class 엘리멘탈_리셋(PassiveSkill, BuffAttribute):
 
         PassiveSkill.__init__(self=self, advanced=SkillAdvance.Third, level=level, max=max)
         BuffAttribute.__init__(self=self, stat=stat)
+    def DeleteBuff(self):
+        pass
 
 
 class 매직_크리티컬(PassiveSkill, BuffAttribute):
@@ -66,6 +77,8 @@ class 매직_크리티컬(PassiveSkill, BuffAttribute):
         stat[CoreStat.CRITICAL_DAMAGE] = 3 + level
         PassiveSkill.__init__(self=self, advanced=SkillAdvance.Third, level=level, max=max)
         BuffAttribute.__init__(self=self, stat=stat)
+    def DeleteBuff(self):
+        pass
 
 class 엘리먼트_앰플리피케이션(PassiveSkill, BuffAttribute):
     def __init__(self, level = 10):
@@ -75,5 +88,7 @@ class 엘리먼트_앰플리피케이션(PassiveSkill, BuffAttribute):
 
         PassiveSkill.__init__(self=self, advanced=SkillAdvance.Third, level=level, max=max)
         BuffAttribute.__init__(self=self, stat=stat)
+    def DeleteBuff(self):
+        pass
 
 

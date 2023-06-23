@@ -16,4 +16,7 @@ class MP증가(PassiveSkill, BuffAttribute):
         PassiveSkill.__init__(self=self, advanced=SkillAdvance.First, level=level, max=max)
         BuffAttribute.__init__(self=self, stat=stat)
 
+    def DeleteBuff(self):
+        pass
+
 # 매직 가드, 에너지 볼트, 텔레포트, 마나 웨이브, 매직 아머

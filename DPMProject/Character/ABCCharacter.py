@@ -32,7 +32,15 @@ class AttackType(Enum):
     Physical = 0
     Spell = 1
 
-class StatusEnum(Enum):
+class CharacterStatus(Enum):
+    """캐릭터의 현재 상태에 대한 열거형
+
+    Attributes:
+        Idle: 대기 상태
+        UsingSkill: 스킬을 사용 중인 상태
+        Stunned: 상태이상으로 인해 행동 불가능
+        Moving: 이동 중
+    """
     Idle = 0
     Using_Skill= 1
     Stunned = 2
@@ -90,7 +98,7 @@ class ABCCharacter(ABC):
     """
 
     # 캐릭터 기본 사항
-    _Status: StatusEnum                 # 현재 캐릭터 상태
+    _Status: CharacterStatus                 # 현재 캐릭터 상태
     _JobName:str                           # 캐릭터 이름(엔젤릭버스터 등)
     _Level: int                         # 캐릭터 레벨
     _Job:JobType                        # 캐릭터의 직업군(전사, 궁수 등)
@@ -126,10 +134,16 @@ class ABCCharacter(ABC):
     _PetBuffList: list                      # 미구현(스킬의 리스트로 설정)
     _DopingBuff: list                       # 물약, 스킬에 의한 장시간 지속 버프
     
-    # 미구현(링크 스킬, 유니온(와헌), 0차, 1~5차 등)
+    # 특수목적 스킬 리스트
     _PassiveSkillList: list
     _AutomateSkillList: list
     _OnPressSkillList: list
+    _SkipableSkillList: list
+
+    # 가동률이 100% 미만인 버프의 리스트
+    _ExtraBuffList: list
+
+    
    
     def __init__(self, name:str, level:int, job:JobType, constant:float, mastery:int, attacktype:AttackType):
         # Validating name
@@ -177,12 +191,45 @@ class ABCCharacter(ABC):
         self._AutomateSkillList = []
         self._OnPressSkillList = []
         self._KeydownSkillList = []
+        self._SkipableSkillList = []
+        self._ExtraBuffList = []
         self._ArcaneForce = 0
         self._AuthenticForce = 0
+        self._Status = CharacterStatus.Idle
         
         self.SetupPersonalTrait()
         
-     
+    @property
+    def ExtraBuffList(self):
+        """가동률 있는 버프 스킬의 리스트
+
+        Returns:
+            _type_: _description_
+        """
+        return self._ExtraBuffList
+    
+    @ExtraBuffList.setter
+    def ExtraBuffList(self, setlist:list):
+        if not isinstance(setlist, list):
+            raise TypeError("버프 리스트는 리스트형태여야 함")
+        
+        if not all(isinstance(item, Skill) for item in setlist):
+            raise TypeError("버프 리스트의 모든 항목은 Skill 타입이어야 함")
+        
+        self._ExtraBuffList = setlist
+
+    @property
+    def ExtraBuffStat(self):
+        """캐릭터의 가동율 있는 버프로 인한 스텟의 합계 반환
+
+        Returns:
+            _type_: _description_
+        """
+        result = SpecVector()
+        for i in self.ExtraBuffList:
+            result += i
+        return result
+
     @property
     def SetupCheckList(self):
         """캐릭터 스펙 요소가 적절히 적용되었는지 확인하는 체크리스트
@@ -227,7 +274,7 @@ class ABCCharacter(ABC):
 
     @Status.setter
     def Status(self, status):
-        if not isinstance(status, StatusEnum):
+        if not isinstance(status, CharacterStatus):
             raise InvalidInputException("Status must be an instance of StatusEnum")
         self._Status = status
 
@@ -758,7 +805,7 @@ class ABCCharacter(ABC):
             raise("SkillSet must have 12 elements")
 
         for i, skill in enumerate(skillSet):
-            if not issubclass(type(skill), Skill):
+            if not issubclass(skill, Skill):
                 raise AttributeError("skillSet elements are not subclass of Skill")
             self._LinkSkillSlot.add(skill)
         
@@ -850,25 +897,29 @@ class ABCCharacter(ABC):
             TypeError: _description_
             AttributeError: _description_
         """
-        skill.Owner = self
-        if not issubclass(type(skill), Skill):
+        if not issubclass(skill, Skill):
             raise TypeError("스킬 자료형이 아님")
 
-        if isinstance(skill, PassiveSkill):
+        if issubclass(skill, PassiveSkill):
             self._PassiveSkillList.append(skill)
+            skill = skill()
             if hasattr(skill, 'BuffStat'):
                 self._TotalSpec += skill.BuffStat
+            if issubclass(type(skill), MasteryAttribute):
+                self._Mastery += skill.Mastery
     
-        elif issubclass(type(skill), AutomateActivativeSkill):
+        elif issubclass(skill, AutomateActivativeSkill):
             self._AutomateSkillList.append(skill)
-        elif issubclass(type(skill), OnPressSkill):
+        elif issubclass(skill, OnPressSkill):
             self._OnPressSkillList.append(skill)
-        elif issubclass(type(skill), KeydownSkill):
+            if issubclass(skill, SkipableAttribute):
+                self._SkipableSkillList.append(skill)
+        elif issubclass(skill, KeydownSkill):
             self._KeydownSkillList.append(skill)
         else:
             raise AttributeError("Skill의 형태가 허용되지 않은 형태임")
     
-    def Optimization(self):
+    def Optimization(self, weapon:bool, hyper:bool):
         # 최적화 항목
         # 1. 무보엠
         # 2. 링크 스킬
@@ -877,48 +928,47 @@ class ABCCharacter(ABC):
         # 5. 유니온 점령효과
         # 6. 하이퍼 스킬 - 패시브 : 이건 당장은 계획 없음.
         # 7. 딜사이클 - simulation.py에서 수행 예정
-        print(len(CheckList))
-        print(len(self.SetupCheckList))
-
-        missing_items = set(CheckList) - set(self.SetupCheckList.keys())
-        print("Missing items: ", missing_items)
-
-        print(self.SetupCheckList)
-        print(CheckList)
         if len(self.SetupCheckList) != len(CheckList):
             raise AttributeError("최적화 진행하기 전에 셋업 체크리스트를 완료해야함")
 
         start = datetime.datetime.now()
         # 1. 무보엠 구하기
         weaponList = self.WeaponPotentialCaseGeneration()
-        # 번외) 장갑 에디 - 궁수용
         weapontime = datetime.datetime.now()
-        # 2. 링크스킬 -> 일단 이건 고정함(너무 리소스 많이듬)
-        print(f"무보엠 계산: {(weapontime - start).total_seconds()}")
-        # 3. 도핑 -> 이것도 일단 패스
-        # 빠른 빌드를 위해 쓸만한 잠재를 임시로 사용함
-        instanceWeapon = SpecVector()
-        instanceWeapon[CoreStat.DAMAGE_PERCENTAGE_BOSS] = 180
-        instanceWeapon[CoreStat.IGNORE_GUARD_PERCENTAGE] = 0
-        instanceWeapon[CoreStat.ATTACK_SPELL_PERCENTAGE] = 36
-        weaponList = [instanceWeapon]
+        #print(f"무보엠 계산: {(weapontime - start).total_seconds()}")
 
+        if weapon == False:
+            # 빠른 빌드를 위해 쓸만한 잠재를 임시로 사용함
+            instanceWeapon = SpecVector()
+            instanceWeapon[CoreStat.DAMAGE_PERCENTAGE_BOSS] = 130
+            instanceWeapon[CoreStat.IGNORE_GUARD_PERCENTAGE] = 40
+            instanceWeapon[CoreStat.ATTACK_SPELL_PERCENTAGE] = 39
+            weaponList = [instanceWeapon]
+
+        # 번외) 장갑 에디 - 궁수용
+        
+        # 2. 링크스킬 -> 일단 이건 고정함(너무 리소스 많이듬)
+        
+        # 3. 도핑 -> 이것도 일단 패스
+        
         # 5. 하이퍼 스텟
         hyperlist = self.HyperStatCaseGeneration()
-        # 빠른 빌드를 위해 적당한 하이퍼스텟 주어진대로 대입
-        instancehyper = SpecVector()
-        instancehyper[CoreStat.DAMAGE_PERCENTAGE_BOSS] = 47
-        instancehyper[CoreStat.DAMAGE_PERCENTAGE] = 33
-        instancehyper[CoreStat.ATTACK_SPELL] = 18
-        instancehyper[CoreStat.IGNORE_GUARD_PERCENTAGE] = 42
-        instancehyper[CoreStat.CRITICAL_DAMAGE] = 11
-        instancehyper[CoreStat.STAT_INT_FIXED] = 120
-        instancehyper[CoreStat.STAT_LUK_FIXED] = 30
-        hyperlist = [instancehyper]
         
+        if hyper == False:
+            # 빠른 빌드를 위해 적당한 하이퍼스텟 주어진대로 대입
+            instancehyper = SpecVector()
+            instancehyper[CoreStat.DAMAGE_PERCENTAGE_BOSS] = 47
+            instancehyper[CoreStat.DAMAGE_PERCENTAGE] = 33
+            instancehyper[CoreStat.ATTACK_SPELL] = 18
+            instancehyper[CoreStat.IGNORE_GUARD_PERCENTAGE] = 42
+            instancehyper[CoreStat.CRITICAL_DAMAGE] = 11
+            instancehyper[CoreStat.STAT_INT_FIXED] = 120
+            instancehyper[CoreStat.STAT_LUK_FIXED] = 30
+            hyperlist = [instancehyper]
+            
 
         hypertime = datetime.datetime.now()
-        print(f"하이퍼스텟 계산: {(hypertime - weapontime).total_seconds()}")
+        #print(f"하이퍼스텟 계산: {(hypertime - weapontime).total_seconds()}")
 
 
         # 4. 유니온 점령효과
@@ -926,7 +976,7 @@ class ABCCharacter(ABC):
         unionrestpoint = self.PartialApplyUnion(self._LegionPoint)
         
         uniontime = datetime.datetime.now()
-        print(f"유니온 효과 계산: {(uniontime - hypertime).total_seconds()}")
+        #print(f"유니온 효과 계산: {(uniontime - hypertime).total_seconds()}")
 
         
         MaxScore = 0
@@ -955,12 +1005,12 @@ class ABCCharacter(ABC):
                     result = [weapon, hyper, unionStat]
                     
                     MaxScore = bp
-                    weapon.Show()
-                    hyper.Show()
-                    unionStat.Show()
+                    #weapon.Show()
+                    #hyper.Show()
+                    #unionStat.Show()
                     print(f"진행율: {(rest/totalCount)*100}")
 
-        
+        """
         print("무기")
         result[0].Show()
         print("hyper")
@@ -968,10 +1018,10 @@ class ABCCharacter(ABC):
         print("union")
         result[2].Show()
         print(f"MAxScore: {MaxScore}")
-
+        """
         self.TotalSpec += result[0] + result[1] + result[2]
         totalTime = datetime.datetime.now()
-        print(f"총 소요시간: {(totalTime - start).total_seconds()}")
+        #print(f"총 소요시간: {(totalTime - start).total_seconds()}")
         
 
     def GetNextUnionLevelup(self, nowstat:SpecVector, point:int) -> SpecVector:
@@ -1155,3 +1205,4 @@ class ABCCharacter(ABC):
         return result
             
         
+    

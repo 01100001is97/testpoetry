@@ -81,11 +81,28 @@ class Cooldown:
             raise TypeError("unsupported operand type(s) for -=: 'SkillCooldown' and '{}'".format(type(other)))
         return self
     
+    def __add__(self, other):
+        if isinstance(other, timedelta):
+            return Cooldown(cooldown=self.cooldown + other)
+        elif isinstance(other, Cooldown):
+            return Cooldown(cooldown=self.cooldown + other.cooldown)
+        else:
+            raise TypeError(f"unsupported operand type(s) for +: 'Cooldown' and '{type(other)}'")
+
+    def __iadd__(self, other):
+        if isinstance(other, timedelta):
+            self.cooldown += other
+        elif isinstance(other, Cooldown):
+            self.cooldown += other.cooldown
+        else:
+            raise TypeError(f"unsupported operand type(s) for +=: 'Cooldown' and '{type(other)}'")
+        return self
+
     def update(self):
         """
         현재 쿨다운 시간에서 10마이크로초를 뺍니다.
         """
-        self.cooldown -= timedelta(microseconds=10)
+        self.cooldown -= timedelta(milliseconds=10)
     
     def __repr__(self):
         """
@@ -109,6 +126,8 @@ class Cooldown:
         """
         if isinstance(other, Cooldown):
             return self.cooldown < other.cooldown
+        elif isinstance(other, timedelta):
+            return self.cooldown < other
         else:
             raise TypeError("unsupported operand type(s) for <: 'Cooldown' and '{}'".format(type(other)))
 
@@ -124,6 +143,8 @@ class Cooldown:
         """
         if isinstance(other, Cooldown):
             return self.cooldown <= other.cooldown
+        elif isinstance(other, timedelta):
+            return self.cooldown <= other
         else:
             raise TypeError("unsupported operand type(s) for <=: 'Cooldown' and '{}'".format(type(other)))
 
@@ -139,6 +160,8 @@ class Cooldown:
         """
         if isinstance(other, Cooldown):
             return self.cooldown > other.cooldown
+        elif isinstance(other, timedelta):
+            return self.cooldown > other
         else:
             raise TypeError("unsupported operand type(s) for >: 'Cooldown' and '{}'".format(type(other)))
 
@@ -154,5 +177,15 @@ class Cooldown:
         """
         if isinstance(other, Cooldown):
             return self.cooldown >= other.cooldown
+        elif isinstance(other, timedelta):
+            return self.cooldown >> other
         else:
             raise TypeError("unsupported operand type(s) for >=: 'Cooldown' and '{}'".format(type(other)))
+
+    def __eq__(self, other):
+        if isinstance(other, timedelta):
+            return self.cooldown == other
+        elif isinstance(other, Cooldown):
+            return self.cooldown == other.cooldown
+        else:
+            raise TypeError(f"unsupported operand type(s) for ==: 'Cooldown' and '{type(other)}'")
