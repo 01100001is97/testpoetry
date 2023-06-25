@@ -2,7 +2,21 @@ from Core.Damage import BattlePower
 from Core.SpecElements import SpecVector
 from Core.Job import JobType
 import math
+from Core.Cooldown import Cooldown
+import matplotlib.font_manager as fm
+import matplotlib.pyplot as plt
 
+
+font_list = fm.findSystemFonts(fontpaths=None, fontext='ttf')
+
+nanum_font = [f for f in font_list if 'Nanum' in f]
+print(nanum_font)
+
+
+font_path = '/Users/mac/Library/Fonts/NanumGothic-Regular.ttf' # 본인의 환경에 맞게 경로를 설정해주세요.
+font_name = fm.FontProperties(fname=font_path, size=10).get_name()
+
+plt.rc('font', family=font_name)
 
 from sympy import symbols, lambdify
 def deff():

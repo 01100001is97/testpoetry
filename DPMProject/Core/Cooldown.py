@@ -1,4 +1,8 @@
 from datetime import timedelta
+from collections import defaultdict
+
+TIME_UNIT = timedelta(milliseconds=10)
+TIME_ZERO = timedelta()
 
 class Cooldown:
     """
@@ -10,7 +14,7 @@ class Cooldown:
     Attributes:
         cooldown: 쿨다운 시간을 나타내는 timedelta 객체.
     """
-    cooldown: timedelta
+    _cooldown: timedelta
 
     def __init__(self, **kwargs):
         """
@@ -25,21 +29,36 @@ class Cooldown:
         """
         if "cooldown" in kwargs:
             cooldown = kwargs["cooldown"]
-            if not isinstance(cooldown, timedelta):
-                raise TypeError("cooldown must be a timedelta instance")
-            self.cooldown = cooldown
+            if isinstance(cooldown, timedelta):
+                self._cooldown = cooldown                
+            elif isinstance(cooldown, Cooldown):
+                self._cooldown = cooldown._cooldown          
         elif "seconds" in kwargs:
             seconds = kwargs["seconds"]
-            self.cooldown = timedelta(seconds=seconds)
+            self._cooldown = timedelta(seconds=seconds)
         elif "minutes" in kwargs:
             min = kwargs["minutes"]
-            self.cooldown = timedelta(minutes=min)
+            self._cooldown = timedelta(minutes=min)
         elif "milliseconds" in kwargs:
             milliseconds = kwargs["milliseconds"]
-            self.cooldown = timedelta(milliseconds=milliseconds) 
+            self._cooldown = timedelta(milliseconds=milliseconds) 
+        elif len(kwargs) == 0:
+            self._cooldown = timedelta(seconds=0)
         else:
             raise ValueError("either 'cooldown' or 'seconds' argument must be provided")
     
+    @property
+    def delta(self):
+        return self._cooldown
+
+    @delta.setter
+    def delta(self, value):
+        if isinstance(value, timedelta):
+            self._cooldown = value
+        else:
+            raise TypeError("cooldown must be a timedelta instance")
+
+
     def __sub__(self, other):
         """
         두 쿨다운 시간의 차이를 반환합니다.
@@ -54,9 +73,10 @@ class Cooldown:
             TypeError: other가 Cooldown 객체나 timedelta 객체가 아닐 경우.
         """
         if isinstance(other, timedelta):
-            return self.cooldown - other
+            
+            return Cooldown(cooldown=self._cooldown - other)
         elif isinstance(other, Cooldown):
-            return self.cooldown - other.cooldown
+            return Cooldown(self._cooldown - other._cooldown)
         else:
             raise TypeError("unsupported operand type(s) for -: 'SkillCooldown' and '{}'".format(type(other)))
     
@@ -74,35 +94,56 @@ class Cooldown:
             TypeError: other가 Cooldown 객체나 timedelta 객체가 아닐 경우.
         """
         if isinstance(other, timedelta):
-            self.cooldown -= other
+            self._cooldown -= other
         elif isinstance(other, Cooldown):
-            self.cooldown -= other.cooldown
+            self._cooldown -= other._cooldown
         else:
             raise TypeError("unsupported operand type(s) for -=: 'SkillCooldown' and '{}'".format(type(other)))
         return self
     
     def __add__(self, other):
         if isinstance(other, timedelta):
-            return Cooldown(cooldown=self.cooldown + other)
+            return Cooldown(cooldown=self._cooldown + other)
         elif isinstance(other, Cooldown):
-            return Cooldown(cooldown=self.cooldown + other.cooldown)
+            return Cooldown(cooldown=self._cooldown + other._cooldown)
         else:
             raise TypeError(f"unsupported operand type(s) for +: 'Cooldown' and '{type(other)}'")
 
     def __iadd__(self, other):
         if isinstance(other, timedelta):
-            self.cooldown += other
+            self._cooldown += other
         elif isinstance(other, Cooldown):
-            self.cooldown += other.cooldown
+            self._cooldown += other._cooldown
         else:
             raise TypeError(f"unsupported operand type(s) for +=: 'Cooldown' and '{type(other)}'")
         return self
+    
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return Cooldown(seconds=self._cooldown.total_seconds() * other)
+        else:
+            raise TypeError('Unsupported operand types for *: \'Cooldown\' and \'{}\''.format(type(other).__name__))
+
+
+
+    # / 나누기
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return Cooldown(seconds=self._cooldown.total_seconds() / other)
+        else:
+            raise TypeError('Unsupported operand types for /: \'Cooldown\' and \'{}\''.format(type(other).__name__))
+
+    def total_seconds(self):
+        return self._cooldown.total_seconds()
+    
+    def total_milliseconds(self):
+        return self._cooldown.total_seconds()*1000
 
     def update(self):
         """
         현재 쿨다운 시간에서 10마이크로초를 뺍니다.
         """
-        self.cooldown -= timedelta(milliseconds=10)
+        self._cooldown = max(TIME_ZERO,self._cooldown -TIME_UNIT)
     
     def __repr__(self):
         """
@@ -111,7 +152,7 @@ class Cooldown:
         Returns:
             쿨다운 시간을 나타내는 문자열.
         """
-        return "SkillCooldown({})".format(self.cooldown)
+        return "SkillCooldown({})".format(self._cooldown)
 
   
     def __lt__(self, other):
@@ -125,9 +166,9 @@ class Cooldown:
             쿨다운 시간이 작으면 True, 그렇지 않으면 False.
         """
         if isinstance(other, Cooldown):
-            return self.cooldown < other.cooldown
+            return self._cooldown < other._cooldown
         elif isinstance(other, timedelta):
-            return self.cooldown < other
+            return self._cooldown < other
         else:
             raise TypeError("unsupported operand type(s) for <: 'Cooldown' and '{}'".format(type(other)))
 
@@ -142,9 +183,9 @@ class Cooldown:
             쿨다운 시간이 작거나 같으면 True, 그렇지 않으면 False.
         """
         if isinstance(other, Cooldown):
-            return self.cooldown <= other.cooldown
+            return self._cooldown <= other._cooldown
         elif isinstance(other, timedelta):
-            return self.cooldown <= other
+            return self._cooldown <= other
         else:
             raise TypeError("unsupported operand type(s) for <=: 'Cooldown' and '{}'".format(type(other)))
 
@@ -159,9 +200,9 @@ class Cooldown:
             쿨다운 시간이 크면 True, 그렇지 않으면 False.
         """
         if isinstance(other, Cooldown):
-            return self.cooldown > other.cooldown
+            return self._cooldown > other._cooldown
         elif isinstance(other, timedelta):
-            return self.cooldown > other
+            return self._cooldown > other
         else:
             raise TypeError("unsupported operand type(s) for >: 'Cooldown' and '{}'".format(type(other)))
 
@@ -176,16 +217,21 @@ class Cooldown:
             쿨다운 시간이 크거나 같으면 True, 그렇지 않으면 False.
         """
         if isinstance(other, Cooldown):
-            return self.cooldown >= other.cooldown
+            return self._cooldown >= other._cooldown
         elif isinstance(other, timedelta):
-            return self.cooldown >> other
+            return self._cooldown >> other
         else:
             raise TypeError("unsupported operand type(s) for >=: 'Cooldown' and '{}'".format(type(other)))
 
     def __eq__(self, other):
         if isinstance(other, timedelta):
-            return self.cooldown == other
+            return self._cooldown == other
         elif isinstance(other, Cooldown):
-            return self.cooldown == other.cooldown
+            return self._cooldown == other._cooldown
         else:
             raise TypeError(f"unsupported operand type(s) for ==: 'Cooldown' and '{type(other)}'")
+
+
+def verifyCooldown(cool:Cooldown):
+    if not isinstance(cool, Cooldown):
+        raise TypeError("쿨다운 자료형이 아님")

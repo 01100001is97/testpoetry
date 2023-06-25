@@ -1,7 +1,8 @@
 from Core.ABCSkill import Skill
 from Core.SpecElements import SpecVector
 from datetime import timedelta
-
+from Core.Condition import ConditionEnum
+from copy import deepcopy
 class DamageLog:
     """
     데미지 로그 클래스. 
@@ -20,14 +21,16 @@ class DamageLog:
                    time이 timedelta 타입이 아닐 경우.
     """
 
-    def __init__(self, skill: Skill, damage: float, original:SpecVector, buff: SpecVector, debuff: SpecVector, add:SpecVector):
-        self._Skill = skill
-        self._DamageperLine = damage
-        self._OriginalStat = original
+    def __init__(self, skillname: Skill, damage: float, point: int, buff: SpecVector, debuff: SpecVector, add:SpecVector, condition:ConditionEnum, line:int):
+        self._SkillName = skillname
+        self._Damage = damage
         self._Buff = buff
-        self._Debuff = buff
-        self._Timestamp = timedelta()
+        self._Debuff = debuff
+        self._Timestamp = None
         self._Add = add
+        self._MonsterCondition = deepcopy( condition)
+        self._Point = point
+        self._AttackLine = line
 
     @property
     def Timestamp(self):
@@ -59,10 +62,11 @@ class DamageLog:
         Returns:
             str: DamageLog 인스턴스의 상세 정보.
         """
-        return f"Timestamp: {self._Timestamp}\n" \
-            f"Skill------------------------\n{self._Skill}\n" \
-            f"Character--------------------\n{self._OriginalStat}\n" \
-            f"Damage per Line--------------\n{self._DamageperLine}\n" \
+        return f"###Timestamp###: {self._Timestamp}\n" \
+            f"Skill------------------------\n{self._SkillName}\n" \
+            f"Damage p%--------------------\n{self._Point} * {self._AttackLine}\n" \
+            f"Damage per Line--------------\n{self._Damage}\n" \
             f"Buff-------------------------\n{self._Buff}\n" \
             f"Debuff-----------------------\n{self._Debuff}\n" \
-            f"Additional Spec--------------\n{self._Add}"
+            f"Additional Spec--------------\n{self._Add}\n" \
+            f"Condition--------------------\n{self._MonsterCondition}\n\n"

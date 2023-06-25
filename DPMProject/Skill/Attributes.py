@@ -5,6 +5,7 @@ from Core.Condition import ConditionEnum
 from abc import ABC, abstractmethod
 from Core.Cooldown import Cooldown
 from Core.ABCSkill import Skill
+import math
 
 
 class DurationAttribute:
@@ -21,16 +22,16 @@ class DurationAttribute:
         ValueError: serverlack 또는 isbuffmult가 bool의 인스턴스가 아닌 경우 발생합니다.
     """
     def __init__(self, duration: Cooldown, serverlack: bool, isbuffmult: bool):
-        self.DOTDuration = duration
+        self.Duration = duration
         self.ServerLack = serverlack
         self.IsBuffMult = isbuffmult
 
     @property
-    def DOTDuration(self):
+    def Duration(self):
         return self._Duration
 
-    @DOTDuration.setter
-    def DOTDuration(self, duration: Cooldown):
+    @Duration.setter
+    def Duration(self, duration: Cooldown):
         if not isinstance(duration, Cooldown):
             raise ValueError("duration must be an instance of Cooldown")
         self._Duration = duration
@@ -55,7 +56,7 @@ class DurationAttribute:
             raise ValueError("isbuffmult must be an instance of bool")
         self._IsBuffMult = isbuffmult
 
-class BuffAttribute(ABC):
+class BuffAttribute:
     """
     스킬의 버프 속성을 나타내는 클래스입니다.
 
@@ -78,11 +79,9 @@ class BuffAttribute(ABC):
             raise ValueError("stat must be an instance of SpecVector")
         self._Stat = stat
 
-    @abstractmethod
-    def DeleteBuff(self):
-        pass
+   
 
-class DebuffAttribute(ABC):
+class DebuffAttribute:
     """
     스킬의 디버프 속성을 나타내는 클래스입니다.
 
@@ -118,9 +117,7 @@ class DebuffAttribute(ABC):
             raise ValueError("condition must be a list of instances of ConditionEnum")
         self._Condition = condition
         
-    @abstractmethod
-    def DeleteDebuff(self):
-        pass
+    
 
 
 class MasteryAttribute:
@@ -210,14 +207,14 @@ class IntervalAttribute:
         ValueError: interval이 Cooldown의 인스턴스가 아닌 경우 발생합니다.
     """
     def __init__(self, interval: Cooldown):
-        self.DOTInterval = interval
+        self.Interval = interval
 
     @property
-    def DOTInterval(self):
+    def Interval(self):
         return self._Interval
 
-    @DOTInterval.setter
-    def DOTInterval(self, interval: Cooldown):
+    @Interval.setter
+    def Interval(self, interval: Cooldown):
         if not isinstance(interval, Cooldown):
             raise ValueError("interval must be an instance of Cooldown")
         self._Interval = interval
@@ -233,15 +230,15 @@ class CooldownAttribute:
         ValueError: cooldown이 Cooldown의 인스턴스가 아닌 경우 발생합니다.
     """
     def __init__(self, cooldown: Cooldown, isresetable:bool):
-        self.SkillCooldown = cooldown
-        self.IsResetable = isresetable
+        self._Cooldown = cooldown
+        self._IsResetable = isresetable
 
     @property
     def SkillCooldown(self):
         return self._Cooldown
 
     @SkillCooldown.setter
-    def SkillCooldown(self, cooldown: SkillCooldown):
+    def SkillCooldown(self, cooldown: Cooldown):
         if not isinstance(cooldown, Cooldown):
             raise ValueError("cooldown must be an instance of Cooldown")
         self._Cooldown = cooldown
@@ -267,8 +264,16 @@ class SkillDelayAttribute:
     Raises:
         ValueError: delay가 Cooldown의 인스턴스가 아닌 경우 발생합니다.
     """
-    def __init__(self, casting_delay: Cooldown):
-        self.AttackDelay = casting_delay
+    def __init__(self, casting_delay: Cooldown, applyAttackSpeed: bool, special = False):
+        delay = None
+        if applyAttackSpeed == True:
+            delay = Cooldown(milliseconds=round(casting_delay.total_milliseconds() * (3/4) / 30)*30)
+        else:
+            delay = casting_delay
+        
+        if special == True:
+            delay = casting_delay
+        self._Delay = delay
 
     @property
     def AttackDelay(self):
@@ -463,8 +468,8 @@ class CombatOrdersAttribute:
             raise ValueError("applied must be an instance of bool")
         self._IsApplied = applied
 
-    def ApplyCombat(self, iscombat: bool):
-        self.IsCombat = iscombat
+    def ApplyCombat(self, isOriginal: bool):
+        self.IsCombat = isOriginal
         self.IsApplied = True
 
         extend = 0
@@ -487,4 +492,13 @@ class FinalAttackAttribute:
         self._FinalAttack = finalAttack
         
 
-    
+class SummonAttribute(DurationAttribute, IntervalAttribute):
+    def __init__(self, duration: Cooldown, interval: Cooldown, mult: bool):
+        DurationAttribute.__init__(
+            self,
+            duration=duration,
+            serverlack=False,
+            isbuffmult=mult
+        )
+        IntervalAttribute.__init__(self, interval=interval)
+        

@@ -19,7 +19,7 @@ ArchmageTC_1715 = ArchmageTC(level=275)
 ArchmageTC_1715.CharItemSlot = ItemPreset_1715_int
 ArchmageTC_1715.Optimization(weapon=False, hyper=False)
 
-sim = Simulator(
+ArchmageTC_1715_Simulator = Simulator(
     character=ArchmageTC_1715,
     dummy=Dummy(
         Size=DummySize.large,
@@ -33,7 +33,9 @@ sim = Simulator(
     mode=SimulatorEnum.Preset
 )
 
-sim.Simulate(
-    duration=timedelta(milliseconds=3000), 
-    skillQueue=testCycle
+ArchmageTC_1715_Simulator.Simulate(
+    duration=timedelta(seconds=15), 
+    schedule=testCycle
     )
+
+ArchmageTC_1715_Simulator.Show_bar()

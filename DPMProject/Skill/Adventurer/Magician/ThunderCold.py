@@ -49,7 +49,6 @@ class ThunderColdDamageAttribute(DamageAttribute):
         if coldStack + self.Target._Condition[ConditionEnum.스턴] > 0:
             buffStat[CoreStat.FINAL_DAMAGE_PERCENT] = 20
 
-        self.IncrementCold()
         return buffStat
 
     def IncrementCold(self):
@@ -66,15 +65,8 @@ class ThunderColdDamageAttribute(DamageAttribute):
         coldStack = self.GetColdStack()
         # ColdAttackBuff 에서 빙결스택을 올려주므로 다시 내려줌
         stat = self.ColdAttackBuff()
-        self.DecrementCold()
 
         stat[CoreStat.CRITICAL_DAMAGE] = 3 * coldStack
-
-        #번개 공격 시 빙결 중첩 -1 단, 썬더스피어는 빙결 스택을 감소시키지 않음
-        if issubclass(type(self),썬더_스피어):
-            pass
-        else:
-            self.DecrementCold()
 
         return stat
 
@@ -84,7 +76,7 @@ class ThunderColdDamageAttribute(DamageAttribute):
         Blizzard = self._FinalAttack()
         Blizzard.Target = self.Target
         Blizzard.Owner = self.Owner
-        Blizzard.ApplyCombat(iscombat = self.IsCombat)
+        Blizzard.ApplyCombat(isOriginal= self.IsCombat)
         if Blizzard.Activator(Blizzard.Level):
             return Blizzard.UseSkill()
       
@@ -92,8 +84,83 @@ class ThunderColdDamageAttribute(DamageAttribute):
 
 
 # 3차 스킬
-class 썬더_스피어:
-    pass
+class 썬더_스피어(OnPressSkill, ThunderColdDamageAttribute, SummonAttribute, SkillDelayAttribute):
+    def __init__(self, level = 20):
+        max = 20
+        ThunderSpearIcon = None
+
+        ThunderSpearDamage = self.SetThunderSpearDamage(level=level)
+      
+        ThunderSpearDamageLine = 3
+
+        ThunderSpearAttackDelay = Cooldown(milliseconds=900)
+        ThunderSpearInterval = Cooldown(milliseconds=1080)
+        ThunderSpearDuration = Cooldown(seconds=120)
+
+        OnPressSkill.__init__(
+            self=self,
+            icon=ThunderSpearIcon,
+            advanced=SkillAdvance.Third,
+            level=level,
+            max=max
+        )
+        ThunderColdDamageAttribute.__init__(
+            self=self,
+            damage_point=ThunderSpearDamage,
+            line=ThunderSpearDamageLine,
+        )
+        SummonAttribute.__init__(
+            self=self,
+            duration=ThunderSpearDuration,
+            interval=ThunderSpearInterval,
+            mult=True
+        )
+        SkillDelayAttribute.__init__(
+            self=self,
+            casting_delay=ThunderSpearAttackDelay,
+            applyAttackSpeed=False
+        )
+
+    # Skill 의 Level getter 재정의
+    @property
+    def Level(self):
+        return super().Level
+    
+    # Skill 의 Level setter 재정의 - 스킬 레벨의 변화와 데미지 계산 바인딩
+    @Level.setter
+    def Level(self, level:int):
+        # 검사 로직: 여기에서는 level이 0 이상의 정수인지 확인합니다.
+        if not isinstance(level, int) or level < 0:
+            raise ValueError("Level must be a non-negative integer")
+        # 추가 로직: level이 MaxLevel 보다 큰 경우 값을 절삭함
+        if level > super().MaxLevel:
+            level = super().MaxLevel
+        
+        # 스킬 레벨이 변동되면 스킬의 데미지 또한 그만큼 변경됨
+        self._DamagePoint = self.SetChainlighteningDamage(level=level)
+
+    def SetThunderSpearDamage(self, level:int):
+        return 250+6*level
+    
+    def UseSkill(self):
+        if not isinstance(self.Owner, ABCCharacter):
+            raise TypeError("스킬의 소유자가 설정되지 않앗음")
+        
+        if not isinstance(self.Target, Dummy):
+            raise TypeError("더미 입력값이 잘못되었음")
+        
+        
+        buff = self.ThunderAttackBuff()
+        # 썬더스피어는 빙결 스택을 감소시키지 않음
+
+        # 데미지 계산
+        ThunderspearLog = self.Target.TakeAttack(
+            char=self.Owner,
+            skill=self,
+            add=buff
+        )
+
+        return [ThunderspearLog]
 
 # 4차 스킬
 
@@ -131,7 +198,7 @@ class 체인_라이트닝(OnPressSkill, ThunderColdDamageAttribute, DebuffAttrib
         DebuffAttribute.__init__(self=self, debuff_stat=SpecVector(), condition=chainlighteningCondition)
         BuffAttribute.__init__(self=self, stat=chainlighteningStat)
         CombatOrdersAttribute.__init__(self=self)
-        SkillDelayAttribute.__init__(self=self, casting_delay=chainlighteningAttackDelay)
+        SkillDelayAttribute.__init__(self=self, casting_delay=chainlighteningAttackDelay, applyAttackSpeed=True)
         FinalAttackAttribute.__init__(self=self, finalAttack=finalAttackName)
 
     # Skill 의 Level getter 재정의
@@ -163,31 +230,7 @@ class 체인_라이트닝(OnPressSkill, ThunderColdDamageAttribute, DebuffAttrib
         """
         return 130 + level*3
 
-    def ApplyCombat(self, isOriginal: bool):
-        """스킬에 컴뱃 오더스 효과를 적용시킴
-
-        Args:
-            isOriginal (bool): True: 찐컴뱃, False: 쓸컴뱃
-
-        Raises:
-            AttributeError: _description_
-            AttributeError: _description_
-        """
-        if isOriginal == None:
-            raise AttributeError("컴뱃 오더스 펫버프에서 누락됨")
-        self.IsCombat = isOriginal
-        self.IsApplied = True
-
-        extend = 0
-        if self.IsCombat is True:
-            extend = 2
-        elif self.IsCombat is False:
-            extend = 1
-        else:
-            raise AttributeError("IsCombat is None")
-        
-        self.MaxLevel += extend
-        self.Level += extend
+    
 
     def UseSkill(self):
         """체인 라이트닝을 사용함
@@ -202,6 +245,7 @@ class 체인_라이트닝(OnPressSkill, ThunderColdDamageAttribute, DebuffAttrib
         Returns:
             _type_: _description_
         """
+        
         if not isinstance(self.Owner, ABCCharacter):
             raise TypeError("스킬의 소유자가 설정되지 않앗음")
         
@@ -210,38 +254,28 @@ class 체인_라이트닝(OnPressSkill, ThunderColdDamageAttribute, DebuffAttrib
         
         # 체인 라이트닝의 상태이상 효과 추가함
         self.Target.Condition[ConditionEnum.스턴] = 1
-        self.Done = True
+        
         
         # 번개 속성 공격 시 빙결스택에 따른 버프 효과를 받아옴
         buff = self.BuffStat
         buff += self.ThunderAttackBuff()
+        self.DecrementCold()
 
         # 데미지를 계산
         chainLighteningLog = self.Target.TakeAttack(char=self.Owner, skill=self, add = buff)
 
+
         # 데미지가 유효하면 파이널어택을 발동시킴
         blizzardFinalLog = None
         if chainLighteningLog is not None:
+            
             blizzardFinalLog = self.UseFinalAttack()
 
+        self.Done = True
         return [chainLighteningLog, blizzardFinalLog]
         # 속성 부여 등등
 
-    def DeleteDebuff(self):
-        """버프 사라질 때 호출
-        """
-        self.Target._Condition[ConditionEnum.스턴] -= 1
-
-    def DeleteBuff(self):
-        pass    
-
-    def __del__(self):
-        self.DeleteBuff()
-        self.DeleteDebuff()
-
-
-
-class 프로즌_오브(OnPressSkill, DamageAttribute, DebuffAttribute, DurationAttribute, IntervalAttribute, CooldownAttribute, SkillDelayAttribute, CombatOrdersAttribute):
+class 프로즌_오브(OnPressSkill, ThunderColdDamageAttribute, SummonAttribute, CooldownAttribute, SkillDelayAttribute, CombatOrdersAttribute, FinalAttackAttribute):
     def __init__(self, level = 30):
         max = 30
         FrozenOrbIcon = None
@@ -254,8 +288,6 @@ class 프로즌_오브(OnPressSkill, DamageAttribute, DebuffAttribute, DurationA
 
         frozenOrbCastingDelay = Cooldown(milliseconds=900)
 
-        frozenOrbCondition = [ConditionEnum.빙결]
-
         frozenOrbDuration = Cooldown(seconds=4)
 
         frozenOrbInterval = Cooldown(milliseconds=210)
@@ -267,18 +299,17 @@ class 프로즌_오브(OnPressSkill, DamageAttribute, DebuffAttribute, DurationA
             level=level,
             max=max
             )
-        DamageAttribute.__init__(
+        ThunderColdDamageAttribute.__init__(
             self=self, 
             damage_point=frozenOrbDamage, 
             castingCount=frozenOrbCastingCount, 
             line=frozenOrbAttackLine
             )
-        DebuffAttribute.__init__(self=self, debuff_stat=SpecVector(), condition=frozenOrbCondition)
-        DurationAttribute.__init__(self=self, duration=frozenOrbDuration, serverlack=False, isbuffmult=False)
-        IntervalAttribute.__init__(self=self, interval=frozenOrbInterval)
+        SummonAttribute.__init__(self, duration=frozenOrbDuration, interval=frozenOrbInterval, mult=False)
         CooldownAttribute.__init__(self=self, cooldown=frozenOrbCooldown, isresetable=True)
-        SkillDelayAttribute.__init__(self=self, casting_delay=frozenOrbCastingDelay)
+        SkillDelayAttribute.__init__(self=self, casting_delay=frozenOrbCastingDelay, applyAttackSpeed=True)
         CombatOrdersAttribute.__init__(self=self)
+        FinalAttackAttribute.__init__(self, finalAttack=블리자드_파이널어택)
 
     def SetFrozenOrbDamage(self, level:int) -> int:
         """
@@ -303,27 +334,31 @@ class 프로즌_오브(OnPressSkill, DamageAttribute, DebuffAttribute, DurationA
         if level > super().MaxLevel:
             level = super().MaxLevel
         
-        self.DamagePoint = self.SetBlizzardFinalAttackDamage(level=level)
+        self.DamagePoint = self.SetFrozenOrbDamage(level=level)
 
-    def ApplyCombat(self, iscombat: bool):
-        self.IsCombat = iscombat
-        self.IsApplied = True
-
-        extend = 0
-        if self.IsCombat is True:
-            extend = 2
-        elif self.iscombat is False:
-            extend = 1
-        else:
-            raise AttributeError("IsCombat is None")
+    def UseSkill(self):
+        if not isinstance(self.Owner, ABCCharacter):
+            raise TypeError("스킬의 소유자가 설정되지 않앗음")
         
-        self.MaxLevel += extend
-        self.Level += extend
+        if not isinstance(self.Target, Dummy):
+            raise TypeError("더미 입력값이 잘못되었음")
+        
+        buff = self.ColdAttackBuff()
+        self.IncrementCold()
+        
+        frozenOrbLog = self.Target.TakeAttack(char=self.Owner, skill=self, add=buff)
+        
+        blizzardFinalLog = None
+        if frozenOrbLog is not None:
+            # 빙결 중첩
+            
+            # 파이널 어택 발동
+            blizzardFinalLog = self.UseFinalAttack()
 
+        return [frozenOrbLog, blizzardFinalLog]
     
-
 # 명목상 키다운 스킬이지만 단타로 이용되는 특성상 일부 디테일한 묘사는 생략함
-class 프리징_브레스(KeydownSkill, DamageAttribute, DebuffAttribute, CombatOrdersAttribute, CooldownAttribute, SkillDelayAttribute):
+class 프리징_브레스(OnPressSkill, ThunderColdDamageAttribute, DebuffAttribute, CombatOrdersAttribute, CooldownAttribute, SkillDelayAttribute, DurationAttribute, FinalAttackAttribute):
     def __init__(self, level = 30):
         max = 30
         FreezingBreathIcon = None
@@ -345,16 +380,17 @@ class 프리징_브레스(KeydownSkill, DamageAttribute, DebuffAttribute, Combat
         # 시전 딜레이
         freezingBreathCastingDelay = Cooldown(milliseconds=960)
 
-        KeydownSkill.__init__(
+        finalAttack = 블리자드_파이널어택
+
+        OnPressSkill.__init__(
             self=self,
             icon=FreezingBreathIcon,
             advanced=SkillAdvance.Fourth,  # 가정: 이 스킬은 5차 스킬이라 가정
             level=level,
             max=max,
             # 키다운 지속시간이 스킬의 딜레이와 동일(적용 후 키다운 해제)
-            keydowntime=freezingBreathCastingDelay,
             )
-        DamageAttribute.__init__(
+        ThunderColdDamageAttribute.__init__(
             self=self, 
             damage_point=freezingBreathDamage, 
             castingCount=freezingBreathCastingCount, 
@@ -363,8 +399,14 @@ class 프리징_브레스(KeydownSkill, DamageAttribute, DebuffAttribute, Combat
         DebuffAttribute.__init__(self=self, debuff_stat=freezingBreathDebuffStat, condition=freezingBreathCondition)
         CombatOrdersAttribute.__init__(self=self)
         CooldownAttribute.__init__(self=self, cooldown=cooldown_time, isresetable=True)
-        SkillDelayAttribute.__init__(self, casting_delay=freezingBreathCastingDelay)
-
+        SkillDelayAttribute.__init__(self, casting_delay=freezingBreathCastingDelay, applyAttackSpeed=True)
+        DurationAttribute.__init__(
+            self=self,
+            duration=duration,
+            serverlack=False,
+            isbuffmult=False
+        )
+        FinalAttackAttribute.__init__(self, finalAttack=finalAttack)
  
        # Skill 의 Level getter 재정의
     @property
@@ -396,25 +438,34 @@ class 프리징_브레스(KeydownSkill, DamageAttribute, DebuffAttribute, Combat
         """
         return 50 + level
 
-    def ApplyCombat(self, iscombat: bool):
-        self.IsCombat = iscombat
-        self.IsApplied = True
-
-        extend = 0
-        if self.IsCombat is True:
-            extend = 2
-        elif self.iscombat is False:
-            extend = 1
-        else:
-            raise AttributeError("IsCombat is None")
-        
-        self.MaxLevel += extend
-        self.Level += extend
 
     def UseSkill(self, **kwargs):
-        return super().UseSkill(**kwargs)
+        if not isinstance(self.Owner, ABCCharacter):
+            raise TypeError("스킬의 소유자가 설정되지 않앗음")
+        
+        if not isinstance(self.Target, Dummy):
+            raise TypeError("더미 입력값이 잘못되었음")
+        
+        
+        buff = self.ColdAttackBuff()
+        self.IncrementCold()
+        self.Target.DebuffList = self.DebuffStat
 
-class 블리자드(OnPressSkill, DamageAttribute, CooldownAttribute, SkillDelayAttribute, CombatOrdersAttribute, DebuffAttribute):
+        FreezingBreathLog = self.Target.TakeAttack(
+            char=self.Owner,
+            skill=self,
+            add=buff
+        )
+        blizzardFinalLog = None
+        if FreezingBreathLog is not None:
+            # 빙결 중첩
+            
+            # 파이널 어택 발동
+            blizzardFinalLog = self.UseFinalAttack()
+
+        return [FreezingBreathLog, blizzardFinalLog]
+
+class 블리자드(OnPressSkill, ThunderColdDamageAttribute, CooldownAttribute, SkillDelayAttribute, CombatOrdersAttribute):
     def __init__(self, level = 30):
         max = 30
         BlizzardIcon = None
@@ -427,8 +478,6 @@ class 블리자드(OnPressSkill, DamageAttribute, CooldownAttribute, SkillDelayA
 
         blizzardCastingDelay = Cooldown(milliseconds=900)
 
-        blizzardCondition = [ConditionEnum.빙결]
-
         OnPressSkill.__init__(
             self=self,
             icon=BlizzardIcon,
@@ -436,16 +485,16 @@ class 블리자드(OnPressSkill, DamageAttribute, CooldownAttribute, SkillDelayA
             level=level,
             max=max
             )
-        DamageAttribute.__init__(
-            self=self, 
+        ThunderColdDamageAttribute.__init__(
+            self=self,
             damage_point=blizzardDamage, 
             castingCount=blizzardCastingCount, 
             line=blizzardAttackLine
             )
         CooldownAttribute.__init__(self=self, cooldown=blizzardCooldown, isresetable=True)
-        SkillDelayAttribute.__init__(self=self, casting_delay=blizzardCastingDelay)
+        SkillDelayAttribute.__init__(self=self, casting_delay=blizzardCastingDelay, applyAttackSpeed=True)
         CombatOrdersAttribute.__init__(self=self)
-        DebuffAttribute.__init__(self=self, debuff_stat=SpecVector(), condition=blizzardCondition)
+        
 
     def SetBlizzardDamage(self, level:int):
         """블리자드의 데미지를 계산함
@@ -469,26 +518,27 @@ class 블리자드(OnPressSkill, DamageAttribute, CooldownAttribute, SkillDelayA
         if level > super().MaxLevel:
             level = super().MaxLevel
         
-        self.DamagePoint = self.SetBlizzardFinalAttackDamage(level=level)
+        self.DamagePoint = self.SetBlizzardDamage(level=level)
 
-
-    def ApplyCombat(self, iscombat: bool):
-        self.IsCombat = iscombat
-        self.IsApplied = True
-
-        extend = 0
-        if self.IsCombat is True:
-            extend = 2
-        elif self.iscombat is False:
-            extend = 1
-        else:
-            raise AttributeError("IsCombat is None")
-        
-        self.MaxLevel += extend
-        self.Level += extend
 
     def UseSkill(self, **kwargs):
-        return super().UseSkill(**kwargs)
+        if not isinstance(self.Owner, ABCCharacter):
+            raise TypeError("스킬의 소유자가 설정되지 않앗음")
+        
+        if not isinstance(self.Target, Dummy):
+            raise TypeError("더미 입력값이 잘못되었음")
+        
+        
+        buff = self.ColdAttackBuff()
+        self.IncrementCold()
+
+        BlizzardDamageLog = self.Target.TakeAttack(
+            char=self.Owner,
+            skill=self,
+            add=buff
+        )
+        return [BlizzardDamageLog]
+
 
 class 블리자드_파이널어택(AutomateActivativeSkill,ThunderColdDamageAttribute, CombatOrdersAttribute, DebuffAttribute):
     def __init__(self, level = 30):
@@ -546,10 +596,12 @@ class 블리자드_파이널어택(AutomateActivativeSkill,ThunderColdDamageAttr
     def UseSkill(self):
         # 번개 속성 공격 시 빙결스택에 따른 버프 효과를 받아옴
         buff = self.ColdAttackBuff()
+        self.IncrementCold()
 
         # TODO: 파이널 어택 공격 시 버프 효과 적용(푸소, 피에르)
     
         # 데미지를 계산
         log = self.Target.TakeAttack(char=self.Owner, skill=self, add = buff)
-
         return log
+
+#class 엘퀴네스_

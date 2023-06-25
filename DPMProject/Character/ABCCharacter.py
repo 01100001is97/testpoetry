@@ -3,6 +3,7 @@ from Core.ABCItem import ABCItem, ItemParts
 from Core.ABCSkill import PassiveSkill, AutomateActivativeSkill, OnPressSkill, Skill, KeydownSkill
 from Core.Job import JobType, GetMainStatList, GetSubStatList
 from Core.Damage import BattlePower
+from Core.Cooldown import Cooldown, verifyCooldown, TIME_UNIT, TIME_ZERO
 from abc import ABC, abstractmethod
 from Item.ItemSlot import ItemSlot
 from Item.ItemSet import ItemSet, ItemSetOptionLevel, ItemSetEnum
@@ -14,6 +15,7 @@ from Character.Trait import Trait
 from Character.Union import Legion, LegionOption, LegionGrade, LEGION_8500_MAX_MEMBER
 from Character.FarmMonster import FarmMonster
 from Character.Portion import PortionDoping
+from Character.Managers import CooldownManager, BuffManager, SummonManager
 from typing import Dict, List
 from Skill.LinkSkill import MAX_LINK_SLOT
 from Skill.Attributes import *
@@ -23,6 +25,7 @@ import datetime
 import itertools
 from sympy import symbols, lambdify
 import numpy as np
+
 
 
 class InvalidInputException(Exception):
@@ -118,8 +121,8 @@ class ABCCharacter(ABC):
     _LegionPoint: int                   # 유니온 점령효과 포인트
     
     # 특수 옵션
-    _Cooldown:int                       # 모자에서 등장할 수 있는 쿨타임 감소 옵션
-    _CooldownPercent:int                # 농장, 어빌리티, 스킬 등에서 등장하는 쿨타임 초기화 옵션
+    
+    
     _BuffDuration: list[int]            # 농장, 스킬, 성향, 유니온 공격대원 효과, 점령효과에서 등장하는 버프 지속시간 증가
     _SummonDuration: int                # 농장, 스킬, 유니온 공격대원 효과에서 등장하는 소환수 지속시간 효과
     _IsPassiveLevel: bool               # 패시브 레벨 1 옵션, 어빌리티에서 등장
@@ -140,9 +143,10 @@ class ABCCharacter(ABC):
     _OnPressSkillList: list
     _SkipableSkillList: list
 
-    # 가동률이 100% 미만인 버프의 리스트
-    _ExtraBuffList: list
-
+    # 스킬의 지속시간, 쿨타임 관리 매니저
+    CooldownManager : CooldownManager
+    BuffManager : BuffManager
+    SummonManager : SummonManager
     
    
     def __init__(self, name:str, level:int, job:JobType, constant:float, mastery:int, attacktype:AttackType):
@@ -183,8 +187,6 @@ class ABCCharacter(ABC):
         self._DopingBuff = []
         self._TotalSpec = basic
         self._LinkSkillSlot = set()
-        self._CooldownPercent = 0
-        self._Cooldown = 0
         self._SummonDuration = 0
         self._LegionPoint = 0
         self._PassiveSkillList = []
@@ -192,31 +194,39 @@ class ABCCharacter(ABC):
         self._OnPressSkillList = []
         self._KeydownSkillList = []
         self._SkipableSkillList = []
-        self._ExtraBuffList = []
+
         self._ArcaneForce = 0
         self._AuthenticForce = 0
         self._Status = CharacterStatus.Idle
+        self.CooldownManager = CooldownManager()
+        self.BuffManager = BuffManager()
+        self.SummonManager = SummonManager()
         
-        self.SetupPersonalTrait()
-        
-    @property
-    def ExtraBuffList(self):
-        """가동률 있는 버프 스킬의 리스트
+        self._Delay = Cooldown(milliseconds=0)
 
-        Returns:
-            _type_: _description_
-        """
-        return self._ExtraBuffList
+        self.SetupPersonalTrait()
+
+    @property
+    def Delay(self):
+        return self._Delay
+
+    @Delay.setter
+    def Delay(self, delay:Cooldown):
+        verifyCooldown(delay)
+        self._Delay = delay
+        
+
     
-    @ExtraBuffList.setter
-    def ExtraBuffList(self, setlist:list):
-        if not isinstance(setlist, list):
-            raise TypeError("버프 리스트는 리스트형태여야 함")
-        
-        if not all(isinstance(item, Skill) for item in setlist):
-            raise TypeError("버프 리스트의 모든 항목은 Skill 타입이어야 함")
-        
-        self._ExtraBuffList = setlist
+    def Tick(self):
+        self.CooldownManager.Tick()
+        self.BuffManager.Tick()
+        summonLog = self.SummonManager.Tick()
+        self._Delay.update()
+
+        return summonLog
+
+    def ReadyFor(self, skill:Skill):
+        return self.CooldownManager.isReady(skill)
 
     @property
     def ExtraBuffStat(self):
@@ -226,8 +236,11 @@ class ABCCharacter(ABC):
             _type_: _description_
         """
         result = SpecVector()
-        for i in self.ExtraBuffList:
-            result += i
+        for skill, remains in self.BuffManager:
+            if not issubclass(skill, BuffAttribute):
+                raise TypeError("버프 스킬은 BuffAttribute를 상속해야함")
+            if remains >= TIME_UNIT:
+                result += skill.BuffStat
         return result
 
     @property
@@ -270,13 +283,10 @@ class ABCCharacter(ABC):
         Returns:
             StatusEnum : 캐릭터의 현재 상태를 나타내는 열거형
         """
-        return self._Status
-
-    @Status.setter
-    def Status(self, status):
-        if not isinstance(status, CharacterStatus):
-            raise InvalidInputException("Status must be an instance of StatusEnum")
-        self._Status = status
+        if self._Delay > TIME_ZERO:
+            return CharacterStatus.Using_Skill
+        elif self._Delay == TIME_ZERO:
+            return CharacterStatus.Idle
 
     @property
     def FarmList(self):
@@ -328,7 +338,7 @@ class ABCCharacter(ABC):
                 FarmMonster.큰_운영자의_벌룬,
                 FarmMonster.쁘띠_은월
             ]:
-                self._CooldownPercent += monster.value
+                self.CooldownManager.Reset += monster.value
             elif monster in [FarmMonster.쁘띠_루미너스]:
                 self._IsTargetExt += monster.value
             else:
@@ -435,7 +445,7 @@ class ABCCharacter(ABC):
                 # 아이템 스펙을 total spec에 더해줌
                 itemStat, cool = item.TotalSpec()
                 self.TotalSpec += itemStat
-                self._Cooldown += cool
+                self.CooldownManager.Cap += cool
 
                 # 세트 옵션 누적 카운팅
                 if item.BelongedSet is not None:
@@ -758,7 +768,7 @@ class ABCCharacter(ABC):
             elif optionType == LegionOption.SummonDuration:
                 self._SummonDuration += effect
             elif optionType == LegionOption.CooldownPercent:
-                self._CooldownPercent += effect
+                self.CooldownManager.Mercedes += effect
             elif optionType == LegionOption.BuffDuration:
                 self._BuffDuration += effect
             elif optionType == LegionOption.WildHunter:
@@ -1008,7 +1018,7 @@ class ABCCharacter(ABC):
                     #weapon.Show()
                     #hyper.Show()
                     #unionStat.Show()
-                    print(f"진행율: {(rest/totalCount)*100}")
+                    #print(f"진행율: {(rest/totalCount)*100}")
 
         """
         print("무기")

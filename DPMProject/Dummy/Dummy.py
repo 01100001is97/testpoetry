@@ -31,6 +31,15 @@ class Dummy:
         self._DebuffList = list()
 
 
+    @property
+    def DebuffList(self):
+        return self._DebuffList
+    
+    @DebuffList.setter
+    def DebuffList(self, stat:SpecVector):
+        if not isinstance(stat, SpecVector):
+            raise TypeError("디버프는 SpecVector로 입력")
+        self._DebuffList.append(stat)
 
     @property
     def Condition(self):
@@ -185,13 +194,16 @@ class Dummy:
         # TODO:아케인 포스 보정 단, 현재로써는 1.5배로 고정함
         preDamage = preDamage * 1.5 
 
+        name = str(type(skill)).split('.')[-1].replace('>', '').replace("'", "")
         result = DamageLog(
-            skill = type(skill),
+            skillname = name,
             damage= min(preDamage, MAX_DAMAGE) * skill.AttackLine,
-            original= char.TotalSpec,
+            point = skill.DamagePoint,
             buff=buffStat, 
             debuff=debuffStat,
-            add = add
+            add = add,
+            condition=self.Condition,
+            line=skill.AttackLine
         )
         return result
 

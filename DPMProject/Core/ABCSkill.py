@@ -103,6 +103,7 @@ class Skill(ABC):
         
     
     
+    
 
 #-------------------- 패시브 스킬 -------------------------
 class PassiveSkill(Skill):
@@ -201,9 +202,11 @@ class ActiveSkill(Skill):
         self._Icon = icon
 
     @abstractmethod
-    def UseSkill(self, time:timedelta):
+    def UseSkill(self):
         # 공격 스킬의 경우 무기 상수, 직업 보정 상수,방무 고려해야함
         pass
+
+    
 
 class OnPressSkill(ActiveSkill):
     """
