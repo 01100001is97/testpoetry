@@ -11,11 +11,11 @@ class SkillAdvance(Enum):
         Enum (int): 스킬의 전직 횟수
     """
     Zero = 0
-    First = 1
-    Second = 2
+    First = 5
+    Second = 4
     Third = 3
-    Fourth = 4
-    Hyper = 4.5
+    Fourth = 2
+    Hyper = 2
     Fifth = 5
     Sixth = 6
 
@@ -100,7 +100,17 @@ class Skill(ABC):
     @Target.setter
     def Target(self, target: any):
         self._Target = target
+
+    def __str__(self):
+        repr_string = repr(self)
+        if '대기' in repr_string:
+            return '0.01초 대기중'
         
+        class_string = self.__class__.__name__
+        split_string = class_string.split(".")
+       
+        return split_string[-1].rstrip('>')
+
     
     
     
@@ -141,22 +151,14 @@ class AutomateActivativeSkill(Skill):
         activator (lambda: False): 스킬의 활성화 여부를 결정하는 람다 함수입니다. 기본값은 항상 False를 반환하는 람다 함수입니다.
         target (any): 스킬의 타겟을 설정합니다. 기본값은 None입니다.
     """
-    _Activator: lambda: False
+    
 
-    def __init__(self, advanced: SkillAdvance, level: int, max: int, activator: lambda: False):
-        self.Activator = activator
+    def __init__(self, advanced: SkillAdvance, level: int, max: int):    
         Skill.__init__(self,advanced=advanced, level=level, max=max)
 
-    @property
-    def Activator(self):
-        return self._Activator
-
-    @Activator.setter
-    def Activator(self, activator: Callable[[None], bool]):
-        if not callable(activator):
-            raise ValueError("Activator must be callable.")
-        self._Activator = activator
-
+    @abstractmethod
+    def active(self):
+        pass
 
 #class OnHitActivate(AutomateActivate):
 #    pass
@@ -233,9 +235,13 @@ class KeydownSkill(ActiveSkill):
         max (int): 스킬의 최대 레벨을 설정합니다.
         target (any): 스킬의 타겟을 설정합니다. 기본값은 None입니다.
     """
-    def __init__(self, icon, advanced: SkillAdvance, level: int, max: int, keydowntime: Cooldown, target = any):
+    def __init__(self, icon, advanced: SkillAdvance, level: int, max: int, keydowntime: Cooldown):
         self.KeydownTime = keydowntime
-        ActiveSkill.__init__(self, icon, advanced=advanced, max=max, level=level, target=target)
+        ActiveSkill.__init__(self, icon, advanced=advanced, max=max, level=level)
+
+    @abstractmethod
+    def Finish(self):
+        pass
 
     @property
     def KeydownTime(self):
@@ -250,3 +256,13 @@ class KeydownSkill(ActiveSkill):
             raise ValueError("time can't be negative")
         
         self._KeydownTime = time
+
+
+class OriginSkill(OnPressSkill):
+    def __init__(self, icon, advanced: SkillAdvance, level: int, max: int, timingTable:list):
+        self.TimingTable = timingTable
+        self.index = 0
+        
+        OnPressSkill.__init__(self, icon, advanced, level, max)
+
+    

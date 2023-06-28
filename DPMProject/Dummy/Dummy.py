@@ -2,15 +2,13 @@ from enum import Enum
 from Core.Server import GameServer
 from Core.SpecElements import SpecVector, CoreStat
 from Core.ABCSkill import Skill
-from Character.ABCCharacter import ABCCharacter
 from Core.Damage import BattlePower
 from math import floor
 from Skill.Attributes import *
 from Core.Condition import ConditionEnum
 from collections import defaultdict
 from Simulator.DamageLog import DamageLog
-import copy
-
+from Character.Managers import BuffManager
 
 class DummySize(Enum):
     small = 0
@@ -28,18 +26,15 @@ class Dummy:
         self.ElementalResistance = ElementalResistance
         self.Server = Server
         self._Condition = defaultdict(int)
-        self._DebuffList = list()
+        self._DebuffManager = BuffManager()
+        
 
 
     @property
-    def DebuffList(self):
-        return self._DebuffList
+    def DebuffStat(self):
+        return self._DebuffManager.GetBuff()
     
-    @DebuffList.setter
-    def DebuffList(self, stat:SpecVector):
-        if not isinstance(stat, SpecVector):
-            raise TypeError("디버프는 SpecVector로 입력")
-        self._DebuffList.append(stat)
+   
 
     @property
     def Condition(self):
@@ -57,6 +52,7 @@ class Dummy:
     def decrement_condition(self, cond):
         current = self._Condition[cond]
         self._Condition[cond] = max(current - 1, 0)
+
 
 
     @property
@@ -154,8 +150,10 @@ class Dummy:
             raise ValueError("Health must be non-negative.")
         self._Health = Health
 
+    def Tick(self):
+        self._DebuffManager.Tick()
     
-    def TakeAttack(self, char:ABCCharacter, skill:DamageAttribute, add = SpecVector()) -> DamageLog:
+    def TakeAttack(self, char, skill:DamageAttribute, add = SpecVector()) -> DamageLog:
         """ 방어율, 속성 저항에 감소되기 전의 데미지를 받음. 
 
         Args:
@@ -174,9 +172,8 @@ class Dummy:
         # 캐릭터의 버프
         buffStat = char.ExtraBuffStat
         # 허수아비의 디버프
-        debuffStat = SpecVector()
-        for stat in self._DebuffList:
-            debuffStat += stat
+        debuffStat = self._DebuffManager.GetBuff()
+        
         
 
         # 스텟 계산, 데미지p%, 직업상수*무기상수, 숙련도 보정

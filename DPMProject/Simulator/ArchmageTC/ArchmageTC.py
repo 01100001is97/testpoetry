@@ -7,8 +7,8 @@ from Core.Server import GameServer
 from datetime import timedelta    
 from Skill.Adventurer.Magician.Archmage import *
 from Skill.Adventurer.Magician.ThunderCold import *
-from Skill.CommonSkill import 쓸만한_샤프아이즈, 쓸만한_컴뱃오더스
-from Simulator.ArchmageTC.ArchmageTCDealingCycle import testCycle
+from Skill.CommonSkill import 쓸만한_샤프아이즈, 쓸만한_컴뱃오더스, 에픽_어드벤처
+from Simulator.ArchmageTC.ArchmageTCDealingCycle import *
 
 
 #1. 아이템 슬롯
@@ -34,8 +34,9 @@ ArchmageTC_1715_Simulator = Simulator(
 )
 
 ArchmageTC_1715_Simulator.Simulate(
-    duration=timedelta(seconds=15), 
-    schedule=testCycle
+    duration=timedelta(seconds=180), 
+    schedule=BurstCycle,
+    OnOffList=[아이스_오라]
     )
 
-ArchmageTC_1715_Simulator.Show_bar()
+ArchmageTC_1715_Simulator.ShowStackedBar()

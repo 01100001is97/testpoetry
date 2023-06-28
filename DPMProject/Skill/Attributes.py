@@ -5,8 +5,8 @@ from Core.Condition import ConditionEnum
 from abc import ABC, abstractmethod
 from Core.Cooldown import Cooldown
 from Core.ABCSkill import Skill
+from copy import deepcopy
 import math
-
 
 class DurationAttribute:
     """
@@ -21,19 +21,27 @@ class DurationAttribute:
         ValueError: duration이 Cooldown의 인스턴스가 아닌 경우 발생합니다.
         ValueError: serverlack 또는 isbuffmult가 bool의 인스턴스가 아닌 경우 발생합니다.
     """
+    SERVER_LACK = Cooldown(seconds=3)
+
     def __init__(self, duration: Cooldown, serverlack: bool, isbuffmult: bool):
-        self.Duration = duration
-        self.ServerLack = serverlack
-        self.IsBuffMult = isbuffmult
+        self._Duration = duration
+        self._ServerLack = serverlack
+        self._IsBuffMult = isbuffmult
+        
 
     @property
     def Duration(self):
         return self._Duration
-
+        
+        
+                
     @Duration.setter
     def Duration(self, duration: Cooldown):
         if not isinstance(duration, Cooldown):
             raise ValueError("duration must be an instance of Cooldown")
+        
+        
+        
         self._Duration = duration
 
     @property
@@ -67,19 +75,17 @@ class BuffAttribute:
         ValueError: stat이 SpecVector의 인스턴스가 아닌 경우 발생합니다.
     """
     def __init__(self, stat: SpecVector):
-        self.BuffStat = stat
+        self._BuffStat = stat
 
     @property
     def BuffStat(self):
-        return self._Stat
+        return self._BuffStat
 
     @BuffStat.setter
     def BuffStat(self, stat: SpecVector):
-        if not isinstance(stat, SpecVector):
+        if not isinstance(stat, (SpecVector, callable)):
             raise ValueError("stat must be an instance of SpecVector")
-        self._Stat = stat
-
-   
+        self._BuffStat = stat
 
 class DebuffAttribute:
     """
@@ -116,10 +122,7 @@ class DebuffAttribute:
         if not all(isinstance(c, ConditionEnum) for c in condition):
             raise ValueError("condition must be a list of instances of ConditionEnum")
         self._Condition = condition
-        
-    
-
-
+         
 class MasteryAttribute:
     """
     스킬의 마스터리 속성을 나타내는 클래스입니다.
@@ -166,7 +169,7 @@ class DamageAttribute:
 
     @DamagePoint.setter
     def DamagePoint(self, damage_point: int):
-        if not isinstance(damage_point, int):
+        if not isinstance(damage_point, (int,float)):
             raise ValueError("damage_point must be an integer")
         self._DamagePoint = damage_point
 
@@ -195,6 +198,34 @@ class DamageAttribute:
         
         self._AttackLine = line
         
+class NonlinearIntervalAttribute:
+    """
+    비선형 쿨타임 간격을 가진 스킬 효과의 적용 간격.
+
+    Args:
+        intervals (list): 비선형 쿨타임 간격을 표현하는 리스트
+        condition (function): 다음 인터벌로 넘어갈지 결정하는 람다 함수
+    """
+    def __init__(self, intervals: list, condition: callable):
+        if not isinstance(intervals, list):
+            raise ValueError("intervals must be a list")
+        if not isinstance(condition, type(lambda:0)):
+            raise ValueError("condition must be a lambda function")
+
+        self._intervals = [intervals[0]] + intervals
+        self._condition = condition
+        self._index = 0
+
+    @property
+    def Interval(self):
+        # 리스트의 마지막 인덱스에 도달하면 매우 긴 쿨타임을 반환
+        if self._index >= len(self._intervals):
+            return Cooldown(minutes=99999)
+        else:
+            interval = self._intervals[self._index]
+            if self._condition():  # condition 함수가 참을 반환하면 index 증가
+                self._index += 1
+            return interval
 
 class IntervalAttribute:
     """
@@ -207,7 +238,7 @@ class IntervalAttribute:
         ValueError: interval이 Cooldown의 인스턴스가 아닌 경우 발생합니다.
     """
     def __init__(self, interval: Cooldown):
-        self.Interval = interval
+        self._Interval = interval
 
     @property
     def Interval(self):
@@ -253,6 +284,19 @@ class CooldownAttribute:
             raise ValueError("condition must be a bool type")
         self._IsResetable = condition
 
+class ChargedCooldownAttribute(CooldownAttribute):
+    def __init__(self, cooldown: Cooldown, isresetable: bool, maxcharge: int, isCooldownable: bool):
+        self._MaxBuffCharge = maxcharge
+        self._IsCooldownable = isCooldownable
+        CooldownAttribute.__init__(self, cooldown, isresetable)
+
+    @property
+    def MaxBuffCharge(self):
+        return self._MaxBuffCharge
+    
+    @property
+    def IsCooldownable(self):
+        return self._IsCooldownable
 
 class SkillDelayAttribute:
     """
@@ -273,19 +317,19 @@ class SkillDelayAttribute:
         
         if special == True:
             delay = casting_delay
-        self._Delay = delay
+        self._AttackDelay = delay
 
     @property
     def AttackDelay(self):
-        return self._Delay
+        return self._AttackDelay
 
     @AttackDelay.setter
     def AttackDelay(self, delay: Cooldown):
         if not isinstance(delay, Cooldown):
             raise ValueError("delay must be an instance of Cooldown")
-        self._Delay = delay
+        self._AttackDelay = delay
 
-class SkipableAttribute(SkillDelayAttribute):
+class SkipableAttribute:
     """
     스킬의 콤보 속성을 나타내는 클래스입니다.
 
@@ -299,9 +343,9 @@ class SkipableAttribute(SkillDelayAttribute):
         ValueError: skip이 Cooldown의 인스턴스가 아닌 경우 발생합니다.
     """
 
-    def __init__(self, combo_skill_list: list, skip: Cooldown, casting_delay: Cooldown):
-        super().__init__(casting_delay)
-        self.ComboSkillList = combo_skill_list
+    def __init__(self, combo_skill_list: list, skip: list[Cooldown]):
+        
+        self._ComboSkillList = combo_skill_list
         self.Skip = skip
 
     @property
@@ -319,10 +363,11 @@ class SkipableAttribute(SkillDelayAttribute):
         return self._Skip
 
     @Skip.setter
-    def Skip(self, skip: Cooldown):
-        if not isinstance(skip, Cooldown):
-            raise ValueError("skip must be an instance of Cooldown")
+    def Skip(self, skip: list[Cooldown]):
+        if not all(isinstance(i, Cooldown) for i in skip):
+            raise ValueError("All elements in skip must be an instance of Cooldown")
         self._Skip = skip
+
 
 class JobNameAttribute:
     """
@@ -502,3 +547,17 @@ class SummonAttribute(DurationAttribute, IntervalAttribute):
         )
         IntervalAttribute.__init__(self, interval=interval)
         
+    @abstractmethod
+    def EndSummon(self):
+        pass
+
+class BuffDurationAttribute:
+
+    def __init__(self, duration: int):
+        if not 0<duration<=55:
+            raise AttributeError("벞지 스킬 최대값은 55")
+        self.BuffDurationOption = duration
+
+class ProjectileAttribute:
+    def __init__(self, maximumTime:int) -> None:
+        self.Maximum = maximumTime

@@ -44,10 +44,10 @@ def BattlePower(spec:SpecVector, jobtype:JobType, considerGuard = 300, isBoss = 
     else:
         result = result * toPercent(spec[CoreStat.DAMAGE_PERCENTAGE])
 
-    FianlDamage = 1 + (toPercent(spec[CoreStat.FINAL_DAMAGE_PERCENT])-1) * spec[CoreStat.CRITICAL_PERCENTAGE]
+    FianlDamage = (toPercent(spec[CoreStat.FINAL_DAMAGE_PERCENT])) 
     result = result * FianlDamage
 
-    CriticalDamage = toPercent(spec[CoreStat.CRITICAL_DAMAGE] + 35)
+    CriticalDamage = 1 + (spec[CoreStat.CRITICAL_DAMAGE] + 35)/100 * max(spec[CoreStat.CRITICAL_PERCENTAGE] , 100)/ 100
     result = CriticalDamage * result
 
     if considerGuard == 0:

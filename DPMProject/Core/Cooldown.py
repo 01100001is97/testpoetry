@@ -76,7 +76,7 @@ class Cooldown:
             
             return Cooldown(cooldown=self._cooldown - other)
         elif isinstance(other, Cooldown):
-            return Cooldown(self._cooldown - other._cooldown)
+            return Cooldown(cooldown = self._cooldown - other._cooldown)
         else:
             raise TypeError("unsupported operand type(s) for -: 'SkillCooldown' and '{}'".format(type(other)))
     
@@ -102,10 +102,11 @@ class Cooldown:
         return self
     
     def __add__(self, other):
-        if isinstance(other, timedelta):
-            return Cooldown(cooldown=self._cooldown + other)
-        elif isinstance(other, Cooldown):
+        if isinstance(other, Cooldown):
             return Cooldown(cooldown=self._cooldown + other._cooldown)
+        
+        elif isinstance(other, timedelta):
+            return Cooldown(cooldown=self._cooldown + other)
         else:
             raise TypeError(f"unsupported operand type(s) for +: 'Cooldown' and '{type(other)}'")
 
@@ -120,7 +121,8 @@ class Cooldown:
     
     def __mul__(self, other):
         if isinstance(other, (int, float)):
-            return Cooldown(seconds=self._cooldown.total_seconds() * other)
+            val = self._cooldown.total_seconds() * other
+            return Cooldown(seconds=val)
         else:
             raise TypeError('Unsupported operand types for *: \'Cooldown\' and \'{}\''.format(type(other).__name__))
 

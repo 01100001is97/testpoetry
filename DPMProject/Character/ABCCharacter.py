@@ -1,7 +1,7 @@
 from Core.SpecElements import *
 from Core.ABCItem import ABCItem, ItemParts
 from Core.ABCSkill import PassiveSkill, AutomateActivativeSkill, OnPressSkill, Skill, KeydownSkill
-from Core.Job import JobType, GetMainStatList, GetSubStatList
+from Core.Job import JobType, GetMainStatList, GetSubStatList, JobTypeInfo
 from Core.Damage import BattlePower
 from Core.Cooldown import Cooldown, verifyCooldown, TIME_UNIT, TIME_ZERO
 from abc import ABC, abstractmethod
@@ -15,7 +15,7 @@ from Character.Trait import Trait
 from Character.Union import Legion, LegionOption, LegionGrade, LEGION_8500_MAX_MEMBER
 from Character.FarmMonster import FarmMonster
 from Character.Portion import PortionDoping
-from Character.Managers import CooldownManager, BuffManager, SummonManager
+from Character.Managers import CooldownManager, BuffManager, SummonManager, ProjectileManager
 from typing import Dict, List
 from Skill.LinkSkill import MAX_LINK_SLOT
 from Skill.Attributes import *
@@ -48,6 +48,7 @@ class CharacterStatus(Enum):
     Using_Skill= 1
     Stunned = 2
     Moving = 3
+    Keydown = 4
     
     
 class CheckList(Enum):
@@ -147,11 +148,12 @@ class ABCCharacter(ABC):
     CooldownManager : CooldownManager
     BuffManager : BuffManager
     SummonManager : SummonManager
+    ProjectileManager: ProjectileManager
     
    
-    def __init__(self, name:str, level:int, job:JobType, constant:float, mastery:int, attacktype:AttackType):
+    def __init__(self, name:JobName, level:int, job:JobType, constant:float, mastery:int, attacktype:AttackType):
         # Validating name
-        assert isinstance(name, str), "Name must be a string"
+        assert isinstance(name, JobName), "Name must be a string"
 
         # Validating level
         if not isinstance(level, int) or level < 0 or level > 300:
@@ -194,6 +196,7 @@ class ABCCharacter(ABC):
         self._OnPressSkillList = []
         self._KeydownSkillList = []
         self._SkipableSkillList = []
+        self._OnAttackSkillList = []
 
         self._ArcaneForce = 0
         self._AuthenticForce = 0
@@ -201,6 +204,7 @@ class ABCCharacter(ABC):
         self.CooldownManager = CooldownManager()
         self.BuffManager = BuffManager()
         self.SummonManager = SummonManager()
+        self.ProjectileManager = ProjectileManager()
         
         self._Delay = Cooldown(milliseconds=0)
 
@@ -221,9 +225,12 @@ class ABCCharacter(ABC):
         self.CooldownManager.Tick()
         self.BuffManager.Tick()
         summonLog = self.SummonManager.Tick()
+        projLog = self.ProjectileManager.Tick()
+
+
         self._Delay.update()
 
-        return summonLog
+        return summonLog + projLog
 
     def ReadyFor(self, skill:Skill):
         return self.CooldownManager.isReady(skill)
@@ -234,14 +241,23 @@ class ABCCharacter(ABC):
 
         Returns:
             _type_: _description_
+        
         """
-        result = SpecVector()
-        for skill, remains in self.BuffManager:
-            if not issubclass(skill, BuffAttribute):
-                raise TypeError("버프 스킬은 BuffAttribute를 상속해야함")
-            if remains >= TIME_UNIT:
-                result += skill.BuffStat
-        return result
+        # 자동 발동 스킬 리스트로부터 발동조건을 받아옴
+        for autoSkill in self._AutomateSkillList:
+            # autoSkill은 callable 으로써, Activator 은 클래스 메소드임
+            det = autoSkill.active()
+            
+            if det == True:
+                if self.CooldownManager.isReady(autoSkill):
+                    self.BuffManager.Add(autoSkill())
+                    self.CooldownManager.Count(autoSkill)
+
+        
+
+        return self.BuffManager.GetBuff()
+
+       
 
     @property
     def SetupCheckList(self):
@@ -387,6 +403,11 @@ class ABCCharacter(ABC):
         """
         return self._ItemSlot
     
+    @property
+    def MainStat(self):
+        main = GetMainStatList(self._Job)
+        return main
+
     @CharItemSlot.setter
     def CharItemSlot(self, slot:ItemSlot):
         """캐릭터의 아이템 슬롯. 아이템을 착용하자 마자 효과 적용함
@@ -556,7 +577,7 @@ class ABCCharacter(ABC):
             elif e in [CharacterAbilityEnum.BuffDuration]:
                 self._BuffDuration += value
             elif e in [CharacterAbilityEnum.CooldownReset]:
-                self._CooldownPercent = value
+                self.CooldownManager._Reset += value
             elif e in [CharacterAbilityEnum.CriticalProp]:
                 stat[CoreStat.CRITICAL_PERCENTAGE] = value
             # 상태이상시 추가데미지지만, 모법링크가 있으면 데미지로 치환할 수 있음
@@ -909,14 +930,22 @@ class ABCCharacter(ABC):
         """
         if not issubclass(skill, Skill):
             raise TypeError("스킬 자료형이 아님")
-
+        
         if issubclass(skill, PassiveSkill):
             self._PassiveSkillList.append(skill)
             skill = skill()
+            skill.Owner = self
+            if issubclass(type(skill), CombatOrdersAttribute):
+                skill.ApplyCombat(isOriginal= (self._JobName == JobName.Paladin))
+
             if hasattr(skill, 'BuffStat'):
                 self._TotalSpec += skill.BuffStat
             if issubclass(type(skill), MasteryAttribute):
                 self._Mastery += skill.Mastery
+            if issubclass(type(skill), BuffDurationAttribute):
+                self._BuffDuration += skill.BuffDurationOption
+
+            
     
         elif issubclass(skill, AutomateActivativeSkill):
             self._AutomateSkillList.append(skill)

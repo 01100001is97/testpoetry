@@ -1,3 +1,8 @@
+from Skill.CommonSkill import *
+from Skill.LinkSkill import 소울_컨트랙트
+
+
+
 class SkillSchedule(list):
     """SkillSchedule는 스킬의 스케줄을 관리합니다.
     
@@ -32,6 +37,12 @@ class SkillSchedule(list):
         self.Index += 1
         return next_skill
     
+    def Before(self):
+        if self.Index >= 2:
+            return self[self.Index-2]
+        else:
+            raise ValueError("이전 스킬이 존재하지 않음")
+    
     def __add__(self, other):
         """두 SkillSchedule를 결합합니다."""
         if not isinstance(other, SkillSchedule):
@@ -50,3 +61,34 @@ class SkillSchedule(list):
             raise TypeError("Only SkillSchedule instances can be added.")
         self.extend(other)
         return self
+    
+    def __str__(self):
+        result = ""
+        대기중 = "대기중"
+        waitingCount = 0
+        for i in self:
+            if str(i()) == 대기중:
+                waitingCount += 0.01
+            else:
+                if waitingCount > 0:  # 대기 시간이 있으면 결과 문자열에 추가
+                    result += f"약 {round(waitingCount,2)}초 대기 -> "
+                    waitingCount = 0  # 대기 시간 초기화
+                result += str(i()) + " -> "
+        if waitingCount > 0:  # 마지막 요소가 대기중인 경우를 처리
+            result += f"{waitingCount}초 대기"
+        return result
+
+    
+
+
+리레 = SkillSchedule([리스트레인트링])
+웨폰I = SkillSchedule([웨폰퍼프_I링])
+웨폰S = SkillSchedule([웨폰퍼프_S링])
+웨폰D = SkillSchedule([웨폰퍼프_D링])
+웨폰L = SkillSchedule([웨폰퍼프_L링])
+엔버링크 = SkillSchedule([소울_컨트랙트])
+에픽 = SkillSchedule([에픽_어드벤처])
+메여축 = SkillSchedule([메이플_여신의_축복])
+스인미 = SkillSchedule([스파이더_인_미러])
+크오솔 = SkillSchedule([크레스트_오브_더_솔라])
+ms_10 = SkillSchedule([대기])

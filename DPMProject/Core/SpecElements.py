@@ -157,7 +157,8 @@ class SpecVector(list):
         Returns:
             str: SpecVector의 정보를 포함한 문자열.
         """
-        non_zero_items = [f"{stat.name}: {self[stat]}" for stat in CoreStat if self[stat] != 0]
+        self.Arrange()
+        non_zero_items = [f"{stat.name}: {round(self[stat],5)}" for stat in CoreStat if self[stat] != 0]
         return '\n'.join(non_zero_items)
 
     def __add__(self, other):

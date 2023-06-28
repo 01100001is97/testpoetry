@@ -41,9 +41,8 @@ class 시프_커닝(AutomateActivativeSkill, BuffAttribute, CooldownAttribute, D
             self,
             advanced=SkillAdvance.Zero, 
             level= skilllevel,
-            max=6,
-            target=None,
-            activator=lambda target: target.condition() # 적용할 때로 변경
+            max=6
+            
             )
         BuffAttribute.__init__(self,stat=buffStat)
         CooldownAttribute.__init__(self,cooldown=cooldown,isresetable=False)
@@ -53,8 +52,9 @@ class 시프_커닝(AutomateActivativeSkill, BuffAttribute, CooldownAttribute, D
             serverlack=True, 
             isbuffmult=False
             )
-    def DeleteBuff(self):
-        return super().DeleteBuff()
+    @classmethod
+    def active(self):
+        return True
         
 class 파이렛_블레스(PassiveSkill, BuffAttribute):
     def __init__(self):
@@ -138,25 +138,23 @@ class 아이언_윌(PassiveSkill, BuffAttribute):
     def DeleteBuff(self):
         return super().DeleteBuff()
 
-class 인텐시브_인설트(AutomateActivativeSkill, BuffAttribute):
+# 패시브스킬로 간주함(모법링크는 필수라서 항상 상태이상 공격이라 봐도 무방)
+class 인텐시브_인설트(PassiveSkill, BuffAttribute):
     def __init__(self):
         skilllevel = 2
         conditionDamage = skilllevel*3
         underlevelDamage = skilllevel*3
         buffstat = CreateSpecVector([CoreStat.DAMAGE_PERCENTAGE], 1)
 
-        AutomateActivativeSkill.__init__(
+        PassiveSkill.__init__(
             self,
             advanced=SkillAdvance.Zero,
             level=skilllevel,
-            max=2,
-            activator=lambda owner, target: (conditionDamage if len(target.condition()) else 0) + (underlevelDamage if owner.GetLevel() > target.GetLevel() else 0),
-            target=None
+            max=2
         )
         BuffAttribute.__init__(self,stat=buffstat)
 
-    def DeleteBuff(self):
-        return super().DeleteBuff()
+
 
 class 소울_컨트랙트(OnPressSkill, BuffAttribute, DurationAttribute, CooldownAttribute):
     def __init__(self):
@@ -173,19 +171,16 @@ class 소울_컨트랙트(OnPressSkill, BuffAttribute, DurationAttribute, Cooldo
             icon=iconSoul,
             advanced=SkillAdvance.Zero,
             level=lev,
-            max=2,
-            target=None
+            max=2
         )
         BuffAttribute.__init__(self, stat=buff)
         DurationAttribute.__init__(self,duration=duration, serverlack=True, isbuffmult=True)
         CooldownAttribute.__init__(self, cooldown=cooldown, isresetable=True)
 
-    def UseSkill(self, **kwargs):
-        # 엔버면 버프 효과 2배
-        return None
     
-    def DeleteBuff(self):
-        return super().DeleteBuff()
+    
+    def UseSkill(self):
+        return super().UseSkill()
     
     
 class 프라이어_프리퍼레이션(AutomateActivativeSkill, BuffAttribute, DurationAttribute, Cooldown, StackAttribute):
@@ -202,33 +197,41 @@ class 프라이어_프리퍼레이션(AutomateActivativeSkill, BuffAttribute, Du
             advanced=SkillAdvance.Zero,
             level=level,
             max=2,
-            activator= lambda stack: stack >= activeStack,
-            target=self.Owner
+            activator= self.active
         )
         BuffAttribute(self,stat=buff)
         DurationAttribute(self,duration=skillDuration, serverlack=True, isbuffmult=True)
         CooldownAttribute(self,cooldown=skillCooldown, isresetable=False)
+        StackAttribute(self, max_stack=activeStack, charged_stack=0, charge_cooltime= Cooldown(seconds=0))
 
-    def DeleteBuff(self):
-        return super().DeleteBuff()
+    def active(self):
+        self.ChargedStack += 1
+        res = self.ChargedStack >= self.MaxStack
+        if res == True:
+            self.ChargedStack = 0
+            return res
+        else:
+            return False
+    
 
-class 노블레스(AutomateActivativeSkill, BuffAttribute):
+class 노블레스(PassiveSkill, BuffAttribute):
     def __init__(self):
         level = 2
         buff = CreateSpecVector([CoreStat.DAMAGE_PERCENTAGE_BOSS], 2*level)
-
-        AutomateActivativeSkill.__init__(
+        buff = CreateSpecVector([CoreStat.DAMAGE_PERCENTAGE], level)
+        PassiveSkill.__init__(
             self,
             advanced=SkillAdvance.Zero,
             level=level,
-            max=2,
-            activator= lambda party: CreateSpecVector([CoreStat.DAMAGE_PERCENTAGE], 2*party),
-            target=self.Owner
+            max=2
         )
         BuffAttribute.__init__(self,stat=buff)
 
-    def DeleteBuff(self):
-        return super().DeleteBuff()
+    # TODO: 파티 설정
+    def GetPartyMember(self):
+        pass
+
+   
 
 # TODO: 이동 구현. 그 전엔 12%로 가정
 class 전투의_흐름(PassiveSkill, BuffAttribute):
