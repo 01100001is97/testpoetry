@@ -243,6 +243,7 @@ class 메이플_용사(PassiveSkill, BuffAttribute, CombatOrdersAttribute):
         main = self.Owner.MainStat[0]
         result = SpecVector()
         result[main] = math.floor((self.Owner.Level *5 + 18)*round(level/2)/100)
+        result[CoreStat.DAMAGE_PERCENTAGE] = 5 + math.floor(int(self.Level/2))
 
         return result
         

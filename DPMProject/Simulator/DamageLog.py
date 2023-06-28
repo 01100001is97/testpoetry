@@ -69,7 +69,7 @@ class DamageLog:
             return f"###Timestamp###: {self._Timestamp}\n" \
                 f"Skill------------------------\n{self._SkillName}\n" \
                 f"Damage p%--------------------\n{self._Point} * {self._AttackLine}\n" \
-                f"Damage per Line--------------\n{self._Damage:,}\n" \
+                f"Damage per Attack-------------\n{self._Damage:,}\n" \
                 f"Buff-------------------------\n{self._Buff}\n" \
                 f"Debuff-----------------------\n{self._Debuff}\n" \
                 f"Additional Spec--------------\n{self._Add}\n" \

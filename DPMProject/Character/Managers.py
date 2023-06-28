@@ -371,6 +371,11 @@ class SummonManager:
                 summon.Skill.EndSummon()
                 del self.Summons[summon]
         return resultlogs
+    
+    def isSummoned(self, skill):
+        for summon, cool in self.Summons.items():
+            if issubclass(skill, type(summon.Skill)):
+                return cool
 
 
 class Summon:

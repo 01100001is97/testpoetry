@@ -67,8 +67,11 @@ class ThunderColdDamageAttribute(DamageAttribute):
         coldStack = self._GetColdStack()
         # ColdAttackBuff 에서 빙결스택을 올려주므로 다시 내려줌
         stat = self.ColdAttackBuff()
-        stat[CoreStat.DAMAGE_PERCENTAGE] = 12 * coldStack
+        stat[CoreStat.DAMAGE_PERCENTAGE] += 12 * coldStack
         
+        if self.Owner.SummonManager.isSummoned(주피터_썬더):
+            if not isinstance(self, 주피터_썬더):
+                stat += CreateSpecVector([CoreStat.FINAL_DAMAGE_PERCENT], 12)
 
         return stat
 
@@ -1345,8 +1348,8 @@ class 아이스_에이지_파편(OnPressSkill, ThunderColdDamageAttribute, Summo
     def __init__(self, level=30):
         max = 아이스_에이지().MaxLevel
         IceAgeIcon = None
-        IceAgeSummonDamagePoint = 500+20*level
-        IceAgeSummonDamageLine = 10
+        IceAgeSummonDamagePoint = 125+5*level
+        IceAgeSummonDamageLine = 3
         
         IceAgeSummonDuraton = Cooldown(seconds=15)
         IceAgeSummonInterval = Cooldown(milliseconds=810)
@@ -1380,7 +1383,7 @@ class 아이스_에이지_파편(OnPressSkill, ThunderColdDamageAttribute, Summo
             raise TypeError("더미 입력값이 잘못되었음")
       
         buff = self.ColdAttackBuff()
-        self.IncrementCold
+        self.IncrementCold()
 
         IceAgeLog = self.Target.TakeAttack(char=self.Owner, skill=self, add = buff)
 
@@ -1396,7 +1399,7 @@ class 주피터_썬더(OnPressSkill, ThunderColdDamageAttribute, SummonAttribute
         JupyterThunderDamage = 300+12*level
         JupyterThunderAttackLine = 8
         JupyterThunderCount = 30
-        JupyterThunderDuration = Cooldown(milliseconds=9900)
+        JupyterThunderDuration = Cooldown(milliseconds=10800)
         JupyterThunderInterval = Cooldown(milliseconds=330)
         JupyterThunderCooldown = Cooldown(seconds=120)
         JupyterThunderAttackDelay = Cooldown(milliseconds=810)
