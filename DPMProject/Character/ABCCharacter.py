@@ -133,7 +133,7 @@ class ABCCharacter(ABC):
     _PersonalTrait: list[Trait]             # 성향은 만렙으로 가정함.
     _AbilitySlot: set[CharacterAbilityEnum] # 어빌리티 슬롯
     _LinkSkillSlot: set[Skill]              # 링크 스킬 리스트 - 미구현 
-    _Farm: set[FarmMonster]             # 농장 몬스터 목록
+    _Farm: list[FarmMonster]             # 농장 몬스터 목록
     _LegionList: list[Legion]               # 유니온 대원목록
     _PetBuffList: list                      # 미구현(스킬의 리스트로 설정)
     _DopingBuff: list                       # 물약, 스킬에 의한 장시간 지속 버프
@@ -172,7 +172,8 @@ class ABCCharacter(ABC):
             raise InvalidInputException("Mastery must be an integer between 0 and 100")
 
         basic = SpecVector()
-        basic[CoreStat.STAT_INT] = 5*level+18-4
+        mainstat = GetMainStatList(job)[0]
+        basic[mainstat] = 5*level+18-4
         basic[CoreStat.STAT_ALL] = 4
         basic[CoreStat.CRITICAL_PERCENTAGE] = 5
         self._checklist = dict()
@@ -186,6 +187,7 @@ class ABCCharacter(ABC):
         self._BuffDuration = 0
         self._PersonalTrait = [t for t in Trait]
         self.AttackType = attacktype
+        self._Farm = []
         self._DopingBuff = []
         self._TotalSpec = basic
         self._LinkSkillSlot = set()
@@ -197,6 +199,8 @@ class ABCCharacter(ABC):
         self._KeydownSkillList = []
         self._SkipableSkillList = []
         self._OnAttackSkillList = []
+        self._IsTargetExt = 0
+        
 
         self._ArcaneForce = 0
         self._AuthenticForce = 0
@@ -343,20 +347,20 @@ class ABCCharacter(ABC):
                 FarmMonster.사랑에_빠진_커플예티,
                 FarmMonster.빅_펌킨
             ]:
-                self._SummonDuration += monster.value
+                self._SummonDuration += int(monster.value/10)
             elif monster in [
                 FarmMonster.쁘띠_아카이럼,
                 FarmMonster.반반,
                 FarmMonster.군단장_윌
             ]:
-                self._BuffDuration += monster.value
+                self._BuffDuration += int(monster.value//10)
             elif monster in [
                 FarmMonster.큰_운영자의_벌룬,
                 FarmMonster.쁘띠_은월
             ]:
                 self.CooldownManager.Reset += monster.value
             elif monster in [FarmMonster.쁘띠_루미너스]:
-                self._IsTargetExt += monster.value
+                self._IsTargetExt += 1
             else:
                 return False
         return True
@@ -610,7 +614,10 @@ class ABCCharacter(ABC):
         POINTS_REQUIRED = [0, 1, 3, 7, 15, 25, 40, 60, 85, 115, 150, 200, 265, 345, 440, 550]
         # 크확 투자
         # 필요한 크확을 구하여 스펙에 대입 하이퍼스텟 5레벨부터는 유니온에비해 효율이 낮으므로 패스함.
-        requireCritical = min(5,100 - self.TotalSpec[CoreStat.CRITICAL_PERCENTAGE])
+        if self._Job == JobType.Bowman:
+            requireCritical = 15
+        else:    
+            requireCritical = min(5,100 - self.TotalSpec[CoreStat.CRITICAL_PERCENTAGE])
         self._TotalSpec[CoreStat.CRITICAL_PERCENTAGE] += requireCritical
         # 필요한 크확을 충족하는 하이퍼 레벨을 구함
         hyperCritProp = math.ceil((requireCritical + min(6, requireCritical))//2)
@@ -958,7 +965,7 @@ class ABCCharacter(ABC):
         else:
             raise AttributeError("Skill의 형태가 허용되지 않은 형태임")
     
-    def Optimization(self, weapon:bool, hyper:bool):
+    def Optimization(self, weapon:bool, hyper:bool, printing:bool):
         # 최적화 항목
         # 1. 무보엠
         # 2. 링크 스킬
@@ -967,6 +974,9 @@ class ABCCharacter(ABC):
         # 5. 유니온 점령효과
         # 6. 하이퍼 스킬 - 패시브 : 이건 당장은 계획 없음.
         # 7. 딜사이클 - simulation.py에서 수행 예정
+        # 8. 쿨감효과
+        PrintResult = printing
+
         if len(self.SetupCheckList) != len(CheckList):
             raise AttributeError("최적화 진행하기 전에 셋업 체크리스트를 완료해야함")
 
@@ -974,7 +984,8 @@ class ABCCharacter(ABC):
         # 1. 무보엠 구하기
         weaponList = self.WeaponPotentialCaseGeneration()
         weapontime = datetime.datetime.now()
-        #print(f"무보엠 계산: {(weapontime - start).total_seconds()}")
+        if PrintResult:
+            print(f"무보엠 계산: {(weapontime - start).total_seconds()}")
 
         if weapon == False:
             # 빠른 빌드를 위해 쓸만한 잠재를 임시로 사용함
@@ -982,6 +993,7 @@ class ABCCharacter(ABC):
             instanceWeapon[CoreStat.DAMAGE_PERCENTAGE_BOSS] = 130
             instanceWeapon[CoreStat.IGNORE_GUARD_PERCENTAGE] = 40
             instanceWeapon[CoreStat.ATTACK_SPELL_PERCENTAGE] = 39
+            instanceWeapon[CoreStat.ATTACK_PHYSICAL_PERCENTAGE] = 39
             weaponList = [instanceWeapon]
 
         # 번외) 장갑 에디 - 궁수용
@@ -1001,13 +1013,14 @@ class ABCCharacter(ABC):
             instancehyper[CoreStat.ATTACK_SPELL] = 18
             instancehyper[CoreStat.IGNORE_GUARD_PERCENTAGE] = 42
             instancehyper[CoreStat.CRITICAL_DAMAGE] = 11
-            instancehyper[CoreStat.STAT_INT_FIXED] = 120
-            instancehyper[CoreStat.STAT_LUK_FIXED] = 30
+            instancehyper[CoreStat.STAT_ALL_FIXED] = 120
+            
             hyperlist = [instancehyper]
             
 
         hypertime = datetime.datetime.now()
-        #print(f"하이퍼스텟 계산: {(hypertime - weapontime).total_seconds()}")
+        if PrintResult:
+            print(f"하이퍼스텟 계산: {(hypertime - weapontime).total_seconds()}")
 
 
         # 4. 유니온 점령효과
@@ -1015,7 +1028,8 @@ class ABCCharacter(ABC):
         unionrestpoint = self.PartialApplyUnion(self._LegionPoint)
         
         uniontime = datetime.datetime.now()
-        #print(f"유니온 효과 계산: {(uniontime - hypertime).total_seconds()}")
+        if PrintResult:
+            print(f"유니온 효과 계산: {(uniontime - hypertime).total_seconds()}")
 
         
         MaxScore = 0
@@ -1044,23 +1058,26 @@ class ABCCharacter(ABC):
                     result = [weapon, hyper, unionStat]
                     
                     MaxScore = bp
-                    #weapon.Show()
-                    #hyper.Show()
-                    #unionStat.Show()
-                    #print(f"진행율: {(rest/totalCount)*100}")
+                    
+                    if PrintResult:
+                        print(f"진행율: {(rest/totalCount)*100}")
+                        weapon.Show()
+                        hyper.Show()
+                        unionStat.Show()
 
-        """
-        print("무기")
-        result[0].Show()
-        print("hyper")
-        result[1].Show()
-        print("union")
-        result[2].Show()
-        print(f"MAxScore: {MaxScore}")
-        """
+        
+            print("무기")
+            result[0].Show()
+            print("hyper")
+            result[1].Show()
+            print("union")
+            result[2].Show()
+            print(f"MAxScore: {MaxScore}")
+            
         self.TotalSpec += result[0] + result[1] + result[2]
         totalTime = datetime.datetime.now()
-        #print(f"총 소요시간: {(totalTime - start).total_seconds()}")
+        if PrintResult:
+            print(f"총 소요시간: {(totalTime - start).total_seconds()}")
         
 
     def GetNextUnionLevelup(self, nowstat:SpecVector, point:int) -> SpecVector:
@@ -1102,9 +1119,20 @@ class ABCCharacter(ABC):
             substatper = nowstat[CoreStat.STAT_LUK_PERCENTAGE]
             substatfixed = nowstat[CoreStat.STAT_LUK_FIXED]
 
-        else:# 나머지 직업 나중에
+        elif self._Job == JobType.Bowman:
+            main = CoreStat.STAT_DEX
+            atktype = CoreStat.ATTACK_PHYSICAL
+            
+            mainstatconst = nowstat[CoreStat.STAT_DEX]            
+            mainstatper = nowstat[CoreStat.STAT_DEX_PERCENTAGE]
+            mainstatfixed = nowstat[CoreStat.STAT_DEX_FIXED]
+            substatconst = nowstat[CoreStat.STAT_STR]            
+            substatper = nowstat[CoreStat.STAT_STR_PERCENTAGE]
+            substatfixed = nowstat[CoreStat.STAT_STR_FIXED]
             atkconst = nowstat[CoreStat.ATTACK_PHYSICAL]
-
+        else:
+            raise ValueError("설정안했지 미래의나 ")
+        
         damageconst = nowstat[CoreStat.DAMAGE_PERCENTAGE_BOSS] + nowstat[CoreStat.DAMAGE_PERCENTAGE]
         ignorenow = nowstat[CoreStat.IGNORE_GUARD_PERCENTAGE]
 
@@ -1130,8 +1158,12 @@ class ABCCharacter(ABC):
                     levelupStat[pos] += 1
                     break
         for i, stat in enumerate([atktype, main, CoreStat.DAMAGE_PERCENTAGE_BOSS, CoreStat.IGNORE_GUARD_PERCENTAGE]):
-            result[stat] = levelupStat[i]
+            if stat in [CoreStat.STAT_STR,CoreStat.STAT_DEX, CoreStat.STAT_INT, CoreStat.STAT_LUK]:
+                result[stat] = levelupStat[i] * 5
+            else:
+                result[stat] = levelupStat[i]
 
+        
         return result
         
 
@@ -1142,8 +1174,12 @@ class ABCCharacter(ABC):
         LPoint = Point
         MaxArea = 40
 
+        requiredCrit = 0
         # 부족한 크확 충당함
-        requiredCrit = 100-self._TotalSpec[CoreStat.CRITICAL_PERCENTAGE]
+        if self._Job == JobType.Bowman:
+            requiredCrit = 20
+        else:
+            requiredCrit = 100-self._TotalSpec[CoreStat.CRITICAL_PERCENTAGE]
         UnionSpecVector[CoreStat.CRITICAL_PERCENTAGE] += requiredCrit
         LPoint -= requiredCrit
 
@@ -1152,7 +1188,8 @@ class ABCCharacter(ABC):
 
         # 직업에 따라 특수 투자스텟 존재(크확, 벞지)
         # TODO:테스트용으로 모법 40투자 임의로 설정
-        if LPoint > min(MaxArea, LPoint):
+        
+        if self._JobName in [JobName.ArchmageFP,JobName.ArchmageTC, JobName.Bishop]:
             LPointToBuff = MaxArea
             LPoint -= LPointToBuff
             self._BuffDuration += LPointToBuff
@@ -1164,7 +1201,15 @@ class ABCCharacter(ABC):
             pass
         elif MainStatList[0] == CoreStat.STAT_DEX:
             #궁수, 덱해적
-            pass
+            UnionSpecVector[MainStatList[0]] = 5 * 5
+            LPoint -= 5
+            UnionSpecVector[SubStatList[0]] = 1 * 5
+            LPoint -= 1
+            UnionSpecVector[CoreStat.ATTACK_SPELL] = 1
+            LPoint -= 1
+            # 점수 한 개는 불가피하게 낭비해야함
+            UnionSpecVector[CoreStat.ATTACK_PHYSICAL] = 5
+            LPoint -= 5
         elif MainStatList[0] == CoreStat.STAT_INT:
             UnionSpecVector[MainStatList[0]] = 5 * 5
             LPoint -= 5

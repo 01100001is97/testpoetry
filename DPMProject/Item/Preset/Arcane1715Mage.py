@@ -24,7 +24,7 @@ from Core.SpecElements import SpecVector
 from Core.ABCItem import ItemParts
 from Core.Enchant.BonusOption import BonusOptionSlot, BonusOptionGrade, BonusOptionEnum
 from Item.ItemSlot import ItemSlot
-from Item.Preset.Commons import VentusBadge, SevendaysMedal, ArcaneSymbols, AuthSymbols, Blacklabels, blacklabel_weapon, KOR
+from Item.Preset.Commons import VentusBadge, SevendaysMedal, ArcaneSymbols_int, AuthSymbols_int, Blacklabels, blacklabel_weapon, KOR
 
 
 STAR_LEVEL = 17
@@ -301,7 +301,7 @@ lunarDreamAcc2 = LunarDream([UpgradeScrolls().Accessory.SPELL for _ in range(0, 
 ItemPreset_1715_int.AddItem(part=ItemParts.PetAccessory, item=lunarDreamAcc2)
 
 ## 심볼 인스턴스 ##
-for symbol in ArcaneSymbols + AuthSymbols:
+for symbol in ArcaneSymbols_int + AuthSymbols_int:
     ItemPreset_1715_int.AddItem(part=ItemParts.Symbol, item=symbol)
 # 칭호
 ItemPreset_1715_int.AddItem(part=ItemParts.CharacterTitle, item=KOR)

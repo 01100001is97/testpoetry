@@ -24,3 +24,21 @@ class PortionDoping(Enum):
     길드보공 = CreateSpecVector([CoreStat.DAMAGE_PERCENTAGE_BOSS], 30)
     하울링 = CreateSpecVector([CoreStat.ATTACK_PHYSICAL, CoreStat.ATTACK_SPELL], 10)
 
+
+DopingListAlchemy = [
+        PortionDoping.반빨별,
+        PortionDoping.고관비,
+        PortionDoping.주스텟물약,
+        PortionDoping.익스레드,
+        PortionDoping.익스블루,
+        PortionDoping.우뿌,
+        PortionDoping.길축,
+        PortionDoping.MVP슈파,
+        PortionDoping.유힘,
+        PortionDoping.붕뿌_생축_러파,
+        PortionDoping.만렙버프275,
+        PortionDoping.영메,
+        PortionDoping.길드크뎀,
+        PortionDoping.길드뎀지,
+        PortionDoping.길드보공
+    ]

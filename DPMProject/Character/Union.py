@@ -163,6 +163,7 @@ class Legion(Enum):
     BowMasterSS = LegionMember(JobName.BowMaster, LegionGrade.SS)
     MarksmanSS = LegionMember(JobName.Marksman, LegionGrade.SS)
     PathFinderSS = LegionMember(JobName.PathFinder, LegionGrade.SS)
+    PathFinderSSS = LegionMember(JobName.PathFinder, LegionGrade.SSS)
 
     ArchmageFPSS = LegionMember(JobName.ArchmageFP, LegionGrade.SS)
     ArchmageTCSS = LegionMember(JobName.ArchmageTC, LegionGrade.SS)
@@ -257,5 +258,40 @@ Union8500_archmageTC = [
     Legion.CadenaSS,
     Legion.HoyoungSS,
     Legion.XenonSS
+]
 
+
+Union8500_PathFinder = [
+    # 크확
+    Legion.MarksmanSS,
+    Legion.NightLordSS,
+    # 벞지
+    Legion.MechanicSSS,
+    # 쿨감
+    Legion.MercedesSSS,
+    # 보공, 데미지류
+    Legion.DemonAvengerSS,
+    Legion.WildHunterSS,
+    # 방어율 무시
+    Legion.BlasterSS,
+    # 크리티컬 데미지
+    Legion.EunwolSSS,
+    # 공마
+    Legion.MapleM,
+    # 소환수 지속
+    Legion.CaptainSS,
+    # Dex
+    Legion.BowMasterSS,
+    Legion.WindBreakerSS,
+    Legion.KainSS,
+    Legion.PathFinderSSS,
+    # Str
+    Legion.ViperSS,
+    Legion.StrikerSS,
+    Legion.AdeleSS,
+    Legion.ArkSS,
+    Legion.KaiserSS,
+    Legion.CannonShooterSS,
+    Legion.PaladinSS,
+    Legion.HeroSS
 ]

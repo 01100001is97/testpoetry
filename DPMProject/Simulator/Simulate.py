@@ -226,8 +226,9 @@ class Simulator:
                     
                     skipableList = NextSkill().ComboSkillList
                     for i in range(0, len(skipableList)):
-                        if schedule.Before() == skipableList[i]:
-                            if NextSkill().Skip[i] >= self.Character._Delay:
+                        lastSkill = schedule.Before()
+                        if lastSkill == skipableList[i]:
+                            if NextSkill().Skip[i] <= lastSkill().AttackDelay - self.Character._Delay:
                                 isSkipable = True
                                 break
 
@@ -282,6 +283,8 @@ class Simulator:
                             nextInterval = NextSkill.TimingTable[NextSkill.index]
                             NextSkill.index += 1
                             SceneDuration = int(NextSkill.AttackDelay.total_seconds()/TIME_UNIT.total_seconds())
+                            if hasattr(NextSkill, "Before"):
+                                NextSkill.Before()
                             for i in range(0, SceneDuration):
                                 if nextInterval == TIME_ZERO:
                                     logs = NextSkill.UseSkill()
@@ -306,7 +309,8 @@ class Simulator:
                         if isinstance(NextSkill, SkillDelayAttribute):
                             # 공속에 따라 스킬 딜레이 감소 - 스킬 정보 입력 단계에서 최고 공속으로 설정
                             self.Character.Delay = deepcopy(NextSkill.AttackDelay)
-
+                        else:
+                            self.Character.Delay = Cooldown()
                         # 해당 스킬 사용 후 종료
                         break
                         
@@ -359,7 +363,7 @@ class Simulator:
                     f.write(str(log) + '\n')
                     TotalDamage += log._Damage
 
-            f.write(f"최대 데미지를 기록한 시간 구간: {self.SimulationLog[max_interval[0]]._Timestamp} ~ {self.SimulationLog[max_interval[1]]._Timestamp}\n")
+            f.write(f"최대 데미지를 기록한 15초 구간: {self.SimulationLog[max_interval[0]]._Timestamp} ~ {self.SimulationLog[max_interval[1]]._Timestamp}\n")
             f.write(f"그 시간 구간 동안의 총 데미지: {max_damage:,}\n")
             f.write(f"총 시뮬레이션 시간: {log._Timestamp}\n")
             f.write(f"총 데미지: {TotalDamage:,}\n")

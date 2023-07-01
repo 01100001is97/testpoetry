@@ -139,3 +139,37 @@ class ArcaneShadeMageCape(ArcaneShadeCape):
             additionalPotentialOptionList=additionalPotentialOptionList, 
             server=server
             )
+        
+
+class ArcaneShadeArcherCape(ArcaneShadeCape):
+    def __init__(
+            self,
+            potentialOptionList: list[PotentialOptionSlot], 
+            optionslot: BonusOptionSlot, 
+            upgrade_history: list[UpgradeScrolls], 
+            starforce: int, 
+            additionalPotentialOptionList: list[PotentialOptionSlot] = None, 
+            server=GameServer.NormalServer
+            ):
+        self.ItemName = "아케인셰이드 아처케이프"
+        self.RequiredJobType = [JobType.Bowman]
+        stat = SpecVector()
+        stat[CoreStat.STAT_STR] = 35
+        stat[CoreStat.STAT_DEX] = 35  # INT -> DEX
+        stat[CoreStat.STAT_INT] = 35
+        stat[CoreStat.STAT_LUK] = 35
+        stat[CoreStat.ATTACK_PHYSICAL] = 6  # ATTACK_SPELL -> ATTACK_PHYSICAL
+        stat[CoreStat.ATTACK_SPELL] = 6
+
+        ArcaneShadeCape.__init__(
+            self=self,
+            itemName = self.ItemName, 
+            requiredJobType = self.RequiredJobType, 
+            itemBasicStat= stat, 
+            potentialOptionList = potentialOptionList, 
+            optionslot=optionslot, 
+            starforce=starforce, 
+            upgrade_history=upgrade_history, 
+            additionalPotentialOptionList=additionalPotentialOptionList, 
+            server=server
+            )

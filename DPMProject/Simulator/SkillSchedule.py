@@ -1,6 +1,6 @@
 from Skill.CommonSkill import *
 from Skill.LinkSkill import 소울_컨트랙트
-
+from datetime import timedelta
 
 
 class SkillSchedule(list):
@@ -61,6 +61,20 @@ class SkillSchedule(list):
             raise TypeError("Only SkillSchedule instances can be added.")
         self.extend(other)
         return self
+    
+    def Duration(self):
+        result = timedelta()
+        for skill in self:
+            if issubclass(skill, SkillDelayAttribute):
+                delay = skill().AttackDelay.delta
+                result += delay
+            elif issubclass(skill, 대기):
+                result += timedelta(milliseconds=10)
+            else:
+                continue
+                #raise AttributeError("스킬 딜레이가 없는 스킬을 사용하려 함")
+        return result
+
     
     def __str__(self):
         result = ""

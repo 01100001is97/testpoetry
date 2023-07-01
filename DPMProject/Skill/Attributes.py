@@ -446,7 +446,7 @@ class StackAttribute:
     """
     def __init__(self, max_stack: int, charged_stack: int, charge_cooltime: int):
         self.MaxStack = max_stack
-        self.ChargedStack = charged_stack
+        self.nowStack = charged_stack
         self.ChargeCooltime = charge_cooltime
 
     @property
@@ -460,11 +460,11 @@ class StackAttribute:
         self._MaxStack = max_stack
 
     @property
-    def ChargedStack(self):
+    def nowStack(self):
         return self._ChargedStack
 
-    @ChargedStack.setter
-    def ChargedStack(self, charged_stack: int):
+    @nowStack.setter
+    def nowStack(self, charged_stack: int):
         if not isinstance(charged_stack, int):
             raise ValueError("charged_stack must be an integer")
         self._ChargedStack = charged_stack

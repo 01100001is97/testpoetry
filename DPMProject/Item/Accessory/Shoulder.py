@@ -156,3 +156,28 @@ class ArcaneShadeMageShoulder(ArcaneShadeShoulder):
             additionalPotentialOptionList=additionalPotentialOptionList,
             server=server
         )
+
+
+class ArcaneShadeArcherShoulder(ArcaneShadeShoulder):
+    def __init__(
+            self,
+            potentialOptionList: list[PotentialOptionSlot], 
+            starforce: int, 
+            upgrade_history: list[UpgradeScrolls], 
+            additionalPotentialOptionList: list[PotentialOptionSlot] = None, 
+            server=GameServer.NormalServer
+    ):
+        self.ItemName = "아케인셰이드 아처숄더"
+        self.RequiredJobType = [JobType.Bowman]
+        
+
+        ArcaneShadeShoulder.__init__(
+            self=self,
+            itemName=self.ItemName,
+            requiredJobType=self.RequiredJobType,
+            potentialOptionList=potentialOptionList,
+            starforce=starforce,
+            upgrade_history=upgrade_history,
+            additionalPotentialOptionList=additionalPotentialOptionList,
+            server=server
+        )

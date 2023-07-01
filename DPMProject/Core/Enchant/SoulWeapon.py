@@ -15,7 +15,7 @@ class SoulEnchantOption(Enum):
         Ephenia             :에피네아 소울, HP 180 증가.
 
     """    
-    AttackSPercentage = (CoreStat.ATTACK_PHYSICAL_PERCENTAGE, 3)
+    AttackPercentage = (CoreStat.ATTACK_PHYSICAL_PERCENTAGE, 3)
     SpellPercentage = (CoreStat.ATTACK_SPELL_PERCENTAGE, 3)
     CriticalPercentage = (CoreStat.CRITICAL_PERCENTAGE, 12)
     BossDamage = (CoreStat.DAMAGE_PERCENTAGE_BOSS, 7)

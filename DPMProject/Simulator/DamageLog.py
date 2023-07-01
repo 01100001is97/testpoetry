@@ -23,7 +23,7 @@ class DamageLog:
                    time이 timedelta 타입이 아닐 경우.
     """
 
-    def __init__(self, skillname: Skill, damage: float, point: int, buff: SpecVector, debuff: SpecVector, add:SpecVector, condition:ConditionEnum, line:int):
+    def __init__(self, skillname: Skill, damage: float, point: int, buff: SpecVector, debuff: SpecVector, add:SpecVector, condition:ConditionEnum, line:int, special = None):
         self._SkillName = skillname
         self._Damage = damage
         self._Buff = buff
@@ -33,6 +33,7 @@ class DamageLog:
         self._MonsterCondition = deepcopy( condition)
         self._Point = point
         self._AttackLine = line
+        self._special = special
         self.nothing = ""
 
     @property
@@ -73,6 +74,7 @@ class DamageLog:
                 f"Buff-------------------------\n{self._Buff}\n" \
                 f"Debuff-----------------------\n{self._Debuff}\n" \
                 f"Additional Spec--------------\n{self._Add}\n" \
-                f"Condition--------------------\n{self._MonsterCondition}\n\n"
+                f"Condition--------------------\n{self._MonsterCondition}\n" \
+                f"Special----------------------\n{self._special}\n\n"
         else:
             return self.nothing

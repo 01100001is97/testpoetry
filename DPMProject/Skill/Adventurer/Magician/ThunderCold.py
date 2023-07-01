@@ -139,8 +139,6 @@ class 썬더_스피어(OnPressSkill, ThunderColdDamageAttribute, SummonAttribute
             self._level = level
         self._level = level
         
-        # 스킬 레벨이 변동되면 스킬의 데미지 또한 그만큼 변경됨
-        self._DamagePoint = self.SetChainlighteningDamage(level=level)
 
     def SetThunderSpearDamage(self, level:int):
         return 250+6*level
@@ -400,18 +398,22 @@ class 체인_라이트닝_전류지대(OnPressSkill, SummonAttribute, ThunderCol
         
         
         buff = self.ThunderAttackBuff()
-        if self.ChargedStack == 0:
+        if self.nowStack == 0:
             self.DecrementCold()
-        elif self.ChargedStack == 3:
+        elif self.nowStack == 3:
             self.EndSummon()
             del self
             return []
-
-        
-        fieldLog = self.Target.TakeAttack(char=self.Owner, skill=self, add = buff)
         
         
-        self.ChargedStack += 1
+        Corebuff = SpecVector()
+        if 체인_라이트닝_강화_6th in self.Owner._PassiveSkillList:
+            Corebuff = CreateSpecVector([CoreStat.FINAL_DAMAGE_PERCENT], 2*self.Level)
+        
+        fieldLog = self.Target.TakeAttack(char=self.Owner, skill=self, add = buff+Corebuff)
+        
+        
+        self.nowStack += 1
 
         return [fieldLog]
     
@@ -1196,11 +1198,11 @@ class 썬더_브레이크(OnPressSkill, ThunderColdDamageAttribute, SummonAttrib
             self.MaxStack = 4
         
         
-        if self.ChargedStack == self.Target.Size:
+        if self.nowStack == self.Target.Size:
             return []
         
         # 썬브의 현재 누적 타수 설정    
-        self.ChargedStack += 1
+        self.nowStack += 1
         self.DamagePoint *= 0.8
 
         if not isinstance(self.Owner, ABCCharacter):
@@ -1453,9 +1455,9 @@ class 주피터_썬더(OnPressSkill, ThunderColdDamageAttribute, SummonAttribute
             raise TypeError("더미 입력값이 잘못되었음")
         
         buff = self.ThunderAttackBuff()
-        if self.ChargedStack% 5 == 0:
+        if self.nowStack% 5 == 0:
             self.DecrementCold()
-        self.ChargedStack += 1
+        self.nowStack += 1
 
         JupyterThunderLog = self.Target.TakeAttack(char=self.Owner, skill=self, add = buff)
 

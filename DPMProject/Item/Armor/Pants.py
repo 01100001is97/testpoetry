@@ -45,6 +45,37 @@ class RootAbyssPants(Pants):
 # 전사
 
 # 궁수
+class TricksterRangerPants(RootAbyssPants):
+    def __init__(
+            self,
+            potentialOptionList: list[PotentialOptionSlot], 
+            optionslot: BonusOptionSlot, 
+            starforce: int, 
+            upgrade_history: list[UpgradeScrolls], 
+            additionalPotentialOptionList: list[PotentialOptionSlot] = None, 
+            server=GameServer.NormalServer
+            ):
+        
+        self.ItemName = "트릭스터 레인저팬츠"
+        self.RequiredJobType = [JobType.Bowman]
+        stat = SpecVector()
+        stat[CoreStat.STAT_DEX] = 30  # INT -> DEX
+        stat[CoreStat.STAT_STR] = 30
+        stat[CoreStat.ATTACK_PHYSICAL] = 2  # ATTACK_SPELL -> ATTACK_PHYSICAL
+        stat[CoreStat.IGNORE_GUARD_PERCENTAGE] = 5
+
+        RootAbyssPants.__init__(
+            self=self,
+            itemName = self.ItemName, 
+            requiredJobType = self.RequiredJobType, 
+            itemBasicStat= stat, 
+            potentialOptionList = potentialOptionList, 
+            optionslot=optionslot, 
+            starforce=starforce, 
+            upgrade_history=upgrade_history, 
+            additionalPotentialOptionList=additionalPotentialOptionList, 
+            server=server
+            )
 
 # 법사
 class TricksterDunwitchPants(RootAbyssPants):

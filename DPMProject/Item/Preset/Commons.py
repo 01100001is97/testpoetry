@@ -15,6 +15,7 @@ SevendaysMedal = SevenDayMonsterParker()
 ChaosVellum = ChaosVellumCrusher()
 
 # 아케인 심볼
+# 인트
 VanishingJourneySymbol_int_20 = ArcaneSymbol([JobType.Magician],symbollevel=20)
 ChuChuSymbol_int_20 = ArcaneSymbol([JobType.Magician],symbollevel=20)
 LacheleinSymbol_int_20 = ArcaneSymbol([JobType.Magician],symbollevel=20)
@@ -22,7 +23,7 @@ ArcanaSymbol_int_20 = ArcaneSymbol([JobType.Magician],symbollevel=20)
 MorassSymbol_int_20 = ArcaneSymbol([JobType.Magician],symbollevel=20)
 EsferaSymbol_int_20 = ArcaneSymbol([JobType.Magician],symbollevel=20)
 
-ArcaneSymbols = [
+ArcaneSymbols_int = [
     VanishingJourneySymbol_int_20,
     ChuChuSymbol_int_20,
     LacheleinSymbol_int_20,
@@ -36,11 +37,41 @@ CerniumSymbol_int_11 = AuthenticSymbol([JobType.Magician], symbolLevel=11)
 HotelArcsSymbol_int_7 = AuthenticSymbol([JobType.Magician], symbolLevel=7)
 DowonSymbol_int_3 = AuthenticSymbol([JobType.Magician], symbolLevel=3)
 
-AuthSymbols = [
+AuthSymbols_int = [
     CerniumSymbol_int_11,
     HotelArcsSymbol_int_7,
     DowonSymbol_int_3    
 ]
+
+# 덱스
+# 아케인 심볼
+VanishingJourneySymbol_dex_20 = ArcaneSymbol([JobType.Bowman],symbollevel=20)
+ChuChuSymbol_dex_20 = ArcaneSymbol([JobType.Bowman],symbollevel=20)
+LacheleinSymbol_dex_20 = ArcaneSymbol([JobType.Bowman],symbollevel=20)
+ArcanaSymbol_dex_20 = ArcaneSymbol([JobType.Bowman],symbollevel=20)
+MorassSymbol_dex_20 = ArcaneSymbol([JobType.Bowman],symbollevel=20)
+EsferaSymbol_dex_20 = ArcaneSymbol([JobType.Bowman],symbollevel=20)
+
+ArcaneSymbols_dex = [
+    VanishingJourneySymbol_dex_20,
+    ChuChuSymbol_dex_20,
+    LacheleinSymbol_dex_20,
+    ArcanaSymbol_dex_20,
+    MorassSymbol_dex_20,
+    EsferaSymbol_dex_20
+]
+
+# 어센틱 심볼
+CerniumSymbol_dex_11 = AuthenticSymbol([JobType.Bowman], symbolLevel=11)
+HotelArcsSymbol_dex_7 = AuthenticSymbol([JobType.Bowman], symbolLevel=7)
+DowonSymbol_dex_3 = AuthenticSymbol([JobType.Bowman], symbolLevel=3)
+
+AuthSymbols_dex = [
+    CerniumSymbol_dex_11,
+    HotelArcsSymbol_dex_7,
+    DowonSymbol_dex_3    
+]
+
 
 ## 캐시 코디장비 인스턴스 ##
 blacklabel_weapon = BlackLabelWeapon()

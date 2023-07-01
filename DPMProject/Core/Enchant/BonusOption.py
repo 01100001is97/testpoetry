@@ -282,7 +282,7 @@ class BonusOption(ABCItem):
                     result[CoreStat.ATTACK_PHYSICAL] += grade.value * reqLevelTable[opt.value][CoreStat.ATTACK_PHYSICAL.value]
                 elif Type in [ItemType.Weapon]:
                     basicStat = self.ItemBasicStat[CoreStat.ATTACK_PHYSICAL]
-                    increase = self.WeaponATKCalc(basicATK=basicStat, grade=grade, reqLev=self.RequiredLevel)
+                    increase = self.WeaponATKCalc(basicATK=basicStat, grade=grade)
                     result[CoreStat.ATTACK_PHYSICAL] += increase
             elif opt == BonusOptionEnum.AttackSpell:
                 if Type in [ItemType.Accessory, ItemType.Armor]:

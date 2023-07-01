@@ -1,13 +1,12 @@
 from Character.Adventurer.Magician.ArchmageTC import ArchmageTC
 from Item.Preset.Arcane1715Mage import ItemPreset_1715_int
-from Core.Damage import BattlePower
 from Simulator.Simulate import Simulator, SimulatorEnum
-from Dummy.Dummy import Dummy, DummySize
-from Core.Server import GameServer
-from datetime import timedelta    
 from Skill.Adventurer.Magician.Archmage import *
 from Skill.Adventurer.Magician.ThunderCold import *
 from Skill.CommonSkill import 쓸만한_샤프아이즈, 쓸만한_컴뱃오더스, 에픽_어드벤처
+from Dummy.Dummy import Dummy, DummySize
+from Core.Server import GameServer
+from datetime import timedelta    
 from Simulator.ArchmageTC.ArchmageTCDealingCycle import *
 
 
@@ -16,7 +15,7 @@ ArchmageTC_1715 = ArchmageTC(level=275)
 # 1. 아이템 슬롯 설정
 ArchmageTC_1715.CharItemSlot = ItemPreset_1715_int
 # 최적화 진행 - 옵션 선택
-ArchmageTC_1715.Optimization(weapon=False, hyper=False)
+ArchmageTC_1715.Optimization(weapon=False, hyper=False,printing=True)
 
 ArchmageTC_1715_Simulator = Simulator(
     character=ArchmageTC_1715,

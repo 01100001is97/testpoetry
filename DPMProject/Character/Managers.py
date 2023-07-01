@@ -3,6 +3,7 @@ from collections import defaultdict
 from Core.ABCSkill import Skill, AutomateActivativeSkill, OriginSkill
 from Core.SpecElements import SpecVector, CreateSpecVector, CoreStat
 from Skill.Attributes import *
+
 from copy import deepcopy
 import random
 
@@ -148,7 +149,11 @@ class CooldownManager:
             else:
                 self.StackCooldowns[skill] = [stackCool[0], Cooldown(cooldown=newCool)]
             
-    
+    def ReduceCooldown(self, targetskill:Skill, reduce:Cooldown):
+        for skill, cool in list(self.Cooldowns.items()):
+            if issubclass(skill, targetskill):
+                if self.GetRemainingCooldown(skill) > TIME_ZERO:
+                    self.Cooldowns[skill] = max(cool - reduce, TIME_ZERO)
 
     def GetRemainingCooldown(self, skill:Skill):
         """특정 스킬의 남은 쿨타임을 반환합니다."""
@@ -203,6 +208,12 @@ class BuffManager:
     def __init__(self):
         self.BuffList = list()
         
+    def isRegistered(self, skill):
+        for buf in self.BuffList:
+            if issubclass(skill, type(buf.Skill)):
+                return True
+            
+        return False
 
     def Add(self, skill: Skill):
         # 추가하려는 스킬과 같은 타입의 스킬이 이미 BuffList에 있는지 확인
@@ -304,7 +315,10 @@ class ProjectileManager:
         if not isinstance(skill, Skill):
             raise TypeError("skill must be a Skill type")
         
-        self.Scheduler[skill] 
+        self.Scheduler[skill]
+        if hasattr(skill, "Maximum"):
+            if self.Scheduler[skill] > Cooldown(seconds=skill.Maximum):
+                self.Scheduler[skill] = Cooldown(seconds=skill.Maximum)
         if isImmediate:
             self.Scheduler[skill] = Cooldown()
 

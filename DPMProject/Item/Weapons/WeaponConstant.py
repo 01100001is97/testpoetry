@@ -31,3 +31,4 @@ class WeaponConstant(Enum):
     스태프= 1.0
     완드= 1.0
     매직건틀렛= 1.2
+    에인션트보우 = 1.3

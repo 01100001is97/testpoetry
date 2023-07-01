@@ -183,11 +183,13 @@ class 소울_컨트랙트(OnPressSkill, BuffAttribute, DurationAttribute, Cooldo
         return super().UseSkill()
     
     
-class 프라이어_프리퍼레이션(AutomateActivativeSkill, BuffAttribute, DurationAttribute, Cooldown, StackAttribute):
+class 프라이어_프리퍼레이션(AutomateActivativeSkill, BuffAttribute, DurationAttribute, CooldownAttribute):
+    nowStack = 0
+    MaxStack = 25
     def __init__(self):
         level = 2
-        skillDuration = 20
-        skillCooldown = 40
+        skillDuration = Cooldown(seconds=20)
+        skillCooldown = Cooldown(seconds=40)
         buff = SpecVector()
         buff[CoreStat.DAMAGE_PERCENTAGE] = 1+8*level
         activeStack = 25
@@ -196,19 +198,23 @@ class 프라이어_프리퍼레이션(AutomateActivativeSkill, BuffAttribute, Du
             self,
             advanced=SkillAdvance.Zero,
             level=level,
-            max=2,
-            activator= self.active
+            max=2
+            
         )
-        BuffAttribute(self,stat=buff)
-        DurationAttribute(self,duration=skillDuration, serverlack=True, isbuffmult=True)
-        CooldownAttribute(self,cooldown=skillCooldown, isresetable=False)
-        StackAttribute(self, max_stack=activeStack, charged_stack=0, charge_cooltime= Cooldown(seconds=0))
+        BuffAttribute.__init__(self,stat=buff)
+        DurationAttribute.__init__(self,duration=skillDuration, serverlack=True, isbuffmult=False)
+        CooldownAttribute.__init__(self,cooldown=skillCooldown, isresetable=False)
+        
 
+    @classmethod
     def active(self):
-        self.ChargedStack += 1
-        res = self.ChargedStack >= self.MaxStack
+        self.nowStack += 1
+        res = False
+        if self.nowStack >= self.MaxStack:
+            res = True
+
         if res == True:
-            self.ChargedStack = 0
+            self.nowStack = 0
             return res
         else:
             return False

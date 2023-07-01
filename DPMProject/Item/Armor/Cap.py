@@ -46,6 +46,40 @@ class RootAbyssCap(Cap):
 # 전사
 
 # 궁수
+class HighnessRangerHat(RootAbyssCap):
+    def __init__(
+            self,
+            potentialOptionList: list[PotentialOptionSlot], 
+            optionslot: BonusOptionSlot, 
+            starforce: int, 
+            upgrade_history: list[UpgradeScrolls], 
+            additionalPotentialOptionList: list[PotentialOptionSlot] = None, 
+            server=GameServer.NormalServer
+            ):
+        
+        self.ItemName = "하이네스 레인저햇"
+        self.RequiredJobType = [JobType.Bowman]
+        stat = SpecVector()
+        stat[CoreStat.STAT_DEX] = 40  # INT -> DEX
+        stat[CoreStat.STAT_STR] = 40
+        stat[CoreStat.STAT_HP] = 360
+        stat[CoreStat.STAT_MP] = 360
+        stat[CoreStat.ATTACK_PHYSICAL] = 2  # ATTACK_SPELL -> ATTACK_PHYSICAL
+        stat[CoreStat.IGNORE_GUARD_PERCENTAGE] = 10
+
+        RootAbyssCap.__init__(
+            self=self,
+            itemName = self.ItemName, 
+            requiredJobType = self.RequiredJobType, 
+            itemBasicStat= stat, 
+            potentialOptionList = potentialOptionList, 
+            optionslot=optionslot, 
+            starforce=starforce, 
+            upgrade_history=upgrade_history, 
+            additionalPotentialOptionList=additionalPotentialOptionList, 
+            server=server
+            )
+
 
 # 법사
 class HighnessDunwitchHat(RootAbyssCap):

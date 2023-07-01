@@ -8,3 +8,4 @@ class ConditionEnum(Enum):
     마비 = 3
     바인드 = 4
     모험가법사 = 5
+    커스_트랜지션 = 6

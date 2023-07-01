@@ -1,5 +1,5 @@
 from Core.SpecElements import SpecVector, CoreStat, CreateSpecVector
-from enum import Enum
+from enum import Enum, unique
 
 
 
@@ -61,7 +61,7 @@ class FarmMonster(Enum):
     쁘띠_루미너스_이퀄리브리엄 = 1 # 20레벨당 공/마1(공마% 받지 않음)
 
     # 타겟수 + 1
-    쁘띠_루미너스 = 1
+    쁘띠_루미너스 = -1
 
     
     # 크리티컬 확률
@@ -79,13 +79,13 @@ class FarmMonster(Enum):
     쁘띠_매그너스 = CreateSpecVector([CoreStat.IGNORE_GUARD_PERCENTAGE], 5)
     
     # 소환수 지속시간
-    사랑에_빠진_커플예티 = 7  # 소환수 지속시간 7% 증가
-    빅_펌킨 = 6  # 소환수 지속시간 6% 증가
+    사랑에_빠진_커플예티 = 70  # 소환수 지속시간 7% 증가
+    빅_펌킨 = 60  # 소환수 지속시간 6% 증가
 
-    # 버프 지속시간
-    쁘띠_아카이럼 = 5  # 버프 지속시간 5% 증가
-    반반 = 5  # 버프 지속시간 5% 증가
-    군단장_윌 = 6  # 버프 지속시간 6% 증가
+    # 버프 지속시간. 값이 겹치지 않게 특수처리함
+    쁘띠_아카이럼 = 51  # 버프 지속시간 5% 증가
+    반반 = 50  # 버프 지속시간 5% 증가
+    군단장_윌 = 61  # 버프 지속시간 6% 증가
 
     # 재사용 대기시간
     큰_운영자의_벌룬 = 2  # 2% 확률로 스킬 재사용 대기시간 미적용

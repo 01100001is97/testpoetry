@@ -599,12 +599,62 @@ class 대기:
     def __init__(self) -> None:
         pass
 
-    
-
-
     def UseSkill(self):
         return [DamageLog(self,0.0, 0, SpecVector(),SpecVector(), SpecVector(), None, line=0 )]
     
     def __str__(self):
         return '대기중'
         
+
+
+
+class 크리티컬_리인포스(OnPressSkill, BuffAttribute, CooldownAttribute, SkillDelayAttribute, DurationAttribute):
+    def __init__(self, level=30):
+        max = 30
+        CriticalReinforceIcon = None
+        CritReinforceCooldown = Cooldown(seconds=120)
+        CritReinforceDuration = Cooldown(seconds=30)
+        CritReinforceDelay = Cooldown(milliseconds=780)
+
+        OnPressSkill.__init__(
+            self=self,
+            icon=CriticalReinforceIcon,
+            advanced=SkillAdvance.Fifth,
+            level=level,
+            max=max
+        )
+        BuffAttribute.__init__(
+            self=self,
+            stat=SpecVector()
+        )
+        CooldownAttribute.__init__(
+            self=self,
+            cooldown=CritReinforceCooldown,
+            isresetable=False
+        )
+        SkillDelayAttribute.__init__(
+            self=self,
+            casting_delay=CritReinforceDelay,
+            applyAttackSpeed=True
+        )
+        DurationAttribute.__init__(
+            self=self,
+            duration=CritReinforceDuration,
+            serverlack=True,
+            isbuffmult=False
+        )
+
+
+    def CalcStat(self):
+        myStat = SpecVector()
+        crit = self.Owner.TotalSpec[CoreStat.CRITICAL_PERCENTAGE]
+        myStat[CoreStat.CRITICAL_DAMAGE] = math.floor(crit/2)
+        return myStat
+
+    @property
+    def BuffStat(self):
+
+        return lambda a: self.CalcStat()
+    
+    def UseSkill(self):
+        return super().UseSkill()

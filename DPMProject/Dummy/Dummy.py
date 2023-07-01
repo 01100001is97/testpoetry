@@ -45,6 +45,8 @@ class Dummy:
         cap = 1
         if cond in [ConditionEnum.빙결]:
             cap = 5
+        if cond in [ConditionEnum.커스_트랜지션]:
+            cap = 5
 
         current = self._Condition[cond]
         self._Condition[cond] = min(current + 1, cap)
@@ -153,7 +155,7 @@ class Dummy:
     def Tick(self):
         self._DebuffManager.Tick()
     
-    def TakeAttack(self, char, skill:DamageAttribute, add = SpecVector()) -> DamageLog:
+    def TakeAttack(self, char, skill:DamageAttribute, add = SpecVector(), special = None) -> DamageLog:
         """ 방어율, 속성 저항에 감소되기 전의 데미지를 받음. 
 
         Args:
@@ -190,6 +192,8 @@ class Dummy:
 
         # TODO:아케인 포스 보정 단, 현재로써는 1.5배로 고정함
         preDamage = preDamage * 1.5 
+
+        # TODO: 특이사항 기재 로직구현
 
         name = str(type(skill)).split('.')[-1].replace('>', '').replace("'", "")
         result = DamageLog(

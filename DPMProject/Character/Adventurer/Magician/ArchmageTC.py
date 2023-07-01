@@ -6,7 +6,7 @@ from Skill.LinkSkill import *
 from Character.Union import Union8500_archmageTC
 from Character.Ability import CharacterAbilityEnum
 from Character.FarmMonster import FarmMonster
-from Character.Portion import PortionDoping
+from Character.Portion import PortionDoping, DopingListAlchemy
 from Skill.Adventurer.Magician.Archmage import *
 from Skill.Adventurer.Magician.Magician import *
 from Skill.Adventurer.Magician.ThunderCold import *
@@ -14,9 +14,6 @@ from Skill.CommonSkill import *
 
 class ArchmageTC(ABCCharacter):
     def __init__(self,level: int):
-        
-        
-
         ABCCharacter.__init__(
             self,
             name = JobName.ArchmageTC,
@@ -24,9 +21,8 @@ class ArchmageTC(ABCCharacter):
             job = JobType.Magician,
             constant = WeaponConstant.스태프.value * JobConstant.ArchmageTC.value,
             mastery = Mastery.ArchMageTC.value,
-            attacktype=AttackType.Spell,
-        )
-        
+            attacktype=AttackType.Spell
+        )        
         self.LinkSkillSlot = set([
             와일드_레이지,
             데몬스_퓨리,
@@ -68,24 +64,7 @@ class ArchmageTC(ABCCharacter):
                 FarmMonster.미르,
                 FarmMonster.성장한_미르
             ]
-        self.DopingBuff = [
-            PortionDoping.반빨별,
-            PortionDoping.고관비,
-            PortionDoping.주스텟물약,
-            PortionDoping.익스레드,
-            PortionDoping.익스블루,
-            PortionDoping.우뿌,
-            PortionDoping.길축,
-            PortionDoping.MVP슈파,
-            PortionDoping.유힘,
-            PortionDoping.붕뿌_생축_러파,
-            PortionDoping.만렙버프275,
-            PortionDoping.영메,
-            PortionDoping.길드크뎀,
-            PortionDoping.길드뎀지,
-            PortionDoping.길드보공
-        ]
-        self.SetupPersonalTrait()
+        self.DopingBuff = DopingListAlchemy
         self.SetSkillList([
             # 공용
             연합의_의지,

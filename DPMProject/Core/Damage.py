@@ -29,7 +29,7 @@ def BattlePower(spec:SpecVector, jobtype:JobType, considerGuard = 300, isBoss = 
         pass
     elif MainStatList[0] == CoreStat.STAT_DEX:
         #궁수, 덱해적
-        pass
+        result = (DEX*4 + LUK)*0.01 * ATK
     elif MainStatList[0] == CoreStat.STAT_INT:
         result = (INT*4 + LUK)*0.01 * SPELL
     elif MainStatList[0] == CoreStat.STAT_LUK:

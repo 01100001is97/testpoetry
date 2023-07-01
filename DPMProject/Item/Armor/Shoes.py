@@ -132,3 +132,33 @@ class ArcaneShadeMageShoes(ArcaneShadeShoes):
             additionalPotentialOptionList=additionalPotentialOptionList, 
             server=server
             )
+
+class ArcaneShadeArcherShoes(ArcaneShadeShoes):
+    def __init__(
+            self,
+            potentialOptionList: list[PotentialOptionSlot], 
+            optionslot: BonusOptionSlot, 
+            upgrade_history: list[UpgradeScrolls], 
+            starforce: int, 
+            additionalPotentialOptionList: list[PotentialOptionSlot] = None, 
+            server=GameServer.NormalServer
+            ):
+        self.ItemName = "아케인셰이드 아처슈즈"
+        self.RequiredJobType = [JobType.Bowman]
+        stat = SpecVector()
+        stat[CoreStat.STAT_DEX] = 40  # INT -> DEX
+        stat[CoreStat.STAT_STR] = 40
+        stat[CoreStat.ATTACK_PHYSICAL] = 9  # ATTACK_SPELL -> ATTACK_PHYSICAL
+
+        ArcaneShadeShoes.__init__(
+            self=self,
+            itemName = self.ItemName, 
+            requiredJobType = self.RequiredJobType, 
+            itemBasicStat= stat, 
+            potentialOptionList = potentialOptionList, 
+            optionslot=optionslot, 
+            starforce=starforce, 
+            upgrade_history=upgrade_history, 
+            additionalPotentialOptionList=additionalPotentialOptionList, 
+            server=server
+            )
