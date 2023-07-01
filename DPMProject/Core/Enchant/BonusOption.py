@@ -177,7 +177,7 @@ class BonusOption(ABCItem):
     def OpenBonusOptionTable(cls):
         """CSV 파일에서 추가 옵션 표를 열기 위해 파일 경로를 파싱하고, 불러들임
         """        
-        BonusOptionTablePath = "/Users/mac/Documents/testpoetry/DPMProject/Core/Enchant/BonusOptionTable/"
+        BonusOptionTablePath = "Core/Enchant/BonusOptionTable/"
 
         cls.BonusOptionDict.update({
             ReqLevel.Lv130.value: cls.ParseBonusOptionTable(BonusOptionTablePath + "BonusOptionArmor130.csv"),

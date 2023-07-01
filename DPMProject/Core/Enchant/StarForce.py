@@ -59,7 +59,7 @@ class StarForce(Upgrade):
     
     @classmethod
     def OpenStarforceOptionTable(cls):
-        StarforceTablePath = "/Users/mac/Documents/testpoetry/DPMProject/Core/Enchant/StarforceTable/"
+        StarforceTablePath = "Core/Enchant/StarforceTable/"
         
         StatTableFileName = StarforceTablePath + "StarforceStat.csv"
         ArmorATKTableFileName = StarforceTablePath + "StarforceArmorAtk.csv"
