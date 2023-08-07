@@ -19,6 +19,8 @@ from collections import defaultdict
 import matplotlib.dates as mdates
 from copy import deepcopy
 import math
+import seaborn as sns
+
 
 class SimulatorEnum(Enum):
     Preset = 0
@@ -54,6 +56,7 @@ class Simulator:
         self.nothing = ""
         self.waiting = 대기()
         self.savepath = "Simulator/Logs/"
+        self.Scheduler = defaultdict(Cooldown)
     @property
     def Character(self):
         """시뮬레이션 하는 캐릭터 인스턴스
@@ -210,16 +213,22 @@ class Simulator:
                 if NextSkill == None:
                     self.EndSimulation(schedule)
                     break
-                
+
                 if issubclass(NextSkill, 대기):
                     NextSkill = self.waiting
                     self.Tick()
                     #self.Timestamping(self.waiting.UseSkill())
                     continue
-
+            # 스킬 스케줄을 실시간으로 작성하는 경우
+            elif schedule.Index == len(schedule):
+                NextSkill = schedule.Next()
+                # 스킬 딜사이클의 마지막
+                if NextSkill == None:
+                    self.EndSimulation(schedule)
+                    break
             
             
-            # 스킬 후딜 중인지 체크함
+            # 스킬 연계가 가능한지 확인
             isSkipable = False
             if self.Character.Status in [CharacterStatus.Using_Skill]:
                 if issubclass(NextSkill, SkipableAttribute):
@@ -300,7 +309,12 @@ class Simulator:
                             
 
                         elif isinstance(NextSkill, DamageAttribute):
-                            self.Timestamping(NextSkill.UseSkill())
+                            if isinstance(NextSkill, ProjectileAttribute):
+                                pass
+                            elif isinstance(NextSkill, ChannelingAttribute):
+                                self.Scheduler[NextSkill] = NextSkill.ChannelingTime
+                            else:
+                                self.Timestamping(NextSkill.UseSkill())
                         elif isinstance(NextSkill, BuffAttribute):
                             self.Character.BuffManager.Add(NextSkill)
                         
@@ -356,7 +370,8 @@ class Simulator:
                     max_damage = total_damage
                     max_interval = (start, end - 1)
 
-                if log is not self.nothing:
+                if log is not self.nothing and log._SkillName not in ['권술_호접지몽_나비', '추적_귀화부', '권술_산령소환', '환영_분신부_분신','권술_흡성와류']:
+                #if log is not self.nothing and log._SkillName not in []:
                     skillCount[log._SkillName] += 1
                     f.write(f"Attack No. {i+1} (this skill No. {skillCount[log._SkillName]})\n")
                     i += 1
@@ -375,6 +390,13 @@ class Simulator:
         logs = self.Character.Tick()
         if len(logs) > 0:
             self.Timestamping(logs)
+
+        for skill, cool in list(self.Scheduler.items()):
+            cool.update()
+            if cool == TIME_ZERO:
+                self.Timestamping(skill.UseSkill())
+                del self.Scheduler[skill]
+
         for buff in  self.petBuffList:
             # 메르, 쿨감모 옵션에 따라 스킬 쿨타임 설정
             if issubclass(buff, CooldownAttribute):
@@ -448,11 +470,22 @@ class Simulator:
 
             skill_cumulative_damage.append(damage_list)
 
+        # Get unique skill names
+        skill_names = list(damage_accumulation.keys())
+
+        # Generate a color palette with as many colors as there are unique skill names
+        colors = sns.husl_palette(len(skill_names), l=.6, s=.8, h=.5)
+
+        # Map each skill name to a color
+        skill_to_color = dict(zip(skill_names, colors))
+
+
         # Instead of using a stackplot, we use a bar plot for each skill's damage
         cumul = np.array([0.0] * len(time_list))
 
         for i, damage_list in enumerate(skill_cumulative_damage):
-            plt.bar(time_list, damage_list, bottom=cumul, label=list(damage_accumulation.keys())[i])
+            plt.bar(time_list, damage_list, bottom=cumul, label=list(damage_accumulation.keys())[i], color=skill_to_color[list(damage_accumulation.keys())[i]])
+            
             cumul += np.array(damage_list)
 
         plt.xlabel('Time (seconds)')

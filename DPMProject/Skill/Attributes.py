@@ -561,3 +561,7 @@ class BuffDurationAttribute:
 class ProjectileAttribute:
     def __init__(self, maximumTime:int) -> None:
         self.Maximum = maximumTime
+
+class ChannelingAttribute:
+    def __init__(self, time:Cooldown):
+        self.ChannelingTime = time

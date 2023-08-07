@@ -28,7 +28,7 @@ ArchmageTC_1715_Simulator = Simulator(
         Server=GameServer.NormalServer
     ),
     #메용 적용되어 있음
-    petbuff=[쓸만한_컴뱃오더스, 쓸만한_샤프아이즈, 메디테이션],
+    petbuff=[쓸만한_컴뱃오더스, 쓸만한_샤프아이즈, 메디테이션,메이플_용사],
     mode=SimulatorEnum.Preset
 )
 

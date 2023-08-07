@@ -77,3 +77,35 @@ class PerfectRelic(SubWeapon):
             server=GameServer.NormalServer
         )
 
+# 호영 보조 선추
+
+class Sunchu(SubWeapon):
+    _itemName:str
+    _requiredLevel: int
+    _requiredJob: list[JobType]
+    _set = None
+    def __init__(
+            self,
+            potential: list[PotentialOptionSlot],
+            addPotential: list[PotentialOptionSlot]
+    ):
+        self._itemName = "월장석 선추"
+        self._requiredLevel = ReqLevel.Lv100.value
+        self._requiredJob = [JobType.Thief]
+
+        stat = SpecVector()
+        stat[CoreStat.STAT_LUK] = 10
+        stat[CoreStat.STAT_DEX] = 10
+        stat[CoreStat.ATTACK_PHYSICAL] = 3
+
+        SubWeapon.__init__(
+            self=self,
+            itemName=self._itemName,
+            requiredJobType=self._requiredJob,
+            requiredLevel=self._requiredLevel,
+            itemBasicStat=stat,
+            potentialOptionList=potential,
+            itemset=self._set,
+            additionalPotentialOptionList=addPotential,
+            server=GameServer.NormalServer
+        )

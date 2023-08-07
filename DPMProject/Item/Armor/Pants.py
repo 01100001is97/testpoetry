@@ -111,6 +111,38 @@ class TricksterDunwitchPants(RootAbyssPants):
             )
         
 # 도적
+class TricksterAssassinPants(RootAbyssPants):
+    def __init__(
+            self,
+            potentialOptionList: list[PotentialOptionSlot], 
+            optionslot: BonusOptionSlot, 
+            starforce: int, 
+            upgrade_history: list[UpgradeScrolls], 
+            additionalPotentialOptionList: list[PotentialOptionSlot] = None, 
+            server=GameServer.NormalServer
+            ):
+        
+        self.ItemName = "하이네스 어쌔신팬츠"
+        self.RequiredJobType = [JobType.Thief]
+        stat = SpecVector()
+        stat[CoreStat.STAT_LUK] = 30  # INT -> LUK
+        stat[CoreStat.STAT_DEX] = 30  # STR -> DEX
+        stat[CoreStat.ATTACK_PHYSICAL] = 2  # ATTACK_SPELL -> ATTACK_PHYSICAL
+        stat[CoreStat.IGNORE_GUARD_PERCENTAGE] = 5
+
+        RootAbyssPants.__init__(
+            self=self,
+            itemName = self.ItemName, 
+            requiredJobType = self.RequiredJobType, 
+            itemBasicStat= stat, 
+            potentialOptionList = potentialOptionList, 
+            optionslot=optionslot, 
+            starforce=starforce, 
+            upgrade_history=upgrade_history, 
+            additionalPotentialOptionList=additionalPotentialOptionList, 
+            server=server
+            )
+
 
 # 해적
 

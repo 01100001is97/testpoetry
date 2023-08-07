@@ -374,6 +374,48 @@ class 메이플_여신의_축복(OnPressSkill, BuffAttribute, DurationAttribute,
     def UseSkill(self):
         return super().UseSkill()
 
+class 그란디스_여신의_축복(OnPressSkill, BuffAttribute, DurationAttribute, ChargedCooldownAttribute, SkillDelayAttribute):
+    def __init__(self, level=30):
+        max = 30
+        GrandisGoddessBlessIcon = None
+        GrandisGoddessBlessBuffDuration = Cooldown(seconds=40)
+        GrandisGoddessBlessBuffCooldown = Cooldown(seconds=240)
+        GrandisGoddessBlessBuffCharge = 2
+        GrandisGoddessBlessCastingDelay = Cooldown(milliseconds=630)
+        buff = CreateSpecVector([CoreStat.DAMAGE_PERCENTAGE], 10+level)
+
+        OnPressSkill.__init__(
+            self=self,
+            icon=GrandisGoddessBlessIcon,
+            advanced=SkillAdvance.Fifth,
+            level=level,
+            max=max
+        )
+        BuffAttribute.__init__(
+            self=self,
+            stat=buff
+        )
+        DurationAttribute.__init__(
+            self=self,
+            duration=GrandisGoddessBlessBuffDuration,
+            serverlack=True,
+            isbuffmult=False
+        )
+        ChargedCooldownAttribute.__init__(
+            self=self,
+            cooldown=GrandisGoddessBlessBuffCooldown,
+            isresetable=False,
+            maxcharge=GrandisGoddessBlessBuffCharge,
+            isCooldownable=True
+        )
+        SkillDelayAttribute.__init__(
+            self=self,
+            casting_delay=GrandisGoddessBlessCastingDelay,
+            applyAttackSpeed=False
+        )
+
+    def UseSkill(self):
+        return []
         
 class 스파이더_인_미러(OnPressSkill, DamageAttribute, SkillDelayAttribute,CooldownAttribute,DurationAttribute):
 
@@ -605,7 +647,33 @@ class 대기:
     def __str__(self):
         return '대기중'
         
+class 점프키(OnPressSkill, SkillDelayAttribute):
+    def __init__(self) -> None:
+        
+        OnPressSkill.__init__(
+            self=self,
+            icon=None,
+            advanced=SkillAdvance.Zero,
+            level=0,
+            max=0
+        )
+        SkillDelayAttribute.__init__(
+            self=self,
+            casting_delay=Cooldown(milliseconds=100),
+            applyAttackSpeed=False
+        )
 
+    @property
+    def AttackDelay(self):
+        self.Owner._Jump = Cooldown(milliseconds=1000)
+        return super().AttackDelay
+    
+    
+    def UseSkill(self):
+        return []
+    
+    def __str__(self):
+        return '점프'
 
 
 class 크리티컬_리인포스(OnPressSkill, BuffAttribute, CooldownAttribute, SkillDelayAttribute, DurationAttribute):
@@ -656,5 +724,82 @@ class 크리티컬_리인포스(OnPressSkill, BuffAttribute, CooldownAttribute, 
 
         return lambda a: self.CalcStat()
     
+    def UseSkill(self):
+        return super().UseSkill()
+    
+class 레디_투_다이_패시브(PassiveSkill, BuffAttribute):
+    def __init__(self, level=30):
+        max = 30
+        buff = CreateSpecVector([CoreStat.ATTACK_PHYSICAL], level)
+
+        PassiveSkill.__init__(
+            self=self,
+            advanced=SkillAdvance.Fifth,
+            level=level,
+            max=max
+        )
+        BuffAttribute.__init__(self=self, stat=buff)
+        
+class 레디_투_다이_2단계(OnPressSkill, BuffAttribute, DurationAttribute, CooldownAttribute, SkillDelayAttribute):
+    def __init__(self, level =30):
+        maxlevel = 30
+        buff = CreateSpecVector([CoreStat.FINAL_DAMAGE_PERCENT], 30 + level//5)
+
+        OnPressSkill.__init__(
+            self=self,
+            icon=None,
+            advanced=SkillAdvance.Fifth,
+            level=level,
+            max=maxlevel
+        )
+        BuffAttribute.__init__(self=self, stat= buff)
+        DurationAttribute.__init__(
+            self=self,
+            duration=Cooldown(seconds=15),
+            serverlack=True,
+            isbuffmult=False
+        )
+        CooldownAttribute.__init__(
+            self=self,
+            cooldown=Cooldown(seconds=90-level//2),
+            isresetable=False
+        )
+        SkillDelayAttribute.__init__(
+            self=self,
+            casting_delay=Cooldown(milliseconds=780),
+            applyAttackSpeed=False
+        )
+
+    def UseSkill(self):
+        return super().UseSkill()
+
+class 레디_투_다이_1단계(OnPressSkill, BuffAttribute, DurationAttribute, CooldownAttribute, SkillDelayAttribute):
+    def __init__(self, level =30):
+        maxlevel = 30
+        buff = CreateSpecVector([CoreStat.FINAL_DAMAGE_PERCENT], 10 + level//10)
+
+        OnPressSkill.__init__(
+            self=self,
+            icon=None,
+            advanced=SkillAdvance.Fifth,
+            level=level,
+            max=maxlevel
+        )
+        BuffAttribute.__init__(self=self, stat= buff)
+        DurationAttribute.__init__(
+            self=self,
+            duration=Cooldown(seconds=30),
+            serverlack=True,
+            isbuffmult=False
+        )
+        CooldownAttribute.__init__(
+            self=self,
+            cooldown=Cooldown(seconds=90-level//2)
+        )
+        SkillDelayAttribute.__init__(
+            self=self,
+            casting_delay=Cooldown(milliseconds=780),
+            applyAttackSpeed=False
+        )
     def UseSkill(self):
         return super().UseSkill()

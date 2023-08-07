@@ -54,7 +54,7 @@ class PathFinder(ABCCharacter):
 
             FarmMonster.조류,
             FarmMonster.원숭이와곰,
-            FarmMonster.마스터_렐릭,
+            FarmMonster.쁘띠_힐라,
 
             FarmMonster.로맨티스트_킹슬라임,
             FarmMonster.쁘띠_팬텀,
@@ -70,7 +70,7 @@ class PathFinder(ABCCharacter):
             연합의_의지,
             여제의_축복,
             리스트레인트링,
-            웨폰퍼프_I링,
+            웨폰퍼프_D링,
             스파이더_인_미러_패스파인더,
             크레스트_오브_더_솔라_패스파인더,
             # 쓸만한 스킬

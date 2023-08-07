@@ -215,6 +215,7 @@ class Legion(Enum):
     KaliSS = LegionMember(JobName.Kali, LegionGrade.SS)
 
     HoyoungSS = LegionMember(JobName.Hoyoung, LegionGrade.SS)
+    HoyoungSSS = LegionMember(JobName.Hoyoung, LegionGrade.SSS)
     LaraSS = LegionMember(JobName.Lara, LegionGrade.SS)
 
     ZeroSS = LegionMember(JobName.Zero, LegionGrade.SS)
@@ -294,4 +295,38 @@ Union8500_PathFinder = [
     Legion.CannonShooterSS,
     Legion.PaladinSS,
     Legion.HeroSS
+]
+
+Union8500_Hoyoung = [
+    # 크확
+    Legion.MarksmanSS,
+    Legion.NightLordSS,
+    # 벞지
+    Legion.MechanicSSS,
+    # 쿨감
+    Legion.MercedesSSS,
+    # 보공, 데미지류
+    Legion.DemonAvengerSS,
+    Legion.WildHunterSS,
+    # 방어율 무시
+    Legion.BlasterSS,
+    # 크리티컬 데미지
+    Legion.EunwolSSS,
+    # 공마
+    Legion.MapleM,
+    # 소환수 지속
+    Legion.CaptainSS,
+    # 럭
+    Legion.NightWalkerSS,
+    Legion.DualBladeSS,
+    Legion.ShadowerSS,
+    Legion.CadenaSS,
+    Legion.KaliSS,
+    Legion.HoyoungSSS,
+    # 덱
+    Legion.BowMasterSS,
+    Legion.AngelicBusterSS,
+    Legion.WindBreakerSS,
+    Legion.KainSS,
+    Legion.PathFinderSS
 ]

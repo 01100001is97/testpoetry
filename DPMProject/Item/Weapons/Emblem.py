@@ -18,7 +18,7 @@ class GoldMapleLeafEmblem(Emblem):
     ):
         self._itemName = "골드 메이플리브 엠블렘"
         self._requiredLevel = ReqLevel.Lv100.value
-        self._requiredJob = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+        self._requiredJob = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
         stat = SpecVector()
         stat[CoreStat.STAT_ALL] = 10

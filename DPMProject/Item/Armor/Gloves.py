@@ -163,3 +163,34 @@ class ArcaneShadeArcherGloves(ArcaneShadeGloves):
             additionalPotentialOptionList=additionalPotentialOptionList, 
             server=server
             )
+        
+
+class ArcaneShadeThiefGloves(ArcaneShadeGloves):
+    def __init__(
+            self,
+            potentialOptionList: list[PotentialOptionSlot], 
+            optionslot: BonusOptionSlot, 
+            upgrade_history: list[UpgradeScrolls], 
+            starforce: int, 
+            additionalPotentialOptionList: list[PotentialOptionSlot] = None, 
+            server=GameServer.NormalServer
+            ):
+        self.ItemName = "아케인셰이드 시프글러브"
+        self.RequiredJobType = [JobType.Thief]
+        stat = SpecVector()
+        stat[CoreStat.STAT_LUK] = 40  # INT -> LUK
+        stat[CoreStat.STAT_DEX] = 40  # STR -> DEX
+        stat[CoreStat.ATTACK_PHYSICAL] = 9  # ATTACK_SPELL -> ATTACK_PHYSICAL
+
+        ArcaneShadeGloves.__init__(
+            self=self,
+            itemName = self.ItemName, 
+            requiredJobType = self.RequiredJobType, 
+            itemBasicStat= stat, 
+            potentialOptionList = potentialOptionList, 
+            optionslot=optionslot, 
+            starforce=starforce, 
+            upgrade_history=upgrade_history, 
+            additionalPotentialOptionList=additionalPotentialOptionList, 
+            server=server
+            )

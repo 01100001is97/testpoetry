@@ -301,10 +301,10 @@ class ABCItem(ABC):
             raise TypeError("인스턴스가 아님")  
         
         for job in requiredJobType:
-            if job not in [JobType.Worrior,
+            if job not in [JobType.Warrior,
                                     JobType.Bowman,
                                     JobType.Magician,
-                                    JobType.Theif,
+                                    JobType.Thief,
                                     JobType.Pirate]:
                 raise ValueError("장비 아이템 요구 직업조건은 전사, 궁수, 법사, 도적, 해적으로 한정함")
           

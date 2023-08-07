@@ -32,3 +32,5 @@ class WeaponConstant(Enum):
     완드= 1.0
     매직건틀렛= 1.2
     에인션트보우 = 1.3
+    부채=1.3
+    

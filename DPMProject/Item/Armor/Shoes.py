@@ -104,6 +104,9 @@ class ArcaneShadeShoes(Shoes):
             )
 
 class ArcaneShadeMageShoes(ArcaneShadeShoes):
+    """ 아케인셰이드 법사 장비류 중 마법사가 착용하는 신발
+        
+    """
     def __init__(
             self,
             potentialOptionList: list[PotentialOptionSlot], 
@@ -162,3 +165,35 @@ class ArcaneShadeArcherShoes(ArcaneShadeShoes):
             additionalPotentialOptionList=additionalPotentialOptionList, 
             server=server
             )
+
+
+class ArcaneShadeThiefShoes(ArcaneShadeShoes):
+    def __init__(
+            self,
+            potentialOptionList: list[PotentialOptionSlot], 
+            optionslot: BonusOptionSlot, 
+            upgrade_history: list[UpgradeScrolls], 
+            starforce: int, 
+            additionalPotentialOptionList: list[PotentialOptionSlot] = None, 
+            server=GameServer.NormalServer
+            ):
+        self.ItemName = "아케인셰이드 시프슈즈"
+        self.RequiredJobType = [JobType.Thief]
+        stat = SpecVector()
+        stat[CoreStat.STAT_LUK] = 40  # INT -> LUK
+        stat[CoreStat.STAT_DEX] = 40  # STR -> DEX
+        stat[CoreStat.ATTACK_PHYSICAL] = 9  # ATTACK_SPELL -> ATTACK_PHYSICAL
+
+        ArcaneShadeShoes.__init__(
+            self=self,
+            itemName = self.ItemName, 
+            requiredJobType = self.RequiredJobType, 
+            itemBasicStat= stat, 
+            potentialOptionList = potentialOptionList, 
+            optionslot=optionslot, 
+            starforce=starforce, 
+            upgrade_history=upgrade_history, 
+            additionalPotentialOptionList=additionalPotentialOptionList, 
+            server=server
+            )
+

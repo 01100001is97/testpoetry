@@ -513,7 +513,7 @@ class SubWeapon(OnlyPotentialItem):
 
 class Blade(NoBonusOptionItem):
     ItemPart = ItemParts.Blade
-    RequiredJobType = [JobType.Theif]
+    RequiredJobType = [JobType.Thief]
 
 class Shield(NoBonusOptionItem):
     ItemPart = ItemParts.Shield
@@ -547,7 +547,7 @@ class Emblem(OnlyPotentialItem):
 # 장신구
 class Pendant(NormalItem):
     _ItemPart = ItemParts.Pendant
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
     def __init__(
         self,
@@ -582,7 +582,7 @@ class Pendant(NormalItem):
 
 class Belt(NormalItem):
     _ItemPart = ItemParts.Belt
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
     def __init__(
         self,
@@ -617,7 +617,7 @@ class Belt(NormalItem):
 
 class ForeHead(NormalItem):
     _ItemPart = ItemParts.ForeHead
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
     def __init__(
         self,
@@ -652,7 +652,7 @@ class ForeHead(NormalItem):
 
 class EyeAccessory(NormalItem):
     _ItemPart = ItemParts.EyeAccessory
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
     def __init__(
         self,
@@ -687,7 +687,7 @@ class EyeAccessory(NormalItem):
 
 class EarAccessory(NormalItem):
     _ItemPart = ItemParts.EarAccessory
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
     def __init__(
         self,
@@ -722,7 +722,7 @@ class EarAccessory(NormalItem):
 
 class Pocket(OnlyBonusOptionItem):
     _ItemPart = ItemParts.Pocket
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
     def __init__(
         self,
@@ -747,7 +747,7 @@ class Pocket(OnlyBonusOptionItem):
 
 class Ring(NoBonusOptionItem):
     _ItemPart = ItemParts.Ring
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
     def __init__(
         self,
@@ -813,7 +813,7 @@ class Shoulder(NoBonusOptionItem):
 
 class Heart(NoBonusOptionItem):
     _ItemPart = ItemParts.Heart
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
     def __init__(
         self,
         itemName: str,
@@ -848,7 +848,7 @@ class Heart(NoBonusOptionItem):
   
 class Badge(NoEnchantItem):
     _ItemPart = ItemParts.Badge
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
     def __init__(
         self,
@@ -871,7 +871,7 @@ class Badge(NoEnchantItem):
 
 class Medal(NoEnchantItem):
     _ItemPart = ItemParts.Medal
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
     def __init__(
         self,
@@ -975,7 +975,7 @@ class PetAccessory(Upgrade, BelongedItemSet):
         
         self._RequiredLevel = 0
         self._ItemPart = ItemParts.PetAccessory
-        self._RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+        self._RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
 
         Upgrade.__init__(
@@ -998,7 +998,7 @@ class PetAccessory(Upgrade, BelongedItemSet):
 # 칭호
 class CharacterTitle(NoEnchantItem):
     _ItemPart = ItemParts.CharacterTitle
-    _RequiredJobType = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+    _RequiredJobType = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
 
     def __init__(
             self,
@@ -1025,7 +1025,7 @@ class CashItem(NoEnchantItem):
             itemset: ItemSetEnum,
             itempart: ItemParts
     ):
-        self._reqJob = [JobType.Worrior, JobType.Bowman, JobType.Magician, JobType.Theif, JobType.Pirate]
+        self._reqJob = [JobType.Warrior, JobType.Bowman, JobType.Magician, JobType.Thief, JobType.Pirate]
         
         NoEnchantItem.__init__(
             self=self,

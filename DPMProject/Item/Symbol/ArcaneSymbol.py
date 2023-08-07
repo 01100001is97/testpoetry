@@ -34,7 +34,7 @@ class ArcaneSymbol(Symbol):
         elif job == JobType.DemonAvenger:
             basicsv[CoreStat.STAT_HP_FIXED] = self._ArcaneDemonBasicStat
             levelsv[CoreStat.STAT_HP_FIXED] = self._ArcaneDemonLevelStat
-        elif job in [JobType.Worrior, JobType.Pirate]:
+        elif job in [JobType.Warrior, JobType.Pirate]:
             basicsv[CoreStat.STAT_STR_FIXED] = self._ArcaneBasicStat
             levelsv[CoreStat.STAT_STR_FIXED] = self._ArcaneLevelStat
         elif job in [JobType.Bowman, JobType.DexPirate]:
@@ -43,7 +43,7 @@ class ArcaneSymbol(Symbol):
         elif job == JobType.Magician:
             basicsv[CoreStat.STAT_INT_FIXED] = self._ArcaneBasicStat
             levelsv[CoreStat.STAT_INT_FIXED] = self._ArcaneLevelStat
-        elif job == JobType.Theif:
+        elif job == JobType.Thief:
             basicsv[CoreStat.STAT_LUK_FIXED] = self._ArcaneBasicStat
             levelsv[CoreStat.STAT_LUK_FIXED] = self._ArcaneLevelStat
         else:

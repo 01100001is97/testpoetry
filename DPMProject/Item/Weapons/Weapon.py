@@ -37,16 +37,15 @@ class WeaponTypeEnum(Enum):
     데스페라도 = 21
     에너지소드 = 22
     ESP리미터 =23
-    건틀렛 = 24
-    리볼버 = 25
-    체인 = 26
-    매직건틀렛 = 27
-    에인션트보우 = 28
-    부채 = 29
-    튜너 = 30
-    브레스슈터 = 31
-    태도 = 32
-    대검 = 33
+    건틀렛리볼버 = 24
+    체인 = 25
+    매직건틀렛 = 26
+    에인션트보우 = 27
+    부채 = 28
+    튜너 = 29
+    브레스슈터 = 30
+    태도 = 31
+    대검 = 32
 
 
 class WeaponUpgradeChance(Enum):
@@ -177,3 +176,39 @@ class ArcaneShadeAncientBow(ArcaneShadeWeapon):
             server=server
         )
 
+class ArcaneShadeBuchae(ArcaneShadeWeapon):
+    _itemName:str
+    _requiredJobType: list[JobType]
+
+    def __init__(
+            self,
+            potentialOptionList: list[PotentialOptionSlot],
+            optionSlot: BonusOptionSlot,
+            upgrade_history: list[UpgradeScrolls],
+            starforce: int,
+            enchant: SoulEnchantOption,
+            additionalPotentialOptionList: list[PotentialOptionSlot] = None,
+            server = GameServer.NormalServer    
+        ):
+        self._itemName = "아케인셰이드 부채"
+        self._requiredJobType = [JobType.Thief]
+
+        weaponBasicATKList = self.BonusOptionDict[ReqLevel.Lv200ArcaneWeapon.value]
+        stat = SpecVector()
+        stat[CoreStat.ATTACK_PHYSICAL] = weaponBasicATKList[self._weaponbasicATK][WeaponTypeEnum.부채.value]
+
+        ArcaneShadeWeapon.__init__(
+            self=self,
+            itemName=self._itemName,
+            requiredJobType=self._requiredJobType,
+            itemBasicStat=stat,
+            potentialOptionList=potentialOptionList,
+            optionSlot=optionSlot,
+            upgrade_history=upgrade_history,
+            starforce=starforce,
+            enchant=enchant,
+            additionalPotentialOptionList=additionalPotentialOptionList,
+            server=server
+        )
+    
+        

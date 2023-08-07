@@ -79,9 +79,9 @@ class CooldownManager:
             raise AttributeError("스킬의 쿨다운에 의도치 않은 값이 설정되어 있음")
 
 
-    def Count(self, skill: Skill):
+    def Count(self, skill: Skill, forcedCooldown = False):
         """스킬의 쿨타임을 등록하거나 업데이트합니다."""
-        # TODO: 쿨타임 초기화 로직 구현
+        
         if not issubclass(skill, Skill):    
             raise TypeError("Skill must be a callable")
         
@@ -90,6 +90,10 @@ class CooldownManager:
         
         if not self.isReady(skill):
             return False
+        
+        if forcedCooldown is not False:
+            self.Cooldowns[skill] = forcedCooldown
+            return True
 
         # 스택형 스킬은 쿨타임 적용이 까다로우므로, 별도의 리스트를 둬서 따로 관리함
         if issubclass(skill, ChargedCooldownAttribute):
@@ -154,6 +158,9 @@ class CooldownManager:
             if issubclass(skill, targetskill):
                 if self.GetRemainingCooldown(skill) > TIME_ZERO:
                     self.Cooldowns[skill] = max(cool - reduce, TIME_ZERO)
+                    return True
+                
+        return False
 
     def GetRemainingCooldown(self, skill:Skill):
         """특정 스킬의 남은 쿨타임을 반환합니다."""
@@ -214,11 +221,22 @@ class BuffManager:
                 return True
             
         return False
+    
+    def GetRemainingTime(self, skill):
+        for buf in self.BuffList:
+            if issubclass(skill, type(buf.Skill)):
+                return buf.SkillLeftDuration
+        return Cooldown()
 
-    def Add(self, skill: Skill):
+    def Add(self, skill: Skill, renew = False):
         # 추가하려는 스킬과 같은 타입의 스킬이 이미 BuffList에 있는지 확인
-        if any(isinstance(buff.Skill, type(skill)) for buff in self.BuffList):
-            return  # 이미 같은 타입의 스킬이 있으므로 함수를 종료
+        for buff in self.BuffList:
+            if isinstance(buff.Skill, type(skill)):
+                # 만약 갱신 가능하다면 지속시간 갱신
+                if renew == True:
+                    buff = Buff(skill)
+
+                return  # 이미 같은 타입의 스킬이 있으므로 함수를 종료
         
         if not issubclass(type(skill), Skill):    
             raise TypeError("Skill must be a callable")
@@ -266,7 +284,19 @@ class BuffManager:
             if buff.Tick() == False:
                 self.BuffList.remove(buff)
 
-
+    def DeleteBuff(self, skill:Skill):
+        if not issubclass(type(skill), Skill):    
+            raise TypeError("Skill must be a callable")
+        
+        if not issubclass(type(skill), (BuffAttribute,DebuffAttribute)):
+            raise TypeError("버프 스킬만 관리함")
+        
+        if not issubclass(type(skill), DurationAttribute):
+            raise TypeError("버프 지속시간이 필요함")
+        
+        for buff in reversed(self.BuffList):
+            if isinstance(buff.Skill, type(skill)):
+                self.BuffList.remove(buff)
 
 class Buff:
     """
@@ -311,7 +341,7 @@ class ProjectileManager:
     def __init__(self) -> None:
         self.Scheduler = defaultdict(lambda: Cooldown(seconds=random.random()))
 
-    def Add(self, skill:Skill, isImmediate=False):
+    def Add(self, skill:Skill, isImmediate=False, ForcedDelay=None):
         if not isinstance(skill, Skill):
             raise TypeError("skill must be a Skill type")
         
@@ -319,8 +349,14 @@ class ProjectileManager:
         if hasattr(skill, "Maximum"):
             if self.Scheduler[skill] > Cooldown(seconds=skill.Maximum):
                 self.Scheduler[skill] = Cooldown(seconds=skill.Maximum)
+        if hasattr(skill, "Minimum"):
+            if self.Scheduler[skill] < Cooldown(seconds=skill.Minimum):
+                self.Scheduler[skill] = Cooldown(seconds=skill.Minimum)
         if isImmediate:
             self.Scheduler[skill] = Cooldown()
+
+        if ForcedDelay is not None:
+            self.Scheduler[skill] = ForcedDelay
 
     def Tick(self):
         result = []
@@ -337,6 +373,12 @@ class ProjectileManager:
                 del self.Scheduler[projectile]
         return result
         
+    def isRegistered(self, skill:Skill):
+        for proj in self.Scheduler.keys():
+            if issubclass(skill, type(proj)):
+                return True
+            
+        return False
 
 class SummonManager:
     """소환수 인스턴스를 입력받아서 관리함
@@ -363,7 +405,10 @@ class SummonManager:
 
         # 소환수:(스킬 이름, 공격 주기) = 스킬의 지속시간
         if hasattr(skill, 'AttackDelay'):
-            self.Summons[Summon(skill=skill, interval=skill.Interval+skill.AttackDelay)] =  skill.Duration * mult - TIME_UNIT
+            if hasattr(skill, "FirstAttackDelay"):
+                self.Summons[Summon(skill=skill, interval=skill.FirstAttackDelay)] =  skill.Duration * mult - TIME_UNIT    
+            else:
+                self.Summons[Summon(skill=skill, interval=skill.Interval+skill.AttackDelay)] =  skill.Duration * mult - TIME_UNIT
         else:
             self.Summons[Summon(skill=skill, interval=skill.Interval)] =  skill.Duration * mult - TIME_UNIT
 

@@ -78,16 +78,20 @@ class SkillSchedule(list):
     
     def __str__(self):
         result = ""
-        대기중 = "대기중"
+        대기중 = "대기"
         waitingCount = 0
         for i in self:
-            if str(i()) == 대기중:
+            #skillname = 
+            if 대기중 in str(i) :
                 waitingCount += 0.01
             else:
                 if waitingCount > 0:  # 대기 시간이 있으면 결과 문자열에 추가
                     result += f"약 {round(waitingCount,2)}초 대기 -> "
                     waitingCount = 0  # 대기 시간 초기화
-                result += str(i()) + " -> "
+                skillname = str(i)
+                split_string = skillname.split(".")
+                split_string = split_string[-1].rstrip('>')
+                result += split_string + " -> "
         if waitingCount > 0:  # 마지막 요소가 대기중인 경우를 처리
             result += f"{waitingCount}초 대기"
         return result
@@ -106,3 +110,4 @@ class SkillSchedule(list):
 스인미 = SkillSchedule([스파이더_인_미러])
 크오솔 = SkillSchedule([크레스트_오브_더_솔라])
 ms_10 = SkillSchedule([대기])
+점프 = SkillSchedule([점프키])

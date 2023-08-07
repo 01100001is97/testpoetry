@@ -1,6 +1,6 @@
 from Core.SpecElements import *
 from Core.ABCItem import ABCItem, ItemParts
-from Core.ABCSkill import PassiveSkill, AutomateActivativeSkill, OnPressSkill, Skill, KeydownSkill
+from Core.ABCSkill import PassiveSkill, AutomateActivativeSkill, OnPressSkill, Skill, KeydownSkill, SkillAdvance
 from Core.Job import JobType, GetMainStatList, GetSubStatList, JobTypeInfo
 from Core.Damage import BattlePower
 from Core.Cooldown import Cooldown, verifyCooldown, TIME_UNIT, TIME_ZERO
@@ -19,7 +19,7 @@ from Character.Managers import CooldownManager, BuffManager, SummonManager, Proj
 from typing import Dict, List
 from Skill.LinkSkill import MAX_LINK_SLOT
 from Skill.Attributes import *
-from Skill.CommonSkill import 파괴의_얄다바오트
+from Skill.CommonSkill import 파괴의_얄다바오트, 메이플_용사, 점프키
 import math
 import datetime
 import itertools
@@ -43,12 +43,14 @@ class CharacterStatus(Enum):
         UsingSkill: 스킬을 사용 중인 상태
         Stunned: 상태이상으로 인해 행동 불가능
         Moving: 이동 중
+        Jump: 공중에 있음
     """
     Idle = 0
     Using_Skill= 1
     Stunned = 2
     Moving = 3
     Keydown = 4
+    Jump = 5
     
     
 class CheckList(Enum):
@@ -103,6 +105,7 @@ class ABCCharacter(ABC):
 
     # 캐릭터 기본 사항
     _Status: CharacterStatus                 # 현재 캐릭터 상태
+    _Jump: Cooldown
     _JobName:str                           # 캐릭터 이름(엔젤릭버스터 등)
     _Level: int                         # 캐릭터 레벨
     _Job:JobType                        # 캐릭터의 직업군(전사, 궁수 등)
@@ -183,6 +186,7 @@ class ABCCharacter(ABC):
         self._Constant = constant
         self._Mastery = mastery
         self._ItemSlot = ItemSlot()
+        self._Jump = Cooldown()
         self._IsPassiveLevel = False
         self._BuffDuration = 0
         self._PersonalTrait = [t for t in Trait]
@@ -228,6 +232,7 @@ class ABCCharacter(ABC):
     def Tick(self):
         self.CooldownManager.Tick()
         self.BuffManager.Tick()
+        self._Jump.update()
         summonLog = self.SummonManager.Tick()
         projLog = self.ProjectileManager.Tick()
 
@@ -261,7 +266,9 @@ class ABCCharacter(ABC):
 
         return self.BuffManager.GetBuff()
 
-       
+    @property
+    def BuffList(self):
+        return [e.Skill.Name for e in self.BuffManager.BuffList]
 
     @property
     def SetupCheckList(self):
@@ -921,6 +928,7 @@ class ABCCharacter(ABC):
         Args:
             skillList (list): _description_
         """
+        self.SetSkill(점프키)
         for skill in skillList:
             self.SetSkill(skill)
         self.SetupCheckList = CheckList.스킬
@@ -944,9 +952,14 @@ class ABCCharacter(ABC):
             skill.Owner = self
             if issubclass(type(skill), CombatOrdersAttribute):
                 skill.ApplyCombat(isOriginal= (self._JobName == JobName.Paladin))
+            if self._IsPassiveLevel and skill.Advanced == SkillAdvance.Fourth:
+                if not isinstance(skill, 메이플_용사):
+                    skill.ApplyPassiveLevel1()
 
             if hasattr(skill, 'BuffStat'):
                 self._TotalSpec += skill.BuffStat
+            if hasattr(skill, "SummonDuration"):
+                self._SummonDuration += skill.SummonDuration
             if issubclass(type(skill), MasteryAttribute):
                 self._Mastery += skill.Mastery
             if issubclass(type(skill), BuffDurationAttribute):
@@ -1129,6 +1142,17 @@ class ABCCharacter(ABC):
             substatconst = nowstat[CoreStat.STAT_STR]            
             substatper = nowstat[CoreStat.STAT_STR_PERCENTAGE]
             substatfixed = nowstat[CoreStat.STAT_STR_FIXED]
+            atkconst = nowstat[CoreStat.ATTACK_PHYSICAL]
+        elif self._Job == JobType.Thief:
+            main = CoreStat.STAT_LUK
+            atktype = CoreStat.ATTACK_PHYSICAL
+
+            mainstatconst = nowstat[CoreStat.STAT_LUK]            
+            mainstatper = nowstat[CoreStat.STAT_LUK_PERCENTAGE]
+            mainstatfixed = nowstat[CoreStat.STAT_LUK_FIXED]
+            substatconst = nowstat[CoreStat.STAT_DEX]            
+            substatper = nowstat[CoreStat.STAT_DEX_PERCENTAGE]
+            substatfixed = nowstat[CoreStat.STAT_DEX_FIXED]
             atkconst = nowstat[CoreStat.ATTACK_PHYSICAL]
         else:
             raise ValueError("설정안했지 미래의나 ")

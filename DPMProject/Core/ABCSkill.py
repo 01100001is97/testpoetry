@@ -3,7 +3,7 @@ from Core.Cooldown import Cooldown
 from enum import Enum
 from typing import Callable, Any
 from datetime import timedelta
-
+from Core.SpecElements import SpecVector, CoreStat
 class SkillAdvance(Enum):
     """전직 차수를 의미함.
 
@@ -100,16 +100,25 @@ class Skill(ABC):
     @Target.setter
     def Target(self, target: any):
         self._Target = target
-
-    def __str__(self):
-        repr_string = repr(self)
+        
+    
+    def __str__(cls):
+        repr_string = repr(cls)
         if '대기' in repr_string:
             return '0.01초 대기중'
-        
+
+        class_list = cls.mro()
+        class_string = class_list[-2].__name__ if len(class_list) > 1 else class_list[0].__name__
+        return class_string
+
+    @property
+    def Name(self):
         class_string = self.__class__.__name__
         split_string = class_string.split(".")
-       
-        return split_string[-1].rstrip('>')
+        split_string = split_string[-1].rstrip('>')
+        
+        return split_string.replace('_', ' ')
+        
 
     
     
@@ -138,6 +147,13 @@ class PassiveSkill(Skill):
         #else:
         #    raise AttributeError("스킬의 소유자를 먼저 설정해야함.")
         self.SetTarget(target=self._Owner)
+
+    # TODO:이전 스킬들(패스파인더, 썬콜)에 대한 기능 테스트가 필요함
+    def ApplyPassiveLevel1(self):
+        if self.Advanced == SkillAdvance.Fourth:
+            self.MaxLevel += 1
+            self.Level += 1
+
 
 
 class AutomateActivativeSkill(Skill):
@@ -265,4 +281,20 @@ class OriginSkill(OnPressSkill):
         
         OnPressSkill.__init__(self, icon, advanced, level, max)
 
-    
+    @classmethod
+    def CalculateBossDamage(self,level):
+        sv = SpecVector()
+        if level >= 30:
+            sv[CoreStat.DAMAGE_PERCENTAGE_BOSS] = 30
+        elif level >= 10:
+            sv[CoreStat.DAMAGE_PERCENTAGE_BOSS] = 20
+        return sv
+        
+    @classmethod
+    def CalculateIgnoreGuard(self, level):
+        sv = SpecVector()
+        if level >= 30:
+            sv[CoreStat.IGNORE_GUARD_PERCENTAGE] = 30
+        elif level >= 10:
+            sv[CoreStat.IGNORE_GUARD_PERCENTAGE] = 20
+        return sv

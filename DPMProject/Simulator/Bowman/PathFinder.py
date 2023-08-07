@@ -25,7 +25,7 @@ PathFinder_1715_Simulator = Simulator(
         ElementalResistance=True,
         Server=GameServer.NormalServer
     ),
-    petbuff=[쓸만한_컴뱃오더스],
+    petbuff=[쓸만한_컴뱃오더스,메이플_용사],
     mode=SimulatorEnum.Preset
 )
 

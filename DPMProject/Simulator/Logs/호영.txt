@@ -1,0 +1,4455 @@
+호영
+현재 캐릭터의 기본 스펙(도핑, 패시브 포함)
+STAT_STR: 966
+STAT_DEX: 2156
+STAT_INT: 966
+STAT_LUK: 5024
+STAT_STR_FIXED: 120
+STAT_DEX_FIXED: 520
+STAT_INT_FIXED: 120
+STAT_LUK_FIXED: 18900
+STAT_STR_PERCENTAGE: 75
+STAT_DEX_PERCENTAGE: 75
+STAT_INT_PERCENTAGE: 75
+STAT_LUK_PERCENTAGE: 392
+ATTACK_PHYSICAL: 2255
+ATTACK_SPELL: 1036
+ATTACK_PHYSICAL_FIXED: 13
+ATTACK_SPELL_FIXED: 13
+ATTACK_PHYSICAL_PERCENTAGE: 101
+ATTACK_SPELL_PERCENTAGE: 43
+DAMAGE_PERCENTAGE: 154.2
+DAMAGE_PERCENTAGE_BOSS: 416
+CRITICAL_PERCENTAGE: 100
+CRITICAL_DAMAGE: 130.0
+IGNORE_GUARD_PERCENTAGE: 96.69646
+IGNORE_ELEMENTAL_RESISTANCE: 5
+FINAL_DAMAGE_PERCENT: 76.176
+STAT_HP: 19735
+STAT_HP_PERCENTAGE: 35
+STAT_MP: 9055
+STAT_MP_PERCENTAGE: 30
+
+### 딜사이클 ###:
+점프키' -> 멸화염_천' -> 권술_호접지몽' -> 환영_분신부' -> 선기_영약_태을선단' -> 권술_흡성와류' -> 추적_귀화부' -> 그란디스_여신의_축복' -> 권술_산령소환' -> 선기_천지인_환영_버프' -> 선기_극대_분신난무' -> 토파류_지' -> 선기_강림_괴력난신' -> 토파류_지' -> 금고봉_인' -> 소울_컨트랙트' -> 토파류_지' -> 레디_투_다이_2단계' -> 리스트레인트링' -> 권술_미생강변' -> 선기_파천황' -> 금고봉_인' -> 약 0.01초 대기 -> 금고봉_인' -> 토파류_지' -> 파초풍_천' -> 금고봉_인' -> 파초풍_천' -> 금고봉_인' -> 토파류_지' -> 금고봉_인' -> 토파류_지' -> 금고봉_인' -> 토파류_지' -> 파초풍_천' -> 금고봉_인' -> 토파류_지' -> 금고봉_인' -> 파초풍_천' -> 금고봉_인' -> 토파류_지' -> 금고봉_인' -> 파초풍_천' -> 금고봉_인' -> 토파류_지' -> 파초풍_천' -> 금고봉_인' -> 금고봉_인' -> 토파류_지' -> 파초풍_천' -> 선기_강림_괴력난신_신들의_강림' -> 금고봉_인' -> 금고봉_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 여의선_인' -> 
+
+###데미지 로그###
+Attack No. 1 (this skill No. 1)
+###Timestamp###: 0:00:00.100000
+Skill------------------------
+멸화염_천
+Damage p%--------------------
+810 * 6
+Damage per Attack-------------
+31,245,240,425.788994
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 120.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 2 (this skill No. 1)
+###Timestamp###: 0:00:00.510000
+Skill------------------------
+멸화염_허실
+Damage p%--------------------
+810 * 6
+Damage per Attack-------------
+31,245,240,425.788994
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 120.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 3 (this skill No. 1)
+###Timestamp###: 0:00:00.690000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+40,062,979,269.281204
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽']
+Debuff-----------------------
+
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 4 (this skill No. 1)
+###Timestamp###: 0:00:06.880000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+12,845,993,870.96367
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 120.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 5 (this skill No. 1)
+###Timestamp###: 0:00:07.410000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+12,845,993,870.96367
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 120.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 6 (this skill No. 2)
+###Timestamp###: 0:00:07.470000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+47,048,677,485.372086
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신']
+Debuff-----------------------
+
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 7 (this skill No. 2)
+###Timestamp###: 0:00:08.350000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+14,920,932,286.180668
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 8 (this skill No. 2)
+###Timestamp###: 0:00:08.880000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+14,920,932,286.180668
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 9 (this skill No. 1)
+###Timestamp###: 0:00:08.920000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+725 * 10
+Damage per Attack-------------
+65,157,991,627.527275
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 10 (this skill No. 1)
+###Timestamp###: 0:00:08.920000
+Skill------------------------
+멸화염_문양_폭발
+Damage p%--------------------
+685 * 5
+Damage per Attack-------------
+12,207,706,089.9545
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신']
+Debuff-----------------------
+
+Additional Spec--------------
+
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 11 (this skill No. 3)
+###Timestamp###: 0:00:08.940000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+47,048,677,485.372086
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신']
+Debuff-----------------------
+
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 12 (this skill No. 2)
+###Timestamp###: 0:00:09.270000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+1320 * 8
+Damage per Attack-------------
+90,386,652,425.1807
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 120.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 13 (this skill No. 1)
+###Timestamp###: 0:00:09.270000
+Skill------------------------
+금고봉_도깨비의_기운
+Damage p%--------------------
+836 * 8
+Damage per Attack-------------
+57,244,879,869.2811
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 120.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 14 (this skill No. 1)
+###Timestamp###: 0:00:09.270000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+85,314,935,173.47472
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신']
+Debuff-----------------------
+
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 15 (this skill No. 3)
+###Timestamp###: 0:00:10.270000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+15,726,791,567.119371
+Buff-------------------------
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 16 (this skill No. 3)
+###Timestamp###: 0:00:10.800000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+15,726,791,567.119371
+Buff-------------------------
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트']
+Debuff-----------------------
+
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 17 (this skill No. 2)
+###Timestamp###: 0:00:10.810000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+90,065,209,960.41652
+Buff-------------------------
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 10.0
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트']
+Debuff-----------------------
+
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 18 (this skill No. 1)
+###Timestamp###: 0:00:11.650000
+Skill------------------------
+권술_미생강변
+Damage p%--------------------
+810 * 8
+Damage per Attack-------------
+116,130,837,369.53928
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 49.6
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 20
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 120.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 19 (this skill No. 1)
+###Timestamp###: 0:00:12.160000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+2700 * 3
+Damage per Attack-------------
+74,034,461,962.02167
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 20 (this skill No. 2)
+###Timestamp###: 0:00:12.160000
+Skill------------------------
+멸화염_문양_폭발
+Damage p%--------------------
+685 * 5
+Damage per Attack-------------
+29,479,785,057.436447
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 21 (this skill No. 3)
+###Timestamp###: 0:00:12.360000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+206,022,813,178.04346
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 22 (this skill No. 2)
+###Timestamp###: 0:00:12.370000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+2700 * 3
+Damage per Attack-------------
+74,034,461,962.02167
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 23 (this skill No. 3)
+###Timestamp###: 0:00:12.580000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+2700 * 3
+Damage per Attack-------------
+74,034,461,962.02167
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 24 (this skill No. 4)
+###Timestamp###: 0:00:12.660000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+113,615,521,973.1857
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 25 (this skill No. 4)
+###Timestamp###: 0:00:12.790000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+2700 * 3
+Damage per Attack-------------
+74,034,461,962.02167
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 26 (this skill No. 3)
+###Timestamp###: 0:00:12.790000
+Skill------------------------
+멸화염_문양_폭발
+Damage p%--------------------
+685 * 5
+Damage per Attack-------------
+29,479,785,057.436447
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 27 (this skill No. 5)
+###Timestamp###: 0:00:12.960000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+113,615,521,973.1857
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 28 (this skill No. 5)
+###Timestamp###: 0:00:13
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+2700 * 3
+Damage per Attack-------------
+74,034,461,962.02167
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '시프 커닝', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 29 (this skill No. 6)
+###Timestamp###: 0:00:13.210000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+2700 * 3
+Damage per Attack-------------
+72,525,607,438.33917
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 30 (this skill No. 7)
+###Timestamp###: 0:00:13.420000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+2700 * 3
+Damage per Attack-------------
+72,525,607,438.33917
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 31 (this skill No. 4)
+###Timestamp###: 0:00:13.420000
+Skill------------------------
+멸화염_문양_폭발
+Damage p%--------------------
+685 * 5
+Damage per Attack-------------
+28,857,848,663.81964
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 32 (this skill No. 8)
+###Timestamp###: 0:00:13.630000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+2700 * 3
+Damage per Attack-------------
+72,525,607,438.33917
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 33 (this skill No. 9)
+###Timestamp###: 0:00:13.840000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+2700 * 3
+Damage per Attack-------------
+72,525,607,438.33917
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 34 (this skill No. 4)
+###Timestamp###: 0:00:14.040000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+201,676,340,326.18597
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 35 (this skill No. 10)
+###Timestamp###: 0:00:14.050000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+2700 * 3
+Damage per Attack-------------
+72,525,607,438.33917
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 36 (this skill No. 5)
+###Timestamp###: 0:00:14.050000
+Skill------------------------
+멸화염_문양_폭발
+Damage p%--------------------
+685 * 5
+Damage per Attack-------------
+28,857,848,663.81964
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 37 (this skill No. 11)
+###Timestamp###: 0:00:14.080000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 38 (this skill No. 12)
+###Timestamp###: 0:00:14.260000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 39 (this skill No. 13)
+###Timestamp###: 0:00:14.440000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 40 (this skill No. 6)
+###Timestamp###: 0:00:14.440000
+Skill------------------------
+멸화염_문양_폭발
+Damage p%--------------------
+685 * 5
+Damage per Attack-------------
+28,857,848,663.81964
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 41 (this skill No. 14)
+###Timestamp###: 0:00:14.620000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 42 (this skill No. 15)
+###Timestamp###: 0:00:14.800000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 43 (this skill No. 16)
+###Timestamp###: 0:00:14.980000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 44 (this skill No. 7)
+###Timestamp###: 0:00:14.980000
+Skill------------------------
+멸화염_문양_폭발
+Damage p%--------------------
+685 * 5
+Damage per Attack-------------
+28,857,848,663.81964
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['멸화염 문양 폭발', '권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 45 (this skill No. 17)
+###Timestamp###: 0:00:15.160000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 46 (this skill No. 6)
+###Timestamp###: 0:00:15.270000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+111,218,570,032.82315
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 47 (this skill No. 18)
+###Timestamp###: 0:00:15.340000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 48 (this skill No. 19)
+###Timestamp###: 0:00:15.520000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 49 (this skill No. 5)
+###Timestamp###: 0:00:15.540000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+201,676,340,326.18597
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 50 (this skill No. 7)
+###Timestamp###: 0:00:15.630000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+111,218,570,032.82315
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 51 (this skill No. 20)
+###Timestamp###: 0:00:15.700000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 52 (this skill No. 21)
+###Timestamp###: 0:00:15.880000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 53 (this skill No. 22)
+###Timestamp###: 0:00:16.060000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 54 (this skill No. 23)
+###Timestamp###: 0:00:16.240000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+3720 * 5
+Damage per Attack-------------
+166,540,283,747.29733
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 55 (this skill No. 24)
+###Timestamp###: 0:00:16.560000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+8520 * 12
+Damage per Attack-------------
+915,434,333,888.3698
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 56 (this skill No. 25)
+###Timestamp###: 0:00:16.800000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+8520 * 12
+Damage per Attack-------------
+915,434,333,888.3698
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 57 (this skill No. 26)
+###Timestamp###: 0:00:17.040000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+8520 * 12
+Damage per Attack-------------
+915,434,333,888.3698
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 58 (this skill No. 6)
+###Timestamp###: 0:00:17.040000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+201,676,340,326.18597
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 59 (this skill No. 27)
+###Timestamp###: 0:00:17.280000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+8520 * 12
+Damage per Attack-------------
+915,434,333,888.3698
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 60 (this skill No. 28)
+###Timestamp###: 0:00:17.520000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+8520 * 12
+Damage per Attack-------------
+915,434,333,888.3698
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 61 (this skill No. 29)
+###Timestamp###: 0:00:17.760000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+8520 * 12
+Damage per Attack-------------
+915,434,333,888.3698
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 62 (this skill No. 30)
+###Timestamp###: 0:00:18
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+8520 * 12
+Damage per Attack-------------
+915,434,333,888.3698
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 63 (this skill No. 8)
+###Timestamp###: 0:00:18.050000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+111,218,570,032.82315
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 64 (this skill No. 31)
+###Timestamp###: 0:00:18.240000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+8520 * 12
+Damage per Attack-------------
+915,434,333,888.3698
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 65 (this skill No. 32)
+###Timestamp###: 0:00:18.480000
+Skill------------------------
+선기_파천황
+Damage p%--------------------
+8520 * 12
+Damage per Attack-------------
+915,434,333,888.3698
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE_BOSS: 30
+IGNORE_GUARD_PERCENTAGE: 30.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 66 (this skill No. 9)
+###Timestamp###: 0:00:18.530000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+111,218,570,032.82315
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 67 (this skill No. 7)
+###Timestamp###: 0:00:18.540000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+201,676,340,326.18597
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 68 (this skill No. 3)
+###Timestamp###: 0:00:19.140000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+725 * 10
+Damage per Attack-------------
+152,991,183,911.04987
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 69 (this skill No. 4)
+###Timestamp###: 0:00:19.490000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+1320 * 8
+Damage per Attack-------------
+222,839,572,703.54303
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 70 (this skill No. 2)
+###Timestamp###: 0:00:19.490000
+Skill------------------------
+금고봉_도깨비의_기운
+Damage p%--------------------
+836 * 8
+Damage per Attack-------------
+141,131,729,378.91058
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 71 (this skill No. 5)
+###Timestamp###: 0:00:19.830000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+91,443,006,475.57007
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 165
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 120.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 72 (this skill No. 8)
+###Timestamp###: 0:00:20.100000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+206,022,813,178.04346
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 73 (this skill No. 6)
+###Timestamp###: 0:00:20.180000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+136,144,808,924.18018
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 120.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 74 (this skill No. 4)
+###Timestamp###: 0:00:20.520000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+35,806,567,336.65066
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 75 (this skill No. 4)
+###Timestamp###: 0:00:21.050000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+35,806,567,336.65066
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 76 (this skill No. 1)
+###Timestamp###: 0:00:21.090000
+Skill------------------------
+파초풍_천
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+30,706,213,268.34868
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 77 (this skill No. 1)
+###Timestamp###: 0:00:21.710000
+Skill------------------------
+파초풍_허실
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+30,706,213,268.34868
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 78 (this skill No. 9)
+###Timestamp###: 0:00:21.720000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+206,022,813,178.04346
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 79 (this skill No. 7)
+###Timestamp###: 0:00:21.750000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+97,956,600,095.67328
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 80 (this skill No. 10)
+###Timestamp###: 0:00:21.780000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+113,615,521,973.1857
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 81 (this skill No. 8)
+###Timestamp###: 0:00:22.100000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+142,952,049,370.38913
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 82 (this skill No. 2)
+###Timestamp###: 0:00:22.440000
+Skill------------------------
+파초풍_천
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+30,706,213,268.34868
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 83 (this skill No. 11)
+###Timestamp###: 0:00:22.440000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+113,615,521,973.1857
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 84 (this skill No. 2)
+###Timestamp###: 0:00:23.060000
+Skill------------------------
+파초풍_허실
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+30,706,213,268.34868
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 85 (this skill No. 9)
+###Timestamp###: 0:00:23.100000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+97,956,600,095.67328
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 86 (this skill No. 10)
+###Timestamp###: 0:00:23.270000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+206,022,813,178.04346
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 87 (this skill No. 10)
+###Timestamp###: 0:00:23.450000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+142,952,049,370.38913
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 88 (this skill No. 5)
+###Timestamp###: 0:00:23.790000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+35,806,567,336.65066
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 89 (this skill No. 5)
+###Timestamp###: 0:00:24.320000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+35,806,567,336.65066
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 90 (this skill No. 11)
+###Timestamp###: 0:00:24.360000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+97,956,600,095.67328
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 91 (this skill No. 12)
+###Timestamp###: 0:00:24.710000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+142,952,049,370.38913
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 92 (this skill No. 11)
+###Timestamp###: 0:00:24.830000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+206,022,813,178.04346
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 93 (this skill No. 6)
+###Timestamp###: 0:00:25.050000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+35,806,567,336.65066
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 94 (this skill No. 12)
+###Timestamp###: 0:00:25.110000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+113,615,521,973.1857
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 95 (this skill No. 13)
+###Timestamp###: 0:00:25.410000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+113,615,521,973.1857
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 96 (this skill No. 6)
+###Timestamp###: 0:00:25.580000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+35,806,567,336.65066
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 183
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '소울 컨트랙트', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 97 (this skill No. 13)
+###Timestamp###: 0:00:25.620000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+93,102,991,854.86145
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 98 (this skill No. 14)
+###Timestamp###: 0:00:25.970000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+135,868,981,520.06155
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 99 (this skill No. 7)
+###Timestamp###: 0:00:26.310000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+33,971,796,748.9152
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 100 (this skill No. 12)
+###Timestamp###: 0:00:26.340000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+195,156,631,048.3998
+Buff-------------------------
+ATTACK_PHYSICAL_PERCENTAGE: 100
+ATTACK_SPELL_PERCENTAGE: 100
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '리스트레인트링', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 101 (this skill No. 7)
+###Timestamp###: 0:00:26.840000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+22,706,149,444.679344
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 102 (this skill No. 3)
+###Timestamp###: 0:00:26.880000
+Skill------------------------
+파초풍_천
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+19,471,843,273.780247
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 103 (this skill No. 3)
+###Timestamp###: 0:00:27.500000
+Skill------------------------
+파초풍_허실
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+19,471,843,273.780247
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 104 (this skill No. 15)
+###Timestamp###: 0:00:27.540000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+62,228,396,761.815475
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 105 (this skill No. 14)
+###Timestamp###: 0:00:27.870000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+71,933,408,962.61166
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 106 (this skill No. 13)
+###Timestamp###: 0:00:27.880000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+130,439,248,252.2025
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 107 (this skill No. 16)
+###Timestamp###: 0:00:27.890000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+90,812,429,560.09995
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 108 (this skill No. 8)
+###Timestamp###: 0:00:28.230000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+22,706,149,444.679344
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 109 (this skill No. 15)
+###Timestamp###: 0:00:28.290000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+71,933,408,962.61166
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 110 (this skill No. 8)
+###Timestamp###: 0:00:28.760000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+22,706,149,444.679344
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 111 (this skill No. 17)
+###Timestamp###: 0:00:28.800000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+62,228,396,761.815475
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 64.56
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '레디 투 다이 2단계', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 112 (this skill No. 18)
+###Timestamp###: 0:00:29.150000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+66,773,845,264.77939
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 113 (this skill No. 4)
+###Timestamp###: 0:00:29.490000
+Skill------------------------
+파초풍_천
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+14,317,531,818.95607
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 114 (this skill No. 14)
+###Timestamp###: 0:00:29.490000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+95,911,211,950.14888
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 115 (this skill No. 4)
+###Timestamp###: 0:00:30.110000
+Skill------------------------
+파초풍_허실
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+14,317,531,818.95607
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 116 (this skill No. 19)
+###Timestamp###: 0:00:30.150000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+45,756,174,089.57022
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 117 (this skill No. 20)
+###Timestamp###: 0:00:30.500000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+66,773,845,264.77939
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 118 (this skill No. 9)
+###Timestamp###: 0:00:30.840000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+16,695,698,121.087757
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 119 (this skill No. 16)
+###Timestamp###: 0:00:30.900000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+52,892,212,472.50857
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 120 (this skill No. 15)
+###Timestamp###: 0:00:31.050000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+95,911,211,950.14888
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 121 (this skill No. 9)
+###Timestamp###: 0:00:31.370000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+16,695,698,121.087757
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 122 (this skill No. 21)
+###Timestamp###: 0:00:31.410000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+45,756,174,089.57022
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 123 (this skill No. 17)
+###Timestamp###: 0:00:31.740000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+52,892,212,472.50857
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 124 (this skill No. 22)
+###Timestamp###: 0:00:31.760000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+66,773,845,264.77939
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 125 (this skill No. 5)
+###Timestamp###: 0:00:32.100000
+Skill------------------------
+파초풍_천
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+14,317,531,818.95607
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 126 (this skill No. 16)
+###Timestamp###: 0:00:32.640000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+95,911,211,950.14888
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 127 (this skill No. 5)
+###Timestamp###: 0:00:32.720000
+Skill------------------------
+파초풍_허실
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+14,317,531,818.95607
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 128 (this skill No. 23)
+###Timestamp###: 0:00:32.760000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+45,756,174,089.57022
+Buff-------------------------
+DAMAGE_PERCENTAGE: 138
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물', '시프 커닝']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 129 (this skill No. 24)
+###Timestamp###: 0:00:33.110000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+65,381,434,218.942924
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 130 (this skill No. 10)
+###Timestamp###: 0:00:33.450000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+16,335,013,332.106024
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 131 (this skill No. 10)
+###Timestamp###: 0:00:33.980000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+16,335,013,332.106024
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 132 (this skill No. 6)
+###Timestamp###: 0:00:34.020000
+Skill------------------------
+파초풍_천
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+14,008,223,642.358364
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 133 (this skill No. 18)
+###Timestamp###: 0:00:34.610000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+51,714,212,194.72442
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 134 (this skill No. 17)
+###Timestamp###: 0:00:34.620000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+93,775,104,779.76695
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 135 (this skill No. 6)
+###Timestamp###: 0:00:34.640000
+Skill------------------------
+파초풍_허실
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+14,008,223,642.358364
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 136 (this skill No. 25)
+###Timestamp###: 0:00:34.680000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+44,802,037,002.43831
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 137 (this skill No. 26)
+###Timestamp###: 0:00:35.030000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+65,381,434,218.942924
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 138 (this skill No. 19)
+###Timestamp###: 0:00:35.070000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+51,714,212,194.72442
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 139 (this skill No. 27)
+###Timestamp###: 0:00:35.370000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+44,802,037,002.43831
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 140 (this skill No. 28)
+###Timestamp###: 0:00:35.720000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+65,381,434,218.942924
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 극대 분신난무', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 141 (this skill No. 11)
+###Timestamp###: 0:00:36.060000
+Skill------------------------
+토파류_지
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+16,335,013,332.106024
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 142 (this skill No. 18)
+###Timestamp###: 0:00:36.430000
+Skill------------------------
+선기_강림_괴력난신_신들의_일격
+Damage p%--------------------
+1870 * 8
+Damage per Attack-------------
+93,775,104,779.76695
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 143 (this skill No. 11)
+###Timestamp###: 0:00:36.590000
+Skill------------------------
+토파류_허실
+Damage p%--------------------
+430 * 4
+Damage per Attack-------------
+16,335,013,332.106024
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 144 (this skill No. 7)
+###Timestamp###: 0:00:36.630000
+Skill------------------------
+파초풍_천
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+14,008,223,642.358364
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 145 (this skill No. 7)
+###Timestamp###: 0:00:37.250000
+Skill------------------------
+파초풍_허실
+Damage p%--------------------
+295 * 5
+Damage per Attack-------------
+14,008,223,642.358364
+Buff-------------------------
+DAMAGE_PERCENTAGE: 120
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '선기 천지인 환영 버프', '선기 강림 괴력난신', '천지만물']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 146 (this skill No. 1)
+###Timestamp###: 0:00:40.300000
+Skill------------------------
+선기_강림_괴력난신_신들의_강림
+Damage p%--------------------
+2200 * 15
+Damage per Attack-------------
+190,626,622,729.4271
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 147 (this skill No. 2)
+###Timestamp###: 0:00:40.300000
+Skill------------------------
+선기_강림_괴력난신_신들의_강림
+Damage p%--------------------
+2200 * 15
+Damage per Attack-------------
+190,626,622,729.4271
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 148 (this skill No. 3)
+###Timestamp###: 0:00:40.300000
+Skill------------------------
+선기_강림_괴력난신_신들의_강림
+Damage p%--------------------
+2200 * 15
+Damage per Attack-------------
+190,626,622,729.4271
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 149 (this skill No. 4)
+###Timestamp###: 0:00:40.300000
+Skill------------------------
+선기_강림_괴력난신_신들의_강림
+Damage p%--------------------
+2200 * 15
+Damage per Attack-------------
+190,626,622,729.4271
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 150 (this skill No. 5)
+###Timestamp###: 0:00:40.300000
+Skill------------------------
+선기_강림_괴력난신_신들의_강림
+Damage p%--------------------
+2200 * 15
+Damage per Attack-------------
+190,626,622,729.4271
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 151 (this skill No. 6)
+###Timestamp###: 0:00:40.300000
+Skill------------------------
+선기_강림_괴력난신_신들의_강림
+Damage p%--------------------
+2200 * 15
+Damage per Attack-------------
+190,626,622,729.4271
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 152 (this skill No. 29)
+###Timestamp###: 0:00:41.070000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+455 * 10
+Damage per Attack-------------
+41,515,564,813.428375
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 153 (this skill No. 30)
+###Timestamp###: 0:00:41.420000
+Skill------------------------
+금고봉_인
+Damage p%--------------------
+830 * 8
+Damage per Attack-------------
+60,585,351,727.72845
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 45
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 154 (this skill No. 20)
+###Timestamp###: 0:00:41.460000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+47,656,655,682.356766
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 155 (this skill No. 1)
+###Timestamp###: 0:00:41.760000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+28,193,429,811.858032
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 142.55
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 156 (this skill No. 2)
+###Timestamp###: 0:00:42.270000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+26,850,885,535.10289
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 157 (this skill No. 3)
+###Timestamp###: 0:00:42.780000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+26,850,885,535.10289
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 158 (this skill No. 4)
+###Timestamp###: 0:00:43.290000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+26,850,885,535.10289
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 159 (this skill No. 5)
+###Timestamp###: 0:00:43.800000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+26,850,885,535.10289
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 160 (this skill No. 6)
+###Timestamp###: 0:00:44.310000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+26,850,885,535.10289
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 161 (this skill No. 7)
+###Timestamp###: 0:00:44.820000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+26,850,885,535.10289
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 162 (this skill No. 8)
+###Timestamp###: 0:00:45.330000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+26,850,885,535.10289
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 163 (this skill No. 9)
+###Timestamp###: 0:00:45.840000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+26,850,885,535.10289
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 164 (this skill No. 10)
+###Timestamp###: 0:00:46.350000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+26,850,885,535.10289
+Buff-------------------------
+DAMAGE_PERCENTAGE: 58
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '그란디스 여신의 축복', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 165 (this skill No. 11)
+###Timestamp###: 0:00:46.860000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+25,424,922,415.872784
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 166 (this skill No. 21)
+###Timestamp###: 0:00:46.940000
+Skill------------------------
+선기_천지인_환영
+Damage p%--------------------
+1375 * 6
+Damage per Attack-------------
+45,038,877,287.280876
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+FINAL_DAMAGE_PERCENT: 60
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 167 (this skill No. 12)
+###Timestamp###: 0:00:47.370000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+26,696,168,536.66642
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 142.55
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 168 (this skill No. 13)
+###Timestamp###: 0:00:47.880000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+25,424,922,415.872784
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 169 (this skill No. 14)
+###Timestamp###: 0:00:48.390000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+25,424,922,415.872784
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 170 (this skill No. 15)
+###Timestamp###: 0:00:48.900000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+25,424,922,415.872784
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 171 (this skill No. 16)
+###Timestamp###: 0:00:49.410000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+25,424,922,415.872784
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+Attack No. 172 (this skill No. 17)
+###Timestamp###: 0:00:49.920000
+Skill------------------------
+여의선_인
+Damage p%--------------------
+612 * 5
+Damage per Attack-------------
+25,424,922,415.872784
+Buff-------------------------
+DAMAGE_PERCENTAGE: 18
+FINAL_DAMAGE_PERCENT: 21.0
+BuffList---------------------
+['권술 호접지몽', '환영 분신부', '천지만물', '시프 커닝', '선기 강림 괴력난신 버프']
+Debuff-----------------------
+IGNORE_GUARD_PERCENTAGE: 20.0
+Additional Spec--------------
+DAMAGE_PERCENTAGE: 10
+DAMAGE_PERCENTAGE_BOSS: 15
+IGNORE_GUARD_PERCENTAGE: 20.0
+FINAL_DAMAGE_PERCENT: 131.0
+Condition--------------------
+defaultdict(<class 'int'>, {})
+Special----------------------
+None
+
+
+최대 데미지를 기록한 15초 구간: 0:00:12.160000 ~ 0:00:27.040000
+그 시간 구간 동안의 총 데미지: 26,512,290,827,134.65
+총 시뮬레이션 시간: 0:00:49.960000
+총 데미지: 21,241,858,529,334.824

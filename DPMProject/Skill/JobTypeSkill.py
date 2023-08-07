@@ -12,7 +12,7 @@ class WorriorSkill(Skill, JobTypeAttribute):
     """
     def __init__(self, icon: any, advanced: SkillAdvance):
         Skill.__init__(self, icon=icon, advanced=advanced)
-        JobTypeAttribute.__init__(self, job_type=JobType.Worrior)
+        JobTypeAttribute.__init__(self, job_type=JobType.Warrior)
 
 class BowmanSkill(Skill, JobTypeAttribute):
     """
@@ -49,7 +49,7 @@ class TheifSkill(Skill, JobTypeAttribute):
     """
     def __init__(self, icon: any, advanced: SkillAdvance):
         Skill.__init__(self, icon=icon, advanced=advanced)
-        JobTypeAttribute.__init__(self, job_type=JobType.Theif)
+        JobTypeAttribute.__init__(self, job_type=JobType.Thief)
 
 class PirateSkill(Skill, JobTypeAttribute):
     """

@@ -72,6 +72,66 @@ AuthSymbols_dex = [
     DowonSymbol_dex_3    
 ]
 
+# luk
+# Arcane Symbols
+VanishingJourneySymbol_luk_20 = ArcaneSymbol([JobType.Thief],symbollevel=20)
+ChuChuSymbol_luk_20 = ArcaneSymbol([JobType.Thief],symbollevel=20)
+LacheleinSymbol_luk_20 = ArcaneSymbol([JobType.Thief],symbollevel=20)
+ArcanaSymbol_luk_20 = ArcaneSymbol([JobType.Thief],symbollevel=20)
+MorassSymbol_luk_20 = ArcaneSymbol([JobType.Thief],symbollevel=20)
+EsferaSymbol_luk_20 = ArcaneSymbol([JobType.Thief],symbollevel=20)
+
+ArcaneSymbols_luk = [
+    VanishingJourneySymbol_luk_20,
+    ChuChuSymbol_luk_20,
+    LacheleinSymbol_luk_20,
+    ArcanaSymbol_luk_20,
+    MorassSymbol_luk_20,
+    EsferaSymbol_luk_20
+]
+
+# Authentic Symbols
+CerniumSymbol_luk_11 = AuthenticSymbol([JobType.Thief], symbolLevel=11)
+HotelArcsSymbol_luk_7 = AuthenticSymbol([JobType.Thief], symbolLevel=7)
+DowonSymbol_luk_3 = AuthenticSymbol([JobType.Thief], symbolLevel=3)
+
+AuthSymbols_luk = [
+    CerniumSymbol_luk_11,
+    HotelArcsSymbol_luk_7,
+    DowonSymbol_luk_3    
+]
+
+
+# str
+# Arcane Symbols
+VanishingJourneySymbol_str_20 = ArcaneSymbol([JobType.Warrior],symbollevel=20)
+ChuChuSymbol_str_20 = ArcaneSymbol([JobType.Warrior],symbollevel=20)
+LacheleinSymbol_str_20 = ArcaneSymbol([JobType.Warrior],symbollevel=20)
+ArcanaSymbol_str_20 = ArcaneSymbol([JobType.Warrior],symbollevel=20)
+MorassSymbol_str_20 = ArcaneSymbol([JobType.Warrior],symbollevel=20)
+EsferaSymbol_str_20 = ArcaneSymbol([JobType.Warrior],symbollevel=20)
+
+ArcaneSymbols_str = [
+    VanishingJourneySymbol_str_20,
+    ChuChuSymbol_str_20,
+    LacheleinSymbol_str_20,
+    ArcanaSymbol_str_20,
+    MorassSymbol_str_20,
+    EsferaSymbol_str_20
+]
+
+# Authentic Symbols
+CerniumSymbol_str_11 = AuthenticSymbol([JobType.Warrior], symbolLevel=11)
+HotelArcsSymbol_str_7 = AuthenticSymbol([JobType.Warrior], symbolLevel=7)
+DowonSymbol_str_3 = AuthenticSymbol([JobType.Warrior], symbolLevel=3)
+
+AuthSymbols_str = [
+    CerniumSymbol_str_11,
+    HotelArcsSymbol_str_7,
+    DowonSymbol_str_3    
+]
+
+
 
 ## 캐시 코디장비 인스턴스 ##
 blacklabel_weapon = BlackLabelWeapon()

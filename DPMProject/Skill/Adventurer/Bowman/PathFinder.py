@@ -13,10 +13,14 @@ import math
 from Skill.CommonSkill import 스파이더_인_미러, 스파이더_인_미러_거울속의_거미, 크레스트_오브_더_솔라, 크레스트_오브_더_솔라_불꽃의_문양
 from enum import Enum
 
+
+
 class RelicSymbol(Enum):
     discharge = 0
     blast = 1
     transition = 2
+
+
 
 class 렐릭_차지_컨트롤러:
     def __init__(self) -> None:
@@ -63,8 +67,6 @@ class 렐릭_차지_컨트롤러:
    
     
 렐릭_차지 = 렐릭_차지_컨트롤러()
-
-가이던스 = 에인션트_가이던스()
 
 class PathFinderSkill(DamageAttribute):
     def __init__(self, damage_point: int, line: int, castingCount: int = 1):
@@ -132,6 +134,344 @@ class PathFinderSkill(DamageAttribute):
         self.RelicGuage = self.RelicGuage + guage
         afterRelicGuage = self.RelicGuage
         self.AncientGuidance = self.AncientGuidance + afterRelicGuage - beforeRelicGuage
+
+
+class 에인션트_포스(PathFinderSkill):
+    def __init__(self, damage_point: int, line: int, castingCount: int = 1):
+        super().__init__(damage_point, line, castingCount)
+
+    def GetAncientForceBuff(self):
+        result = SpecVector()
+        if 에인션트_포스_보스킬러 in self.Owner._PassiveSkillList:
+            result[CoreStat.DAMAGE_PERCENTAGE_BOSS] += 20
+        
+        if 에인션트_포스_이그노어_가드 in self.Owner._PassiveSkillList:
+            result[CoreStat.IGNORE_GUARD_PERCENTAGE] = 20
+
+        if self.Owner.BuffManager.isRegistered(포세이큰_렐릭_렐릭해방):
+            result[CoreStat.FINAL_DAMAGE_PERCENT] = 15
+
+        return result
+
+    def GetAncientArcheryBuff(self):
+        archery = 에인션트_아처리()
+        archery.ApplyCombat(isOriginal= False)
+        addSpec = SpecVector()
+        addSpec[CoreStat.FINAL_DAMAGE_PERCENT] = math.floor(archery.Level/3)
+        addSpec[CoreStat.DAMAGE_PERCENTAGE_BOSS] = archery.Level + 20
+        return addSpec
+
+class 에인션트_포스_보스킬러(PassiveSkill):
+    def __init__(self):
+        PassiveSkill.__init__(
+            self=self,
+            advanced=SkillAdvance.Hyper,
+            level=1,
+            max=1
+        )
+
+class 에인션트_포스_이그노어_가드(PassiveSkill):
+    def __init__(self):
+        PassiveSkill.__init__(
+            self=self,
+            advanced=SkillAdvance.Hyper,
+            level=1,
+            max=1
+        )
+
+
+class 인챈트_포스(PathFinderSkill):
+    def __init__(self, damage_point: int, line: int, castingCount: int = 1):
+
+        super().__init__(damage_point, line, castingCount)
+
+    def GetEnchant(self):
+        return self.RelicController.Enchant
+    
+    def SetEnchant(self, symbol):
+        self.RelicController.Enchant = symbol
+
+    def GetEnchantForceBuff(self):
+        result = SpecVector()
+        if 에인션트_포스_보스킬러 in self.Owner._PassiveSkillList:
+            result[CoreStat.DAMAGE_PERCENTAGE_BOSS] += 20
+        
+        if 에인션트_포스_이그노어_가드 in self.Owner._PassiveSkillList:
+            result[CoreStat.IGNORE_GUARD_PERCENTAGE] = 20
+
+        if self.Owner.BuffManager.isRegistered(포세이큰_렐릭_렐릭해방):
+            result[CoreStat.FINAL_DAMAGE_PERCENT] = 15
+        return result
+
+    
+    def GetAncientArcheryBuff(self):
+        archery = 에인션트_아처리()
+        archery.ApplyCombat(isOriginal= False)
+        addSpec = SpecVector()
+        addSpec[CoreStat.FINAL_DAMAGE_PERCENT] = math.floor(archery.Level/3)
+        addSpec[CoreStat.DAMAGE_PERCENTAGE_BOSS] = archery.Level + 20
+        return addSpec
+
+
+
+class 에인션트_보우_액셀레이션(PassiveSkill, BuffAttribute):
+    def __init__(self, level=10):
+        max = 10
+        stat = SpecVector()
+        stat[CoreStat.STAT_DEX] = 2* level
+        
+        PassiveSkill.__init__(self=self, advanced=SkillAdvance.Second, level=level, max=max)
+        BuffAttribute.__init__(self=self, stat=stat)
+
+
+class 에인션트_보우_마스터리(PassiveSkill, BuffAttribute):
+    # 마스터리 상승으로 되어있으나, 에인션트_보우_엑스퍼트 스킬에서 오르는 수치로 재조정되므로 패스함
+    def __init__(self, level=10):
+        max = 10
+        stat = SpecVector()
+        stat[CoreStat.ATTACK_PHYSICAL] = 3 * level
+        
+
+        PassiveSkill.__init__(self=self, advanced=SkillAdvance.Third, level=level, max=max)
+        BuffAttribute.__init__(self=self, stat=stat)
+       
+
+
+
+
+class 에인션트_가이던스(PassiveSkill, BuffAttribute):
+    def __init__(self, level=10):
+        max = 10
+        stat = SpecVector()
+        stat[CoreStat.STAT_HP_PERCENTAGE] = 50
+        stat[CoreStat.FINAL_DAMAGE_PERCENT] = 2 * level
+        self._AncientGuidance = 0
+        
+        PassiveSkill.__init__(self=self, advanced=SkillAdvance.Third, level=level, max=max)
+        BuffAttribute.__init__(self=self, stat=stat)
+        
+
+가이던스 = 에인션트_가이던스()
+
+
+class 에인션트_가이던스_버프(PassiveSkill, BuffAttribute, DurationAttribute):
+    def __init__(self, level=10):
+        max = 10
+        stat = SpecVector()
+        stat[CoreStat.FINAL_DAMAGE_PERCENT] = 8
+        
+        buffduration = Cooldown(seconds=40)
+        PassiveSkill.__init__(self=self, advanced=SkillAdvance.Third, level=level, max=max)
+        BuffAttribute.__init__(self=self, stat=stat)
+        DurationAttribute.__init__(
+            self=self,
+            duration=buffduration,
+            serverlack=True,
+            isbuffmult=False
+        )
+
+# 4차. 컴뱃오더스와 렙당 1의 효과를 받음
+class 에센스_오브_아처(PassiveSkill, BuffAttribute, CombatOrdersAttribute):
+    def __init__(self, level=10):
+        max = 10
+        stat = self.GetBuffStat(level)
+       
+        PassiveSkill.__init__(self=self, advanced=SkillAdvance.Fourth, level=level, max=max)
+        BuffAttribute.__init__(self=self, stat=stat)
+        CombatOrdersAttribute.__init__(self=self)
+
+    @property
+    def Level(self):
+        return self._level
+    
+    @Level.setter
+    def Level(self, level:int):
+        if not isinstance(level, int) or level < 0:
+            raise ValueError("Level must be a non-negative integer")
+        if level > self.MaxLevel:
+            self._level = level
+        self._level = level
+        self._BuffStat = self.GetBuffStat(level=level)
+
+    def GetBuffStat(self, level):
+        stat = SpecVector()
+        stat[CoreStat.CRITICAL_PERCENTAGE] = level
+        stat[CoreStat.DAMAGE_PERCENTAGE] = level
+        stat[CoreStat.IGNORE_GUARD_PERCENTAGE] = 3 * level
+        return stat
+    
+
+class 에인션트_보우_엑스퍼트(PassiveSkill, BuffAttribute, CombatOrdersAttribute, MasteryAttribute):
+    def __init__(self, level=30):
+        max = 30
+        stat = SpecVector()
+        ancientMastery = self.set_mastery(level)
+        
+        stat[CoreStat.ATTACK_PHYSICAL] = self.set_attack_power(level)
+        stat[CoreStat.CRITICAL_DAMAGE] = self.set_critical_damage(level=level)
+
+        PassiveSkill.__init__(self=self, advanced=SkillAdvance.Fourth, level=level, max=max)
+        BuffAttribute.__init__(self=self, stat=stat)
+        CombatOrdersAttribute.__init__(self=self)
+        MasteryAttribute.__init__(self=self, mastery= ancientMastery)
+
+    def set_mastery(self, level:int):
+        return 55 + math.ceil(level/2)
+
+    def set_attack_power(self, level:int):
+        return level * 2
+
+    def set_critical_damage(self, level:int):
+        return level
+
+    @property
+    def Level(self):
+        return self._level
+    
+    @Level.setter
+    def Level(self, level:int):
+        if not isinstance(level, int) or level < 0:
+            raise ValueError("Level must be a non-negative integer")
+        if level > self.MaxLevel:
+            self._level = level
+        self._level = level
+        self.Mastery = self.set_mastery(level)
+        self._BuffStat[CoreStat.ATTACK_PHYSICAL] = self.set_attack_power(level)
+        self._BuffStat[CoreStat.CRITICAL_DAMAGE] = self.set_critical_damage(level)
+
+
+class 일루전_스탭(PassiveSkill, BuffAttribute, CombatOrdersAttribute):
+    def __init__(self, level=30):
+        max = 30
+        stat = SpecVector()
+        stat[CoreStat.STAT_DEX] = self.set_agility(level)
+
+        PassiveSkill.__init__(self=self, advanced=SkillAdvance.Fourth, level=level, max=max)
+        BuffAttribute.__init__(self=self, stat=stat)
+        CombatOrdersAttribute.__init__(self)
+
+    def set_agility(self, level:int):
+        return 20 + 3*level
+
+    @property
+    def Level(self):
+        return self._level
+    
+    @Level.setter
+    def Level(self, level:int):
+        if not isinstance(level, int) or level < 0:
+            raise ValueError("Level must be a non-negative integer")
+        if level > self.MaxLevel:
+            self._level = level
+        self._level = level
+        self._BuffStat[CoreStat.STAT_DEX] = self.set_agility(level=level)
+
+
+class 어드밴스드_카디널_포스(PassiveSkill, CombatOrdersAttribute):
+
+    def __init__(self, level=21):
+        self.Level = level
+        max = 21
+        PassiveSkill.__init__(
+            self=self,
+            advanced=SkillAdvance.Fourth,
+            level=level,
+            max=max
+        )
+        CombatOrdersAttribute.__init__(self)
+
+    # Get the damage for Cardinal Discharge
+    def GetCardinalDischargeDamage(self):
+        return 200+5*self.Level
+    
+    # Get the number of attack lines for Cardinal Discharge
+    def GetCardinalDischargeAttackLine(self):
+        return 5
+
+    # Get the number of attack count for Cardinal Discharge
+    def GetCardinalDischargeAttackCount(self):
+        return 2
+
+    # Get the damage for Cardinal Blast
+    def GetCardinalBlastDamage(self):
+        return 300+15*self.Level
+
+    # Get the number of attack lines for Cardinal Blast
+    def GetCardinalBlastAttackLine(self):
+        return 5
+
+    # Get the number of attack count for Cardinal Blast
+    def GetCardinalBlastAttackCount(self):
+        return 1
+
+    # Get the damage for Cardinal Transition
+    def GetCardinalTransitionDamage(self):
+        return 400 + 7 * self.Level
+
+    # Get the number of attack lines for Cardinal Transition
+    def GetCardinalTransitionAttackLine(self):
+        return 5
+    # Get the number of attack count for Cardinal Transition
+    def GetCardinalTransitionAttackCount(self):
+        return 1
+    
+class 에디셔널_트랜지션(PassiveSkill, BuffAttribute, CombatOrdersAttribute):
+    def __init__(self, level= 20):
+        max = 20
+        BuffStat= self.GetAtkPer(level)
+        PassiveSkill.__init__(
+            self=self,
+            advanced=SkillAdvance.Fourth,
+            level=level,
+            max=max
+        )
+        BuffAttribute.__init__(
+            self=self,
+            stat=BuffStat
+        )
+        CombatOrdersAttribute.__init__(self)
+
+    def GetAtkPer(self, level):
+        return CreateSpecVector([CoreStat.ATTACK_PHYSICAL_PERCENTAGE], level)
+    
+    @property
+    def Level(self):
+        return super().Level
+    
+    # Skill 의 Level setter 재정의 - 스킬 레벨의 변화와 데미지 계산 바인딩
+    @Level.setter
+    def Level(self, level:int):
+        # 검사 로직: 여기에서는 level이 0 이상의 정수인지 확인합니다.
+        if not isinstance(level, int) or level < 0:
+            raise ValueError("Level must be a non-negative integer")
+        # 추가 로직: level이 MaxLevel 보다 큰 경우 값을 절삭함
+        if level > self.MaxLevel:
+            self._level = level
+        self._level = level
+
+        self.BuffStat = self.GetAtkPer(level)
+
+    
+class 에인션트_아처리(PassiveSkill, CombatOrdersAttribute):
+    def __init__(self, level=30):
+        max = 30
+        PassiveSkill.__init__(
+            self=self,
+            advanced=SkillAdvance.Fourth,
+            level=level,
+            max=max
+        )
+        CombatOrdersAttribute.__init__(self=self)
+
+    def AdditionalDischargeDamageUpgrade(self, level=31):
+        return 35 + level
+    
+    def AdditionalBlastDamageUpgrade(self, level=31):
+        return 40 + level
+    
+    # 스플릿 미스텔 패스함
+        
+
 
 class 카디널_포스(PathFinderSkill):
     def __init__(self, damage_point: int, line: int, attackSymbol:RelicSymbol, castingCount: int = 1 ):
@@ -213,83 +553,6 @@ class 카디널_포스_보너스_어택(PassiveSkill):
             level=1,
             max=1
         )
-
-class 에인션트_포스(PathFinderSkill):
-    def __init__(self, damage_point: int, line: int, castingCount: int = 1):
-        super().__init__(damage_point, line, castingCount)
-
-    def GetAncientForceBuff(self):
-        result = SpecVector()
-        if 에인션트_포스_보스킬러 in self.Owner._PassiveSkillList:
-            result[CoreStat.DAMAGE_PERCENTAGE_BOSS] += 20
-        
-        if 에인션트_포스_이그노어_가드 in self.Owner._PassiveSkillList:
-            result[CoreStat.IGNORE_GUARD_PERCENTAGE] = 20
-
-        if self.Owner.BuffManager.isRegistered(포세이큰_렐릭_렐릭해방):
-            result[CoreStat.FINAL_DAMAGE_PERCENT] = 15
-
-        return result
-
-    def GetAncientArcheryBuff(self):
-        archery = 에인션트_아처리()
-        archery.ApplyCombat(isOriginal= False)
-        addSpec = SpecVector()
-        addSpec[CoreStat.FINAL_DAMAGE_PERCENT] = math.floor(archery.Level/3)
-        addSpec[CoreStat.DAMAGE_PERCENTAGE_BOSS] = archery.Level + 20
-        return addSpec
-
-class 에인션트_포스_보스킬러(PassiveSkill):
-    def __init__(self):
-        PassiveSkill.__init__(
-            self=self,
-            advanced=SkillAdvance.Hyper,
-            level=1,
-            max=1
-        )
-
-class 에인션트_포스_이그노어_가드(PassiveSkill):
-    def __init__(self):
-        PassiveSkill.__init__(
-            self=self,
-            advanced=SkillAdvance.Hyper,
-            level=1,
-            max=1
-        )
-
-
-class 인챈트_포스(PathFinderSkill):
-    def __init__(self, damage_point: int, line: int, castingCount: int = 1):
-
-        super().__init__(damage_point, line, castingCount)
-
-    def GetEnchant(self):
-        return self.RelicController.Enchant
-    
-    def SetEnchant(self, symbol):
-        self.RelicController.Enchant = symbol
-
-    def GetEnchantForceBuff(self):
-        result = SpecVector()
-        if 에인션트_포스_보스킬러 in self.Owner._PassiveSkillList:
-            result[CoreStat.DAMAGE_PERCENTAGE_BOSS] += 20
-        
-        if 에인션트_포스_이그노어_가드 in self.Owner._PassiveSkillList:
-            result[CoreStat.IGNORE_GUARD_PERCENTAGE] = 20
-
-        if self.Owner.BuffManager.isRegistered(포세이큰_렐릭_렐릭해방):
-            result[CoreStat.FINAL_DAMAGE_PERCENT] = 15
-        return result
-
-    
-    def GetAncientArcheryBuff(self):
-        archery = 에인션트_아처리()
-        archery.ApplyCombat(isOriginal= False)
-        addSpec = SpecVector()
-        addSpec[CoreStat.FINAL_DAMAGE_PERCENT] = math.floor(archery.Level/3)
-        addSpec[CoreStat.DAMAGE_PERCENTAGE_BOSS] = archery.Level + 20
-        return addSpec
-
 
 
 class 카디널_디스차지(OnPressSkill, 카디널_포스, SkillDelayAttribute, SkipableAttribute):
@@ -1115,12 +1378,13 @@ class 트리플_임팩트_강화_5th(PassiveSkill):
         )
 
 # 5차 전직
-class 얼티밋_블래스트(OnPressSkill, 에인션트_포스, CooldownAttribute, SkillDelayAttribute):
+class 얼티밋_블래스트(OnPressSkill, 에인션트_포스, CooldownAttribute, SkillDelayAttribute, SummonAttribute):
+    isCost = None
     def __init__(self, level = 30):
         max = 30
         UltimateBlastIcon = None
         UltimateBlastDelay = Cooldown(milliseconds=1800)  # 재사용 대기시간 120초
-
+        self.FirstAttackDelay = Cooldown(milliseconds=1340)
         OnPressSkill.__init__(
             self=self,
             icon=UltimateBlastIcon,
@@ -1144,6 +1408,14 @@ class 얼티밋_블래스트(OnPressSkill, 에인션트_포스, CooldownAttribut
             casting_delay=UltimateBlastDelay,
             applyAttackSpeed=True
         )
+        SummonAttribute.__init__(
+            self=self,
+            duration=UltimateBlastDelay,
+            interval=self.FirstAttackDelay,
+            mult=False
+        
+        )
+        
 
     def CalcDamagePoint(self, level):
         return 400 + 20 * level
@@ -1156,6 +1428,16 @@ class 얼티밋_블래스트(OnPressSkill, 에인션트_포스, CooldownAttribut
         # 공격
         # 사출기 매니저에 등록
         # 리턴: 스킬 로그
+
+        if 얼티밋_블래스트.isCost is None:
+            CostGuage = self.RelicController.Guage
+            얼티밋_블래스트.isCost = CreateSpecVector([CoreStat.FINAL_DAMAGE_PERCENT],(CostGuage//250) * 25)
+            얼티밋_블래스트.isCost[CoreStat.IGNORE_GUARD_PERCENTAGE] = 100
+            self.RelicController.Guage = 0
+
+            self.Owner.SummonManager.Add(self)
+            return []
+            
         self.IncrementCurseStack()
         cursebuff = self.GetCurseTransitionBuff()
 
@@ -1163,17 +1445,15 @@ class 얼티밋_블래스트(OnPressSkill, 에인션트_포스, CooldownAttribut
         ancientbuff = self.GetAncientForceBuff()
         ancientbuff += self.GetAncientArcheryBuff()
         
-        CostGuage = self.RelicController.Guage
-        addBuff = CreateSpecVector([CoreStat.FINAL_DAMAGE_PERCENT],(CostGuage//250) * 25)
-        addBuff[CoreStat.IGNORE_GUARD_PERCENTAGE] = 100
-        self.RelicController.Guage = 0
+        
+        
 
         result = []
         for _ in range(0, self.CastingCount):
             UltimateBlastLog = self.Target.TakeAttack(
                 char=self.Owner,
                 skill=self,
-                add=cursebuff + ancientbuff  + addBuff
+                add=cursebuff + ancientbuff  + 얼티밋_블래스트.isCost
             )
             result.append(UltimateBlastLog)
          
@@ -1457,15 +1737,17 @@ class 렐릭_언바운드(OnPressSkill, 인챈트_포스, SummonAttribute, Coold
         UnboundIcon = None
         UnboundDamage = None
         UnboundInterval = Cooldown(milliseconds=0)  # 정보 부족으로 공란
-        UnboundDelay = Cooldown(milliseconds=720)  # 정보 부족으로 공란
+        self.FirstAttackDelay = Cooldown(milliseconds=500)
+        UnboundDelay = Cooldown(milliseconds=490)  # 정보 부족으로 공란
         UnboundDuration = Cooldown(seconds=0)  # 정보 부족으로 공란
         UnboundCooldown = Cooldown(seconds=120)  # 재사용 대기시간 120초
         UnboundAttackLine = 0  # 정보 부족으로 공란
+        self.Unboundcount = 4
 
         if 렐릭_차지.Enchant is RelicSymbol.blast:
             UnboundDamage = 625 + 25 * level  # 레벨에 따라 대미지가 증가한다. 대략적인 추정치
             UnboundAttackLine = 8
-            UnboundDuration = Cooldown(seconds=9)
+            UnboundDuration = Cooldown(seconds=7)
             UnboundInterval = Cooldown(seconds=2)
 
             
@@ -1519,8 +1801,6 @@ class 렐릭_언바운드(OnPressSkill, 인챈트_포스, SummonAttribute, Coold
                 Cooldown(),
                 Cooldown(),
             ]
-            
-        
         )
 
     def UseSkill(self):
@@ -1536,15 +1816,16 @@ class 렐릭_언바운드(OnPressSkill, 인챈트_포스, SummonAttribute, Coold
         ancientbuff += self.GetEnchantForceBuff()
 
         
+        result = []
+        for _ in range(0, self.Unboundcount):
+            UnboundLog = self.Target.TakeAttack(
+                char=self.Owner,
+                skill=self,
+                add=cursebuff + ancientbuff 
+            )
+            result.append(UnboundLog)
         
-
-        UnboundLog = self.Target.TakeAttack(
-            char=self.Owner,
-            skill=self,
-            add=cursebuff + ancientbuff 
-        )
-        
-        return [UnboundLog]
+        return result
 
     def EndSummon(self):
         렐릭_언바운드.isFirst = True

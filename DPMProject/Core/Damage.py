@@ -25,7 +25,7 @@ def BattlePower(spec:SpecVector, jobtype:JobType, considerGuard = 300, isBoss = 
     if jobtype == JobType.Xenon:
         pass
     elif MainStatList[0] == CoreStat.STAT_STR:
-        #전사, 힘해적
+        result = (STR*4 + LUK)*0.01 * ATK
         pass
     elif MainStatList[0] == CoreStat.STAT_DEX:
         #궁수, 덱해적
@@ -33,7 +33,7 @@ def BattlePower(spec:SpecVector, jobtype:JobType, considerGuard = 300, isBoss = 
     elif MainStatList[0] == CoreStat.STAT_INT:
         result = (INT*4 + LUK)*0.01 * SPELL
     elif MainStatList[0] == CoreStat.STAT_LUK:
-        # 도적, 힘도적
+        result = (LUK*4 + DEX)*0.01 * ATK
         pass
     elif MainStatList[0] == CoreStat.STAT_HP:
         # 데벤

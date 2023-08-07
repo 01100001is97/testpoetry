@@ -204,7 +204,8 @@ class Dummy:
             debuff=debuffStat,
             add = add,
             condition=self.Condition,
-            line=skill.AttackLine
+            line=skill.AttackLine,
+            bufflist = char.BuffList
         )
         return result
 

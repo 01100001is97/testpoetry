@@ -156,7 +156,7 @@ class 인텐시브_인설트(PassiveSkill, BuffAttribute):
 
 
 
-class 소울_컨트랙트(OnPressSkill, BuffAttribute, DurationAttribute, CooldownAttribute):
+class 소울_컨트랙트(OnPressSkill, BuffAttribute, DurationAttribute, CooldownAttribute,SkillDelayAttribute):
     def __init__(self):
         iconSoul = None
         lev = 2
@@ -176,7 +176,12 @@ class 소울_컨트랙트(OnPressSkill, BuffAttribute, DurationAttribute, Cooldo
         BuffAttribute.__init__(self, stat=buff)
         DurationAttribute.__init__(self,duration=duration, serverlack=True, isbuffmult=True)
         CooldownAttribute.__init__(self, cooldown=cooldown, isresetable=True)
-
+        SkillDelayAttribute.__init__(
+            self=self,
+            casting_delay=Cooldown(milliseconds=900),
+            # 실측하면 공속 먹음
+            applyAttackSpeed=True
+        )
     
     
     def UseSkill(self):
